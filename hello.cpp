@@ -5,6 +5,8 @@ int add6(int);
 //int add7(int);
 //int add7(int, int);
 
+int add1(int);
+
 int main() {
   std::cout << "hello world" << std::endl;
   int y=1;
