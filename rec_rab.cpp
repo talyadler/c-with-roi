@@ -9,16 +9,15 @@ int bunnyEars(int bunnies) {
 }
 
 int oddEars(int e) {
-	if (e == 1){
-		printf("adding %d ears\n", e*3);
-		return 1;
+	if (e == 0){
+		return 0;
 	}
 	else if (e % 2 == 0){
 		printf("adding %d ears\n", (e/e)+1);
-		return oddEars(e-1)*2;
+		return 2 + oddEars(e-1);
 	}
 	printf("adding %d ears\n", (e/e)+2);
-	return  oddEars(e-1)*3;
+	return  3 + oddEars(e-1);
 }
 
 int main (){
