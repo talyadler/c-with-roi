@@ -1,18 +1,28 @@
-
+#include <iostream>
 /*
  * We have a number of bunnies and each bunny has two big floppy ears. 
  * We want to compute the total number of ears across all the bunnies recursively (without loops or multiplication).
  */
 int bunnyEars(int bunnies) {
+	printf("this is round %d\n", bunnies);
+	if (bunnies == 0){ 
+		return 0;
+	}
+	return 2 + bunnyEars(bunnies-1);
 }
-
 /*
  * We have bunnies standing in a line, numbered 1, 2, ... 
  * The odd bunnies (1, 3, ..) have the normal 2 ears. 
  * The even bunnies (2, 4, ..) we'll say have 3 ears, because they each have a raised foot. 
  * Recursively return the number of "ears" in the bunny line 1, 2, ... n (without loops or multiplication).
  */
-int bunnyEars2(int bunnies) {
+int oddEars(int e) {
+	if (e == 0){
+		return 0;
+	}
+	if (e == 1) 
+		return 2;
+	return 5 + oddEars(e-2);
 }
 
 /*
@@ -21,6 +31,7 @@ int bunnyEars2(int bunnies) {
  * while divide (/) by 10 removes the rightmost digit (126 / 10 is 12).
  */
 int sumDigits(int n) {
+	return 0;
 }
 
 /*
@@ -35,6 +46,7 @@ int sumDigits(int n) {
  * count8(8818) == 4
  */
 int count8(int n) {
+	return 0;
 }
 
 /*
@@ -46,4 +58,9 @@ int count8(int n) {
  * isPalindrome("atoyota", 0, 6) == true
  */
 bool isPalindrome(char* a, int from, int to) {
+	return 0;
+}
+
+int main (){
+	printf("there are %d ears\n", oddEars(4));
 }
