@@ -18,5 +18,5 @@ int matrix(int m, int n){
 }
 
 int main (){
-	printf("%d\n", matrix(2,2));
+	printf("hi %d\n", matrix(2,2));
 }
