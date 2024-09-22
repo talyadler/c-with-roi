@@ -12,11 +12,13 @@
 
 int matrix(int m, int n){
 	if (n == 0 && m == 0){
-		return 1;
+		return 0;
 	}
-	return matrix(m-1,n-1);
+	if (n > 0){
+		return 1 + matrix(m,n-1);}
+	return 1 + matrix(m-1,n);
 }
 
 int main (){
-	printf("%d\n", matrix(2,2));
+	printf("%d\n", matrix(5,3));
 }
