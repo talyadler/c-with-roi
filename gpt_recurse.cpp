@@ -9,17 +9,23 @@
 //	n = 0 end of recurse
 //	m = 0 end
 //	count each combination as 1
-//
+//	base case = only one sulution ie 1x1 = 1
 
-int matrix(int m, int n){
-	if (n == 0 && m == 0){
-		return 0;
+int matrix(int x, int y){
+	if (x&&y!=1){
+		printf("path %d,%d\n",x,y);
 	}
-	if (n > 0){
-		return 1 + matrix(m,n-1);}
-	return 1 + matrix(m-1,n);
+	if (x == 1 && y == 1){
+		return 1;
+	}
+	if (x>1&&y==1){
+		return  matrix (x-1,y);
+	}
+	if (y>1&&x==1){
+		return matrix(x,y-1);
+	}
+	return matrix(x-1,y) +  matrix(x,y-1);
 }
-
 /*
 String Permutations
 
@@ -57,7 +63,7 @@ unsigned int factorial(int n) {
 
 int main (){
 // start of matrix
-	printf("matrix result: %d\n", matrix(5,3));
+	printf("matrix result: %d\n", matrix(2,3));
 // start of permute
 	std::string t = "ABC";
 	permute(t,t.length(),factorial(t.length()));
