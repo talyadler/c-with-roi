@@ -97,11 +97,11 @@ void addEmp(std::vector<Emp>& emplist){
 void showEmp(const std::vector<Emp>& emplist) {
     for (size_t i = 0; i < emplist.size(); i++){
     	printf("Employee %03ld\n"
-               "id: %03d\n"
-               "name: %s\n"
-               "age: %d\n"
-               "position: %s\n"
-               "salary: %f\n"
+               "\tid: \t\t%03d\n"
+               "\tname: \t\t%s\n"
+               "\tage: \t\t%d\n"
+               "\tposition: \t%s\n"
+               "\tsalary: \t%f\n"
                ,i+1, emplist[i].id, emplist[i].name, emplist[i].age, emplist[i].position, emplist[i].salary);
         printf("-------------------------\n");
     }
