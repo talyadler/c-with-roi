@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <vector>
+#include <algorithm>
 
 /*
  *Objective:
@@ -108,8 +109,27 @@ void showEmp(const std::vector<Emp>& emplist) {
 }
 /*
 3. Display Employee with Highest Salary
+void highest(const std::vector<Emp>& emplist){
+
+	const auto it = std::max_element(emplist.begin(),emplist.end(),
+			[] (const Emp& a, const Emp& b) {
+			return a.salary < b.salary;
+			});
+	std::cout<<it<<"\n";
+}
 4. Display Average Salary
+*/
+void avarge(const std::vector<Emp>& emplist){
+	printf("\n");
+}
+
+/*
 5. Find Employee by ID
+*/
+void findid(){
+	printf("\n");
+}	
+/*
 6. Exit
 Enter your choice: 1
 Enter employee ID: 101
