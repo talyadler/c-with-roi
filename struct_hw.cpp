@@ -57,6 +57,20 @@ Requirements:
 Add Employee: The user should be able to add new employees until they choose to stop.
 Prompt the user for all necessary details.
 */
+/*
+Store each employee's information in an array or a vector of Employee structs.
+Display All Employees: Display all employees' information, showing their ID, name, age,
+position, and salary.
+Find Highest Salary: Display the name and salary of the employee with the highest salary.
+Average Salary: Calculate and display the average salary of all employees.
+Find Employee by ID: Allow the user to input an employee ID and display the details of
+the corresponding employee. If the employee doesn't exist, display an appropriate
+message.
+Input Validation: Ensure that age is non-negative, salary is positive, and employee IDs are
+unique.
+Example Output:
+1. Add Employee
+*/
 void addEmp(std::vector<Emp>& emplist){
     char more;
     do {
@@ -77,7 +91,9 @@ void addEmp(std::vector<Emp>& emplist){
         printf("-------------------------\n");
     } while (more == 'y' || more =='Y');
 }
-
+/*
+2. Display All Employees
+*/
 void showEmp(const std::vector<Emp>& emplist) {
     for (size_t i = 0; i < emplist.size(); i++){
     	printf("Employee %03ld\n"
@@ -91,19 +107,6 @@ void showEmp(const std::vector<Emp>& emplist) {
     }
 }
 /*
-Store each employee's information in an array or a vector of Employee structs.
-Display All Employees: Display all employees' information, showing their ID, name, age,
-position, and salary.
-Find Highest Salary: Display the name and salary of the employee with the highest salary.
-Average Salary: Calculate and display the average salary of all employees.
-Find Employee by ID: Allow the user to input an employee ID and display the details of
-the corresponding employee. If the employee doesn't exist, display an appropriate
-message.
-Input Validation: Ensure that age is non-negative, salary is positive, and employee IDs are
-unique.
-Example Output:
-1. Add Employee
-2. Display All Employees
 3. Display Employee with Highest Salary
 4. Display Average Salary
 5. Find Employee by ID
