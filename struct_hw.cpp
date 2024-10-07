@@ -95,20 +95,21 @@ void addEmp(std::vector<Emp>& emplist){
 /*
 2. Display All Employees
 */
-void showEmp(const std::vector<Emp>& emplist) {
+void showemp(const std::vector<emp>& emplist) {
     for (size_t i = 0; i < emplist.size(); i++){
-    	printf("Employee %03ld\n"
-               "\tid: \t\t%03d\n"
-               "\tname: \t\t%s\n"
-               "\tage: \t\t%d\n"
-               "\tposition: \t%s\n"
-               "\tsalary: \t%f\n"
-               ,i+1, emplist[i].id, emplist[i].name, emplist[i].age, emplist[i].position, emplist[i].salary);
+        printf("employee %03ld\n"
+            "\tid: \t\t%03d\n"
+            "\tname: \t\t%s\n"
+            "\tage: \t\t%d\n"
+            "\tposition: \t%s\n"
+            "\tsalary: \t%f\n"
+            ,i+1, emplist[i].id, emplist[i].name, emplist[i].age, emplist[i].position, emplist[i].salary);
         printf("-------------------------\n");
     }
 }
 /*
 3. Display Employee with Highest Salary
+*/
 void highest(const std::vector<Emp>& emplist){
 
 	const auto it = std::max_element(emplist.begin(),emplist.end(),
@@ -117,6 +118,8 @@ void highest(const std::vector<Emp>& emplist){
 			});
 	std::cout<<it<<"\n";
 }
+
+/*
 4. Display Average Salary
 */
 void avarge(const std::vector<Emp>& emplist){
@@ -128,7 +131,8 @@ void avarge(const std::vector<Emp>& emplist){
 */
 void findid(){
 	printf("\n");
-}	
+}
+	
 /*
 6. Exit
 Enter your choice: 1
@@ -174,7 +178,7 @@ int main(){
                 addEmp(emplist);
                 break;
             case 2:
-                showEmp(emplist);
+                // showEmp(emplist);
                 break;
             case 3:
                 break;
