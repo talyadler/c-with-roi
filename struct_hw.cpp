@@ -57,8 +57,6 @@ int menu(){
 Requirements:
 Add Employee: The user should be able to add new employees until they choose to stop.
 Prompt the user for all necessary details.
-*/
-/*
 Store each employee's information in an array or a vector of Employee structs.
 Display All Employees: Display all employees' information, showing their ID, name, age,
 position, and salary.
@@ -70,6 +68,7 @@ message.
 Input Validation: Ensure that age is non-negative, salary is positive, and employee IDs are
 unique.
 Example Output:
+
 1. Add Employee
 */
 void addEmp(std::vector<Emp>& emplist){
@@ -92,10 +91,11 @@ void addEmp(std::vector<Emp>& emplist){
         printf("-------------------------\n");
     } while (more == 'y' || more =='Y');
 }
+
 /*
 2. Display All Employees
 */
-void showemp(const std::vector<emp>& emplist) {
+void showEmp(const std::vector<Emp>& emplist) {
     for (size_t i = 0; i < emplist.size(); i++){
         printf("employee %03ld\n"
             "\tid: \t\t%03d\n"
@@ -107,18 +107,16 @@ void showemp(const std::vector<emp>& emplist) {
         printf("-------------------------\n");
     }
 }
+
 /*
 3. Display Employee with Highest Salary
 */
-void highest(const std::vector<Emp>& emplist){
-
-	const auto it = std::max_element(emplist.begin(),emplist.end(),
-			[] (const Emp& a, const Emp& b) {
-			return a.salary < b.salary;
-			});
-	std::cout<<it<<"\n";
-}
-
+//Emp highest(const std::vector<Emp>& emplist) {
+//    auto max_salary_emp = std::max_element(emplist.begin(), emplist.end(),
+//         {
+//            return a.salary < b.salary;
+//        });
+//}
 /*
 4. Display Average Salary
 */
@@ -135,30 +133,6 @@ void findid(){
 	
 /*
 6. Exit
-Enter your choice: 1
-Enter employee ID: 101
-Enter employee name: John Doe
-Enter employee age: 35
-Enter employee position: Manager
-Enter employee salary: 5000
-Employee added successfully!
-1. Add Employee
-2. Display All Employees
-3. Display Employee with Highest Salary
-4. Display Average Salary
-5. Find Employee by ID
-6. Exit
-Enter your choice: 2
-ID: 101
-Name: John Doe
-Age: 35
-Position: Manager
-Salary: 5000.00
-Optional Enhancements:
-Allow sorting the list of employees by salary, age, or name.
-Save and load employee data from a file.
-This assignment should help you practice working with structs, arrays or vectors, and
-basic input/output in C++.
 */
 //    Emp* empArr = new Emp[1];
 //    strcpy(empArr[0].id, "123456789");
@@ -178,9 +152,10 @@ int main(){
                 addEmp(emplist);
                 break;
             case 2:
-                // showEmp(emplist);
+                showEmp(emplist);
                 break;
             case 3:
+		highest(emplist);
                 break;
             case 4:
                 break;
