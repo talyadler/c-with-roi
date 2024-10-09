@@ -112,22 +112,25 @@ void showEmp(const std::vector<Emp>& emplist) {
 3. Display Employee with Highest Salary
 */
 void highest(const std::vector<Emp>& emplist){
+	if (emplist.size()==0){
+		printf("No employees registered\n");
+		return;}
 	float max = emplist[0].salary;
-	unsigned int id = emplist[0].id;
-	for(Emp i : emplist){
-		if (i.salary>max){
-			max = i.salary;
-			unsigned int id = i.id;
+	int id = 0;
+	for(int i = 1; i < emplist.size(); ++i){
+		if (emplist[i].salary>max){
+			max = emplist[i].salary;
+			int id = i+1;
 		}
 	}
-	    printf("\tid: \t\t%03d\n"
-            "\tname: \t\t%s\n"
-            "\tage: \t\t%d\n"
-            "\tposition: \t%s\n"
-            "\tsalary: \t%f\n"
-            ,emplist[id].id, emplist[id].name, emplist[id].age, emplist[id].position, emplist[id].salary);
-        printf("-------------------------\n");
-	std::cout << max << "\n";
+	printf("The highest paied employee is:\n"
+		"\tid: \t\t%03d\n"
+        	"\tname: \t\t%s\n"
+            	"\tage: \t\t%d\n"
+            	"\tposition: \t%s\n"
+            	"\tsalary: \t%f\n"
+		"-------------------------\n"
+            	,emplist[id].id, emplist[id].name, emplist[id].age, emplist[id].position, emplist[id].salary);
 }
 /*
 4. Display Average Salary
