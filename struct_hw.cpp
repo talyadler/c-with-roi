@@ -128,12 +128,12 @@ void highest(const std::vector<Emp>& emplist){
 	}
 	printf("The highest paied employee is:\n"
 		"\tid: \t\t%03d\n"
-        	"\tname: \t\t%s\n"
-            	"\tage: \t\t%d\n"
-            	"\tposition: \t%s\n"
-            	"\tsalary: \t%f\n"
+        "\tname: \t\t%s\n"
+        "\tage: \t\t%d\n"
+        "\tposition: \t%s\n"
+        "\tsalary: \t%f\n"
 		"-------------------------\n"
-            	,emplist[id].id, emplist[id].name, emplist[id].age, emplist[id].position, emplist[id].salary);
+        ,emplist[id].id, emplist[id].name, emplist[id].age, emplist[id].position, emplist[id].salary);
 }
 /*
 4. Display Average Salary
