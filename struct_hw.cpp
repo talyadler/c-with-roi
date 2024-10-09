@@ -54,7 +54,6 @@ int menu(){
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Discard invalid input
         std::cout << "Your choice: ";
     }
-    //    scanf("%d",&choice);
     printf("-------------------------\n");
     return choice;
 }
@@ -117,24 +116,14 @@ void showEmp(const std::vector<Emp>& emplist) {
 3. Display Employee with Highest Salary
 */
 void highest(const std::vector<Emp>& emplist){
-	Emp* max = emplist[0];
+	Emp* max = &emplist[0];
 	for(int i = 1; i < emplist.size(); ++i){
-		if (emplist[i].salary>max->salary){
+		if (emplist[i].salary > max->salary){
 			max = &emplist[i];
 		}
 	}
-	printf("The highest paied employee is:\n");
+	printf("The highest paid employee is:\n");
 	showEmp(*max);
-/*
-	printf("The highest paied employee is:\n"
-		"\tid: \t\t%03d\n"
-        "\tname: \t\t%s\n"
-        "\tage: \t\t%d\n"
-        "\tposition: \t%s\n"
-        "\tsalary: \t%f\n"
-		"-------------------------\n"
-        ,emplist[id].id, emplist[id].name, emplist[id].age, emplist[id].position, emplist[id].salary);
-*/
 }
 /*
 4. Display Average Salary
