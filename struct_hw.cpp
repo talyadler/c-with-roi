@@ -96,6 +96,9 @@ void addEmp(std::vector<Emp>& emplist){
 2. Display All Employees
 */
 void showEmp(const std::vector<Emp>& emplist) {
+	if (emplist.size()==0){
+		printf("No employees registered\n");
+		return;}
     for (size_t i = 0; i < emplist.size(); i++){
         printf("employee %03ld\n"
             "\tid: \t\t%03d\n"
