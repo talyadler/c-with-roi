@@ -138,7 +138,7 @@ void highest(const std::vector<Emp>& emplist){
 /*
 4. Display Average Salary
 */
-void avarge(const std::vector<Emp>& emplist){
+void avg(const std::vector<Emp>& emplist){
 	if (emplist.size()==0){
 		printf("No employees registered\n");
 		return;}
@@ -148,7 +148,11 @@ void avarge(const std::vector<Emp>& emplist){
 /*
 5. Find Employee by ID
 */
-void findid(){
+
+void findid(const std::vector<Emp>& emplist){
+	if (emplist.size()==0){
+		printf("No employees registered\n");
+		return;}
 	printf("\n");
 }
 	
@@ -176,12 +180,13 @@ int main(){
                 showEmp(emplist);
                 break;
             case 3:
-		highest(emplist);
+				highest(emplist);
                 break;
             case 4:
+				avg(emplist);
                 break;
             case 5:
-                printf("you have chosen %d",choice);
+				findid(emplist);
                 return 0;
             case 6:
                 printf("Bye\n");
