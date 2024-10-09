@@ -117,14 +117,15 @@ void showEmp(const std::vector<Emp>& emplist) {
 3. Display Employee with Highest Salary
 */
 void highest(const std::vector<Emp>& emplist){
-	float max = emplist[0].salary;
-	int id;
-	for(int i = 0; i < emplist.size(); ++i){
-		if (emplist[i].salary>max){
-			max = emplist[i].salary;
-			id = i;
+	Emp* max = emplist[0];
+	for(int i = 1; i < emplist.size(); ++i){
+		if (emplist[i].salary>max->salary){
+			max = &emplist[i];
 		}
 	}
+	printf("The highest paied employee is:\n");
+	showEmp(*max);
+/*
 	printf("The highest paied employee is:\n"
 		"\tid: \t\t%03d\n"
         "\tname: \t\t%s\n"
@@ -133,6 +134,7 @@ void highest(const std::vector<Emp>& emplist){
         "\tsalary: \t%f\n"
 		"-------------------------\n"
         ,emplist[id].id, emplist[id].name, emplist[id].age, emplist[id].position, emplist[id].salary);
+*/
 }
 /*
 4. Display Average Salary
@@ -170,19 +172,19 @@ int main(){
                 addEmp(emplist);
                 break;
             case 2:
-				if (emplist.size() == 0){ printf("Create an employee first\n\n\n"); break;}
+				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
                 showEmp(emplist);
                 break;
             case 3:
-				if (emplist.size() == 0){ printf("Create an employee first\n\n\n"); break;}
+				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
 				highest(emplist);
                 break;
             case 4:
-				if (emplist.size() == 0){ printf("Create an employee first\n\n\n"); break;}
+				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
 				avg(emplist);
                 break;
             case 5:
-				if (emplist.size() == 0){ printf("Create an employee first\n\n\n"); break;}
+				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
 				findid(emplist);
                 break;
             case 6:
