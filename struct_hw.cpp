@@ -187,7 +187,7 @@ int main(){
                 break;
             case 5:
 				findid(emplist);
-                return 0;
+                break;
             case 6:
                 printf("Bye\n");
                 done = true;
