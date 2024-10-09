@@ -123,7 +123,7 @@ void highest(const std::vector<Emp>& emplist){
 	for(int i = 0; i < emplist.size()-1; ++i){
 		if (emplist[i].salary>max){
 			max = emplist[i].salary;
-			int id = i;
+			id = i;
 		}
 	}
 	printf("The highest paied employee is:\n"
