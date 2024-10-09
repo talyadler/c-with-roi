@@ -139,6 +139,9 @@ void highest(const std::vector<Emp>& emplist){
 4. Display Average Salary
 */
 void avarge(const std::vector<Emp>& emplist){
+	if (emplist.size()==0){
+		printf("No employees registered\n");
+		return;}
 	printf("\n");
 }
 
