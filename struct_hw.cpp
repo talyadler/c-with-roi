@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <vector>
+#include <limits>
 
 /*
  *Objective:
@@ -48,7 +49,12 @@ int menu(){
             "\t6.Exit the program.\n"
             "-------------------------\n"
             "Your choice: ");
-    scanf("%d",&choice);
+    while (!(std::cin >> choice)) {
+        std::cin.clear();  // Clear the error flag
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Discard invalid input
+        std::cout << "Your choice: ";
+    }
+    //    scanf("%d",&choice);
     printf("-------------------------\n");
     return choice;
 }
@@ -95,9 +101,6 @@ void addEmp(std::vector<Emp>& emplist){
 2. Display All Employees
 */
 void showEmp(const std::vector<Emp>& emplist) {
-	if (emplist.size()==0){
-		printf("No employees registered\n");
-		return;}
     for (size_t i = 0; i < emplist.size(); i++){
         printf("employee %03ld\n"
             "\tid: \t\t%03d\n"
@@ -114,12 +117,9 @@ void showEmp(const std::vector<Emp>& emplist) {
 3. Display Employee with Highest Salary
 */
 void highest(const std::vector<Emp>& emplist){
-	if (emplist.size()==0){
-		printf("No employees registered\n");
-		return;}
 	float max = emplist[0].salary;
 	int id;
-	for(int i = 0; i < emplist.size()-1; ++i){
+	for(int i = 0; i < emplist.size(); ++i){
 		if (emplist[i].salary>max){
 			max = emplist[i].salary;
 			id = i;
@@ -138,9 +138,6 @@ void highest(const std::vector<Emp>& emplist){
 4. Display Average Salary
 */
 void avg(const std::vector<Emp>& emplist){
-	if (emplist.size()==0){
-		printf("No employees registered\n");
-		return;}
 	printf("\n");
 }
 
@@ -149,9 +146,6 @@ void avg(const std::vector<Emp>& emplist){
 */
 
 void findid(const std::vector<Emp>& emplist){
-	if (emplist.size()==0){
-		printf("No employees registered\n");
-		return;}
 	printf("\n");
 }
 	
@@ -176,15 +170,19 @@ int main(){
                 addEmp(emplist);
                 break;
             case 2:
+				if (emplist.size() == 0){ printf("Create an employee first\n\n\n"); break;}
                 showEmp(emplist);
                 break;
             case 3:
+				if (emplist.size() == 0){ printf("Create an employee first\n\n\n"); break;}
 				highest(emplist);
                 break;
             case 4:
+				if (emplist.size() == 0){ printf("Create an employee first\n\n\n"); break;}
 				avg(emplist);
                 break;
             case 5:
+				if (emplist.size() == 0){ printf("Create an employee first\n\n\n"); break;}
 				findid(emplist);
                 break;
             case 6:
