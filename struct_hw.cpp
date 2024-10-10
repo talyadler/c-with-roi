@@ -2,7 +2,6 @@
 #include <string.h>
 #include <vector>
 #include <limits>
-
 /*
  *Objective:
 Write a C++ program that uses a struct to manage a small company's employee
@@ -19,13 +18,12 @@ salary: A float for the employee's monthly salary.
 -------------------------------------------
 */
 struct Emp {
-    unsigned int id;
-    char name[255];
-    unsigned int age;
-    char position[255];
-    float salary;
+	unsigned int id;
+	char name[255];
+	unsigned int age;
+	char position[255];
+	float salary;
 };
-
 /*
 Create a menu that allows the user to:
 Add a new employee to a list (array or vector).
@@ -73,9 +71,8 @@ message.
 Input Validation: Ensure that age is non-negative, salary is positive, and employee IDs are
 unique.
 Example Output:
-
-1. Add Employee
 */
+//1. Add Employee
 void addEmp(std::vector<Emp>& emplist){
 	char more;
 	do {
@@ -93,15 +90,12 @@ void addEmp(std::vector<Emp>& emplist){
 		printf("Do you want to add more employees? ");
 		std::cin >> more;
 		printf("-------------------------\n");
-    } while (more == 'y' || more =='Y');
+	} while (more == 'y' || more =='Y');
 }
-
-/*
-2. Display All Employees
-*/
+// 2. Display All Employees
 void showEmp(const std::vector<Emp>& emplist) {
-    for (size_t i = 0; i < emplist.size(); i++){
-        printf("Employee %03ld\n"
+	for (size_t i = 0; i < emplist.size(); i++){
+		printf("Employee %03ld\n"
 		"\tID: \t\t%03d\n"
 		"\tName: \t\t%s\n"
 		"\tAge: \t\t%d\n"
@@ -110,7 +104,7 @@ void showEmp(const std::vector<Emp>& emplist) {
 		"-------------------------\n"
 		,i+1, emplist[i].id, emplist[i].name, emplist[i].age, emplist[i].position, emplist[i].salary
 	);
-    }
+	}
 }
 // 2.1 Support function to display employee for other functions
 void showEmp(const Emp& emplist) {
@@ -124,9 +118,7 @@ void showEmp(const Emp& emplist) {
 		,emplist.id, emplist.name, emplist.age, emplist.position, emplist.salary
 	);
 }
-/*
-3. Display Employee with Highest Salary
-*/
+// 3. Display Employee with Highest Salary
 void highest(const std::vector<Emp>& emplist){
 	const Emp* max = &emplist[0];
 	for(int i = 1; i < emplist.size(); ++i){
@@ -137,9 +129,7 @@ void highest(const std::vector<Emp>& emplist){
 	printf("The highest paid employee is:\n");
 	showEmp(*max);
 }
-/*
-4. Display Average Salary
-*/
+// 4. Display Average Salary
 void avg(const std::vector<Emp>& emplist){
 		float avg = 0;
 		for (int i = 0; i < emplist.size(); i++){
@@ -148,11 +138,7 @@ void avg(const std::vector<Emp>& emplist){
 		avg = avg / emplist.size();
 		printf("The avarge salary is: \n\t%.1f\n",avg);
 }
-
-/*
-5. Find Employee by ID
-*/
-
+// 5. Find Employee by ID
 void findid(const std::vector<Emp>& emplist){
 	printf("Please input desired ID: ");
 	unsigned int id;
@@ -160,7 +146,7 @@ void findid(const std::vector<Emp>& emplist){
 		std::cin.clear();  // Clear the error flag
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Discard invalid input
 		std::cout << "Please input desired ID: ";
-    }
+	}
 	const Emp* empid = &emplist[0];
 	for(int i = 1; i < emplist.size(); ++i){
 		if (emplist[i].id == id){
@@ -170,10 +156,7 @@ void findid(const std::vector<Emp>& emplist){
 	printf("The employee is:\n");
 	showEmp(*empid);
 }
-/*
-6. Exit
-*/
-
+// 6. Exit
 int main(){
 	std::vector<Emp> emplist;
 	bool done = false;
