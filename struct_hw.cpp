@@ -49,8 +49,8 @@ int menu(){
 		"Your choice: "
 	);
 	while (!(std::cin >> choice)) {
-		std::cin.clear();  // Clear the error flag
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Discard invalid input
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Your choice: ";
 	}
 	printf("-------------------------\n");
@@ -148,8 +148,8 @@ void findid(const std::vector<Emp>& emplist){
 	printf("Please input desired ID: ");
 	unsigned int id;
 	while (!(std::cin >> id)) {
-		std::cin.clear();  // Clear the error flag
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Discard invalid input
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Please input desired ID: ";
 	}
 	const Emp* empid = &emplist[0];
