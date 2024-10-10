@@ -101,22 +101,32 @@ void addEmp(std::vector<Emp>& emplist){
 */
 void showEmp(const std::vector<Emp>& emplist) {
     for (size_t i = 0; i < emplist.size(); i++){
-        printf("employee %03ld\n"
-            "\tid: \t\t%03d\n"
-            "\tname: \t\t%s\n"
-            "\tage: \t\t%d\n"
-            "\tposition: \t%s\n"
-            "\tsalary: \t%f\n"
+        printf("Employee %03ld\n"
+            "\tID: \t\t%03d\n"
+            "\tName: \t\t%s\n"
+            "\tAge: \t\t%d\n"
+            "\tPosition: \t%s\n"
+            "\tSalary: \t%f\n"
+			"-------------------------\n"
             ,i+1, emplist[i].id, emplist[i].name, emplist[i].age, emplist[i].position, emplist[i].salary);
-        printf("-------------------------\n");
     }
 }
-
+// 2.1 Support function to display employee for other functions
+void showEmp(const Emp& emplist) {
+	printf("Employee\n"
+	    "\tID: \t\t%03d\n"
+	    "\tName: \t\t%s\n"
+	    "\tAge: \t\t%d\n"
+	    "\tPosition: \t%s\n"
+	    "\tSalary: \t%f\n"
+		"-------------------------\n"
+	    ,emplist.id, emplist.name, emplist.age, emplist.position, emplist.salary);
+}
 /*
 3. Display Employee with Highest Salary
 */
 void highest(const std::vector<Emp>& emplist){
-	Emp* max = &emplist[0];
+	const Emp* max = &emplist[0];
 	for(int i = 1; i < emplist.size(); ++i){
 		if (emplist[i].salary > max->salary){
 			max = &emplist[i];
@@ -129,7 +139,13 @@ void highest(const std::vector<Emp>& emplist){
 4. Display Average Salary
 */
 void avg(const std::vector<Emp>& emplist){
-	printf("\n");
+		float avg = 0;
+		for (int i = 0; i < emplist.size(); i++){
+				avg = avg + emplist[i].salary;
+				printf("%f\n",avg);
+		}
+		avg = avg / emplist.size();
+		printf("The avarge salary is: \n\t%f\n",avg);
 }
 
 /*
@@ -137,19 +153,25 @@ void avg(const std::vector<Emp>& emplist){
 */
 
 void findid(const std::vector<Emp>& emplist){
-	printf("\n");
+	printf("Please input desired ID: ");
+	unsigned int id;
+	while (!(std::cin >> id)) {
+		std::cin.clear();  // Clear the error flag
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Discard invalid input
+		std::cout << "Please input desired ID: ";
+    }
+	const Emp* empid = &emplist[0];
+	for(int i = 1; i < emplist.size(); ++i){
+		if (emplist[i].id == id){
+			empid = &emplist[i];
+		}
+	}
+	printf("The employee is:\n");
+	showEmp(*empid);
 }
-	
 /*
 6. Exit
 */
-//    Emp* empArr = new Emp[1];
-//    strcpy(empArr[0].id, "123456789");
-//    strcpy(empArr[0].name, "Test Testington");
-//    empArr[0].age = 40
-//    strcpy(empArr[0].position, "The Man");
-//    empArr[0].salary = 1000.5;
-//          printEmp(empArr[0]);
 
 int main(){
     std::vector<Emp> emplist;
