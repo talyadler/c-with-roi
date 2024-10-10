@@ -88,7 +88,7 @@ void addEmp(std::vector<Emp>& emplist){
         printf("What is the employee position? ");
         scanf("%254s",e.position);
         printf("Insert employee salary: ");
-        scanf("%f",&e.salary);
+        scanf("%.1f",&e.salary);
         emplist.push_back(e);
         printf("Do you want to add more employees? ");
         std::cin >> more;
@@ -106,7 +106,7 @@ void showEmp(const std::vector<Emp>& emplist) {
             "\tName: \t\t%s\n"
             "\tAge: \t\t%d\n"
             "\tPosition: \t%s\n"
-            "\tSalary: \t%f\n"
+            "\tSalary: \t%.1f\n"
 			"-------------------------\n"
             ,i+1, emplist[i].id, emplist[i].name, emplist[i].age, emplist[i].position, emplist[i].salary);
     }
@@ -118,7 +118,7 @@ void showEmp(const Emp& emplist) {
 	    "\tName: \t\t%s\n"
 	    "\tAge: \t\t%d\n"
 	    "\tPosition: \t%s\n"
-	    "\tSalary: \t%f\n"
+	    "\tSalary: \t%.1f\n"
 		"-------------------------\n"
 	    ,emplist.id, emplist.name, emplist.age, emplist.position, emplist.salary);
 }
@@ -145,7 +145,7 @@ void avg(const std::vector<Emp>& emplist){
 				printf("%f\n",avg);
 		}
 		avg = avg / emplist.size();
-		printf("The avarge salary is: \n\t%f\n",avg);
+		printf("The avarge salary is: \n\t%.1f\n",avg);
 }
 
 /*
