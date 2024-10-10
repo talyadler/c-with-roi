@@ -172,11 +172,11 @@ void findid(const std::vector<Emp>& emplist){
 */
 
 int main(){
-    std::vector<Emp> emplist;
-    bool done = false;
-    do {
-        int choice = menu();
-        switch (choice){
+	std::vector<Emp> emplist;
+	bool done = false;
+	do {
+		int choice = menu();
+		switch (choice){
 			case 1:
 			    addEmp(emplist);
 			    break;
@@ -203,7 +203,7 @@ int main(){
 			default:
 			    printf("you have chosen an invalid option\n");
 			    break;
-        };
-    }while(!done);
-    return 0;
+		};
+	}while(!done);
+	return 0;
 }
