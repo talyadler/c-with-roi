@@ -140,7 +140,7 @@ void highest(const std::vector<Emp>& emplist){
 void avg(const std::vector<Emp>& emplist){
 		float avg = 0;
 		for (int i = 0; i < emplist.size(); i++){
-				avg = avg + emplist[i].salary;
+			avg = avg + emplist[i].salary;
 		}
 		avg = avg / emplist.size();
 		printf("The avarge salary is: \n\t%.1f\n",avg);
@@ -177,32 +177,32 @@ int main(){
     do {
         int choice = menu();
         switch (choice){
-            case 1:
-                addEmp(emplist);
-                break;
-            case 2:
+			case 1:
+			    addEmp(emplist);
+			    break;
+			case 2:
 				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
-                showEmp(emplist);
-                break;
-            case 3:
+			    showEmp(emplist);
+			    break;
+			case 3:
 				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
 				highest(emplist);
-                break;
-            case 4:
+			    break;
+			case 4:
 				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
 				avg(emplist);
-                break;
-            case 5:
+			    break;
+			case 5:
 				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
 				findid(emplist);
-                break;
-            case 6:
-                printf("Bye\n");
-                done = true;
-                break;
-            default:
-                printf("you have chosen an invalid option\n");
-                break;
+			    break;
+			case 6:
+			    printf("Bye\n");
+			    done = true;
+			    break;
+			default:
+			    printf("you have chosen an invalid option\n");
+			    break;
         };
     }while(!done);
     return 0;
