@@ -79,8 +79,7 @@ void addEmp(std::vector<Emp>& emplist){
     char more;
     do {
         Emp e;
-        printf("Give the Employee an ID: ");
-        scanf("%d",&e.id);
+		e.id = emplist.size()+1;
         printf("Type the full name of the employee: ");
         scanf("%254s",e.name);
         printf("Insert employee age: ");
