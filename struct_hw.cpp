@@ -36,26 +36,27 @@ Find and display an employee's details using their ID.
 Exit the program.
 */
 int menu(){
-    int choice;
-    printf("##########################\n"
-            "Welcome to employee menu:\n"
-            "#########################\n"
-            "Please choose a number to start:\n"
-            "\t1.Add an employee.\n"
-            "\t2.Display all employees.\n"
-            "\t3.Display the employee with the highest salary.\n"
-            "\t4.Display the average salary of all employees.\n"
-            "\t5.Find and display an employee's details using their ID.\n"
-            "\t6.Exit the program.\n"
-            "-------------------------\n"
-            "Your choice: ");
-    while (!(std::cin >> choice)) {
-        std::cin.clear();  // Clear the error flag
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Discard invalid input
-        std::cout << "Your choice: ";
-    }
-    printf("-------------------------\n");
-    return choice;
+	int choice;
+	printf("##########################\n"
+		"Welcome to employee menu:\n"
+		"#########################\n"
+		"Please choose a number to start:\n"
+		"\t1.Add an employee.\n"
+		"\t2.Display all employees.\n"
+		"\t3.Display the employee with the highest salary.\n"
+		"\t4.Display the average salary of all employees.\n"
+		"\t5.Find and display an employee's details using their ID.\n"
+		"\t6.Exit the program.\n"
+		"-------------------------\n"
+		"Your choice: "
+	);
+	while (!(std::cin >> choice)) {
+		std::cin.clear();  // Clear the error flag
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Discard invalid input
+		std::cout << "Your choice: ";
+	}
+	printf("-------------------------\n");
+	return choice;
 }
 /*
 Requirements:
@@ -107,7 +108,8 @@ void showEmp(const std::vector<Emp>& emplist) {
 		"\tPosition: \t%s\n"
 		"\tSalary: \t%.1f\n"
 		"-------------------------\n"
-		,i+1, emplist[i].id, emplist[i].name, emplist[i].age, emplist[i].position, emplist[i].salary);
+		,i+1, emplist[i].id, emplist[i].name, emplist[i].age, emplist[i].position, emplist[i].salary
+	);
     }
 }
 // 2.1 Support function to display employee for other functions
@@ -119,7 +121,8 @@ void showEmp(const Emp& emplist) {
 		"\tPosition: \t%s\n"
 		"\tSalary: \t%.1f\n"
 		"-------------------------\n"
-		,emplist.id, emplist.name, emplist.age, emplist.position, emplist.salary);
+		,emplist.id, emplist.name, emplist.age, emplist.position, emplist.salary
+	);
 }
 /*
 3. Display Employee with Highest Salary
