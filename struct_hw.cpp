@@ -84,8 +84,13 @@ void addEmp(std::vector<Emp>& emplist){
 		scanf("%d",&e.age);
 		printf("What is the employee position? ");
 		scanf("%254s",e.position);
-		printf("Insert employee salary: ");
-		scanf("%f",&e.salary);
+		do {
+			std::cout << "Insert employee salary: ";
+			std::cin >> e.salary;
+			if (e.salary <= 0) {
+				std::cout << "Please enter a positive number." << std::endl;
+			}
+		} while (e.salary <= 0);
 		emplist.push_back(e);
 		printf("Do you want to add more employees? ");
 		std::cin >> more;
