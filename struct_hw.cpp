@@ -113,13 +113,13 @@ void showEmp(const std::vector<Emp>& emplist) {
 // 2.1 Support function to display employee for other functions
 void showEmp(const Emp& emplist) {
 	printf("Employee\n"
-	    "\tID: \t\t%03d\n"
-	    "\tName: \t\t%s\n"
-	    "\tAge: \t\t%d\n"
-	    "\tPosition: \t%s\n"
-	    "\tSalary: \t%.1f\n"
+		"\tID: \t\t%03d\n"
+		"\tName: \t\t%s\n"
+		"\tAge: \t\t%d\n"
+		"\tPosition: \t%s\n"
+		"\tSalary: \t%.1f\n"
 		"-------------------------\n"
-	    ,emplist.id, emplist.name, emplist.age, emplist.position, emplist.salary);
+		,emplist.id, emplist.name, emplist.age, emplist.position, emplist.salary);
 }
 /*
 3. Display Employee with Highest Salary
