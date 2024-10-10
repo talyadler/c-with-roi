@@ -76,22 +76,22 @@ Example Output:
 1. Add Employee
 */
 void addEmp(std::vector<Emp>& emplist){
-    char more;
-    do {
-        Emp e;
+	char more;
+	do {
+		Emp e;
 		e.id = emplist.size()+1;
-        printf("Type the full name of the employee: ");
-        scanf("%254s",e.name);
-        printf("Insert employee age: ");
-        scanf("%d",&e.age);
-        printf("What is the employee position? ");
-        scanf("%254s",e.position);
-        printf("Insert employee salary: ");
-        scanf("%f",&e.salary);
-        emplist.push_back(e);
-        printf("Do you want to add more employees? ");
-        std::cin >> more;
-        printf("-------------------------\n");
+		printf("Type the full name of the employee: ");
+		scanf("%254s",e.name);
+		printf("Insert employee age: ");
+		scanf("%d",&e.age);
+		printf("What is the employee position? ");
+		scanf("%254s",e.position);
+		printf("Insert employee salary: ");
+		scanf("%f",&e.salary);
+		emplist.push_back(e);
+		printf("Do you want to add more employees? ");
+		std::cin >> more;
+		printf("-------------------------\n");
     } while (more == 'y' || more =='Y');
 }
 
