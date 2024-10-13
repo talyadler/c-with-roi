@@ -39,34 +39,30 @@ void validatechar(const std::string& prompt, char* output, size_t size){
 
 unsigned int validateint(const std::string& prompt){
     int tempValue;
+	std::cout << prompt;
     while (true) {
-        std::cout << prompt;
-        std::cin >> tempValue;
-        if (!std::cin.fail() && tempValue > 0) {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
-            return static_cast<unsigned int>(tempValue);
-        }
-        std::cin.clear(); // Clear the error flag
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore invalid input
-        std::cout << "Please enter a valid positive integer." << std::endl;
-    }
+        	if (std::cin >> tempValue && tempValue > 0){
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			return static_cast<unsigned int>(tempValue);
+		}
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		printf("Bad input. Enter integer: ");
+	}
 }
 // Validate float user input
 float validatefloat(const std::string& prompt) {
     float value;
+	std::cout << prompt;
     while (true) {
-        std::cout << prompt;
-        std::cin >> value;
-        if (std::cin.fail() || value <= 0) {
-            std::cin.clear();
+       if (std::cin >> value || value < 0) {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Please enter a valid positive number." << std::endl;
-        } else {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            break;
-        }
-    }
-    return value;
+    		return value;
+	   }
+	   std::cin.clear();
+	   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	   printf("Bad input. Enter positive number: ");
+	}
 }
 /*
 Create a menu that allows the user to:
