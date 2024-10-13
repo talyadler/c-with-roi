@@ -1,7 +1,8 @@
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <vector>
 #include <limits>
+#include <cstring>
 /*
  *Objective:
 Write a C++ program that uses a struct to manage a small company's employee
@@ -24,6 +25,49 @@ struct Emp {
 	char position[255];
 	float salary;
 };
+/*
+ Validation functions
+*/
+// Validate char user input
+void validatechar(const std::string& prompt, char* output, size_t size){
+	std::string input;
+	std::cout << prompt;
+    std::getline(std::cin >> std::ws, input);
+    strncpy(output, input.c_str(), size - 1);
+    output[size - 1] = '\0';
+}
+
+unsigned int validateint(const std::string& prompt){
+    int tempValue;
+    while (true) {
+        std::cout << prompt;
+        std::cin >> tempValue;
+        if (!std::cin.fail() && tempValue > 0) {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
+            return static_cast<unsigned int>(tempValue);
+        }
+        std::cin.clear(); // Clear the error flag
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore invalid input
+        std::cout << "Please enter a valid positive integer." << std::endl;
+    }
+}
+// Validate float user input
+float validatefloat(const std::string& prompt) {
+    float value;
+    while (true) {
+        std::cout << prompt;
+        std::cin >> value;
+        if (std::cin.fail() || value <= 0) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Please enter a valid positive number." << std::endl;
+        } else {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            break;
+        }
+    }
+    return value;
+}
 /*
 Create a menu that allows the user to:
 Add a new employee to a list (array or vector).
@@ -78,19 +122,10 @@ void addEmp(std::vector<Emp>& emplist){
 	do {
 		Emp e;
 		e.id = emplist.size()+1;
-		printf("Type the full name of the employee: ");
-		scanf("%254s",e.name);
-		printf("Insert employee age: ");
-		scanf("%d",&e.age);
-		printf("What is the employee position? ");
-		scanf("%254s",e.position);
-		do {
-			std::cout << "Insert employee salary: ";
-			std::cin >> e.salary;
-			if (e.salary <= 0) {
-				std::cout << "Please enter a positive number." << std::endl;
-			}
-		} while (e.salary <= 0);
+		validatechar("Type the full name of the employee: ", e.name, sizeof(e.name));
+		e.age = validateint("Insert employee age: ");
+		validatechar("What is the employee position? ", e.position, sizeof(e.position));
+		e.salary = validatefloat("Insert employee salary: ");
 		emplist.push_back(e);
 		printf("Do you want to add more employees? ");
 		std::cin >> more;
