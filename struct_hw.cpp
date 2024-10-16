@@ -3,6 +3,8 @@
 #include <vector>
 #include <limits>
 #include <cstring>
+#include "emp.hpp"
+
 /*
  *Objective:
 Write a C++ program that uses a struct to manage a small company's employee
@@ -18,13 +20,7 @@ position: A string for the employee's job position.
 salary: A float for the employee's monthly salary.
 -------------------------------------------
 */
-struct Emp {
-	unsigned int id;
-	char name[255];
-	unsigned int age;
-	char position[255];
-	float salary;
-};
+
 /*
  Validation functions
 */
@@ -50,6 +46,7 @@ unsigned int validateint(const std::string& prompt){
 		printf("Bad input. Enter integer: ");
 	}
 }
+
 // Validate float user input
 float validatefloat(const std::string& prompt) {
     float value;
@@ -64,6 +61,7 @@ float validatefloat(const std::string& prompt) {
 	   printf("Bad input. Enter positive number: ");
 	}
 }
+
 /*
 Create a menu that allows the user to:
 Add a new employee to a list (array or vector).
@@ -96,6 +94,7 @@ int menu(){
 	printf("-------------------------\n");
 	return choice;
 }
+
 /*
 Requirements:
 Add Employee: The user should be able to add new employees until they choose to stop.
@@ -112,6 +111,7 @@ Input Validation: Ensure that age is non-negative, salary is positive, and emplo
 unique.
 Example Output:
 */
+
 //1. Add Employee
 void addEmp(std::vector<Emp>& emplist){
 	char more;
@@ -128,8 +128,9 @@ void addEmp(std::vector<Emp>& emplist){
 		printf("-------------------------\n");
 	} while (more == 'y' || more =='Y');
 }
+
 // 2. Display All Employees
-void showEmp(const std::vector<Emp>& emplist) {
+void showEmp(std::vector<Emp>& emplist) {
 	for (size_t i = 0; i < emplist.size(); i++){
 		printf("Employee %03ld\n"
 		"\tID: \t\t%03d\n"
@@ -142,21 +143,10 @@ void showEmp(const std::vector<Emp>& emplist) {
 	);
 	}
 }
-// 2.1 Support function to display employee for other functions
-void showEmp(const Emp& emplist) {
-	printf("Employee\n"
-		"\tID: \t\t%03d\n"
-		"\tName: \t\t%s\n"
-		"\tAge: \t\t%d\n"
-		"\tPosition: \t%s\n"
-		"\tSalary: \t%.1f\n"
-		"-------------------------\n"
-		,emplist.id, emplist.name, emplist.age, emplist.position, emplist.salary
-	);
-}
+
 // 3. Display Employee with Highest Salary
-void highest(const std::vector<Emp>& emplist){
-	const Emp* max = &emplist[0];
+void highest(std::vector<Emp>& emplist){
+	Emp* max = &emplist[0];
 	for(int i = 1; i < emplist.size(); ++i){
 		if (emplist[i].salary > max->salary){
 			max = &emplist[i];
@@ -165,8 +155,9 @@ void highest(const std::vector<Emp>& emplist){
 	printf("The highest paid employee is:\n");
 	showEmp(*max);
 }
+
 // 4. Display Average Salary
-void avg(const std::vector<Emp>& emplist){
+void avg(std::vector<Emp>& emplist){
 		float avg = 0;
 		for (int i = 0; i < emplist.size(); i++){
 			avg = avg + emplist[i].salary;
@@ -174,8 +165,9 @@ void avg(const std::vector<Emp>& emplist){
 		avg = avg / emplist.size();
 		printf("The avarge salary is: \n\t%.1f\n",avg);
 }
+
 // 5. Find Employee by ID
-void findid(const std::vector<Emp>& emplist){
+void findid(std::vector<Emp>& emplist){
 	printf("Please input desired ID: ");
 	unsigned int id;
 	while (!(std::cin >> id)) {
@@ -183,7 +175,7 @@ void findid(const std::vector<Emp>& emplist){
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Please input desired ID: ";
 	}
-	const Emp* empid = &emplist[0];
+	Emp* empid = &emplist[0];
 	for(int i = 1; i < emplist.size(); ++i){
 		if (emplist[i].id == id){
 			empid = &emplist[i];
@@ -192,40 +184,23 @@ void findid(const std::vector<Emp>& emplist){
 	printf("The employee is:\n");
 	showEmp(*empid);
 }
+
 // 6. Exit
+void bye(std::vector<Emp>& empList) {
+			    printf("Bye\n");
+			    exit(0);
+}
+
 int main(){
+	void (*menuArr[])(std::vector<Emp>&) = {&addEmp, &showEmp, &highest, &avg, &findid, &bye};
 	std::vector<Emp> emplist;
-	bool done = false;
 	do {
 		int choice = menu();
-		switch (choice){
-			case 1:
-			    addEmp(emplist);
-			    break;
-			case 2:
-				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
-			    showEmp(emplist);
-			    break;
-			case 3:
-				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
-				highest(emplist);
-			    break;
-			case 4:
-				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
-				avg(emplist);
-			    break;
-			case 5:
-				if (emplist.empty()){ printf("Create an employee first\n\n\n"); break;}
-				findid(emplist);
-			    break;
-			case 6:
-			    printf("Bye\n");
-			    done = true;
-			    break;
-			default:
-			    printf("you have chosen an invalid option\n");
-			    break;
+		if (1 <= choice && choice <= 6) {
+			menuArr[choice - 1](emplist);
+		} else {
+			printf("you have chosen an invalid option\n");
 		};
-	}while(!done);
+	}while(true);
 	return 0;
 }
