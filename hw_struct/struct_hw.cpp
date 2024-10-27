@@ -4,6 +4,7 @@
 #include <limits>
 #include <cstring>
 #include "emp.cpp"
+#include "validate.cpp"
 
 /*
  *Objective:
@@ -19,50 +20,6 @@ age: An integer for the employee's age.
 position: A string for the employee's job position.
 salary: A float for the employee's monthly salary.
 -------------------------------------------
-*/
-
-/*
- Validation functions
-*/
-// Validate char user input
-void validatechar(const std::string& prompt, char* output, size_t size){
-	std::string input;
-	std::cout << prompt;
-    std::getline(std::cin >> std::ws, input);
-    strncpy(output, input.c_str(), size - 1);
-    output[size - 1] = '\0';
-}
-
-unsigned int validateint(const std::string& prompt){
-    int tempValue;
-	std::cout << prompt;
-    while (true) {
-        	if (std::cin >> tempValue && tempValue > 0){
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			return static_cast<unsigned int>(tempValue);
-		}
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		printf("Bad input. Enter integer: ");
-	}
-}
-
-// Validate float user input
-float validatefloat(const std::string& prompt) {
-    float value;
-	std::cout << prompt;
-    while (true) {
-       if (std::cin >> value || value < 0) {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    		return value;
-	   }
-	   std::cin.clear();
-	   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	   printf("Bad input. Enter positive number: ");
-	}
-}
-
-/*
 Create a menu that allows the user to:
 Add a new employee to a list (array or vector).
 Display all employees.
@@ -70,7 +27,22 @@ Display the employee with the highest salary.
 Display the average salary of all employees.
 Find and display an employee's details using their ID.
 Exit the program.
+Requirements:
+Add Employee: The user should be able to add new employees until they choose to stop.
+Prompt the user for all necessary details.
+Store each employee's information in an array or a vector of Employee structs.
+Display All Employees: Display all employees' information, showing their ID, name, age,
+position, and salary.
+Find Highest Salary: Display the name and salary of the employee with the highest salary.
+Average Salary: Calculate and display the average salary of all employees.
+Find Employee by ID: Allow the user to input an employee ID and display the details of
+the corresponding employee. If the employee doesn't exist, display an appropriate
+message.
+Input Validation: Ensure that age is non-negative, salary is positive, and employee IDs are
+unique.
+Example Output:
 */
+
 int menu(){
 	int choice;
 	printf("##########################\n"
@@ -94,23 +66,6 @@ int menu(){
 	printf("-------------------------\n");
 	return choice;
 }
-
-/*
-Requirements:
-Add Employee: The user should be able to add new employees until they choose to stop.
-Prompt the user for all necessary details.
-Store each employee's information in an array or a vector of Employee structs.
-Display All Employees: Display all employees' information, showing their ID, name, age,
-position, and salary.
-Find Highest Salary: Display the name and salary of the employee with the highest salary.
-Average Salary: Calculate and display the average salary of all employees.
-Find Employee by ID: Allow the user to input an employee ID and display the details of
-the corresponding employee. If the employee doesn't exist, display an appropriate
-message.
-Input Validation: Ensure that age is non-negative, salary is positive, and employee IDs are
-unique.
-Example Output:
-*/
 
 //1. Add Employee
 void addEmp(std::vector<Emp>& emplist){

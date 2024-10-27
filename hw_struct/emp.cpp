@@ -1,7 +1,7 @@
 #include "emp.hpp"
 #include <iostream>
 
-// 2.1 Support function to display employee for other functions
+// Support function to display employee for other functions
 void showEmp(Emp& emp) {
 	printf("Employee\n"
 		"\tID: \t\t%03d\n"
