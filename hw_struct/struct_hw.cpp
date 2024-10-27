@@ -128,7 +128,7 @@ void findid(std::vector<Emp>& emplist){
 		return;
 	}
 	bool foundMatch = false;
-	Emp* empid;
+	Emp* empid = nullptr;
 	while (!foundMatch){
 		unsigned int id = validateint("Please input desired ID: ");
 		for(int i = 0; i < emplist.size(); ++i){
@@ -138,7 +138,9 @@ void findid(std::vector<Emp>& emplist){
 				break;
 			}
 		}
-		printf("No match\n");
+		if (!foundMatch){
+			printf("No match\n");
+			}
 	}
 	printf("The employee is:\n");
 	showEmp(*empid);
