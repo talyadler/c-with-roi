@@ -123,6 +123,11 @@ void avg(std::vector<Emp>& emplist){
 
 // 5. Find Employee by ID
 void findid(std::vector<Emp>& emplist){
+	if (emplist.size()==0){
+		printf("Please input employees first\n");
+		return;
+	}
+	/*
 	printf("Please input desired ID: ");
 	unsigned int id;
 	while (!(std::cin >> id)) {
@@ -130,6 +135,8 @@ void findid(std::vector<Emp>& emplist){
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Please input desired ID: ";
 	}
+	*/
+	unsigned int id = validateint("Please input desired ID: ");
 	Emp* empid = &emplist[0];
 	for(int i = 1; i < emplist.size(); ++i){
 		if (emplist[i].id == id){
@@ -142,8 +149,8 @@ void findid(std::vector<Emp>& emplist){
 
 // 6. Exit
 void bye(std::vector<Emp>& empList) {
-			    printf("Bye\n");
-			    exit(0);
+	printf("Bye\n");
+	exit(0);
 }
 
 int main(){
