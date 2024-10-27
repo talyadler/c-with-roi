@@ -3,7 +3,7 @@
 #include <vector>
 #include <limits>
 #include <cstring>
-#include "emp.hpp"
+#include "emp.cpp"
 
 /*
  *Objective:
