@@ -4,9 +4,6 @@
 #include <limits>
 #include <cstring>
 
-/*
- Validation functions
-*/
 // Validate char user input
 void validatechar(const std::string& prompt, char* output, size_t size){
 	std::string input;
@@ -16,6 +13,7 @@ void validatechar(const std::string& prompt, char* output, size_t size){
     output[size - 1] = '\0';
 }
 
+// Validate integer user input
 unsigned int validateint(const std::string& prompt){
     int tempValue;
 	std::cout << prompt;

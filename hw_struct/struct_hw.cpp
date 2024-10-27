@@ -123,28 +123,26 @@ void avg(std::vector<Emp>& emplist){
 
 // 5. Find Employee by ID
 void findid(std::vector<Emp>& emplist){
+	bool foundMatch = false;
 	if (emplist.size()==0){
 		printf("Please input employees first\n");
 		return;
 	}
-	/*
-	printf("Please input desired ID: ");
-	unsigned int id;
-	while (!(std::cin >> id)) {
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << "Please input desired ID: ";
-	}
-	*/
 	unsigned int id = validateint("Please input desired ID: ");
-	Emp* empid = &emplist[0];
-	for(int i = 1; i < emplist.size(); ++i){
+	Emp* empid;
+	for(int i = 0; i < emplist.size(); ++i){
 		if (emplist[i].id == id){
 			empid = &emplist[i];
+			foundMatch = true;
 		}
 	}
-	printf("The employee is:\n");
-	showEmp(*empid);
+	if (foundMatch){
+		printf("The employee is:\n");
+		showEmp(*empid);
+		return;
+	} else{
+		printf("No match\n");
+	}
 }
 
 // 6. Exit
