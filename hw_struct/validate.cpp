@@ -3,6 +3,7 @@
 #include <vector>
 #include <limits>
 #include <cstring>
+#include "validate.hpp"
 
 // Validate char user input
 void validatechar(const std::string& prompt, char* output, size_t size){
