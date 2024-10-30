@@ -68,21 +68,38 @@ int menu(){
 	return choice;
 }
 // 6. Exit
-void bye(std::vector<Emp>& empList) {
+void bye() {
 	printf("Bye\n");
 	exit(0);
 }
 
 int main(){
-	void (*menuArr[])(company::emplist) = {company::addEmp(), company::showEmp(), company::highest(), company::avg, company::findid, &bye};
-	std::vector<Emp> emplist;
-	do {
+	company main;
+	while(true){
 		int choice = menu();
-		if (1 <= choice && choice <= 6) {
-			menuArr[choice - 1](emplist);
-		} else {
-			printf("you have chosen an invalid option\n");
-		};
-	}while(true);
+		switch(choice) {
+			case 1:
+				main.addEmp();
+				break;
+			case 2:
+				main.showEmp();
+				break;
+			case 3:
+				main.highest();
+				break;
+			case 4:
+				main.avg();
+				break;
+			case 5:
+				main.findid();
+				break;
+			case 6:
+				bye();
+				break;
+			default:
+				printf("invalid choice");
+				break;
+			}
+	}
 	return 0;
 }
