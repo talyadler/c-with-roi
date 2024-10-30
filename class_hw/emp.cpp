@@ -1,5 +1,5 @@
-#include "emp.hpp"
 #include <iostream>
+#include "emp.hpp"
 
 // Support function to display employee for other functions
 void Emp::showEmp(/*Emp* this*/) {

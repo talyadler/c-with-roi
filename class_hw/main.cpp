@@ -1,8 +1,5 @@
 #include <iostream>
-#include <string>
-#include <vector>
 #include <limits>
-#include <cstring>
 #include "emp.hpp"
 #include "validate.hpp"
 #include "company.hpp"
