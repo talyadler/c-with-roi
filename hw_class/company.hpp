@@ -1,11 +1,11 @@
 #pragma once
 #include <vector>
 #include "emp.hpp"
-class compnay
+class company
 {
 public:
 	// fields: emp that gets it information from emp.hpp
-	std::vector<Emp> emplist;
+	std::vector<Emp>& emplist;
 
 	// methods
 	void addEmp();

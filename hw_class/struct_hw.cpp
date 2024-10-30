@@ -74,7 +74,7 @@ void bye(std::vector<Emp>& empList) {
 }
 
 int main(){
-	void (*menuArr[])(std::vector<Emp>&) = {&addEmp, &showEmp, &highest, &avg, &findid, &bye};
+	void (*menuArr[])(company::emplist) = {company::addEmp(), company::showEmp(), company::highest(), company::avg, company::findid, &bye};
 	std::vector<Emp> emplist;
 	do {
 		int choice = menu();
