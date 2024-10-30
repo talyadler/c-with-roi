@@ -4,7 +4,7 @@
 #include "company.hpp"
 
 //1. Add Employee
-void addEmp(std::vector<Emp>& emplist){
+void company::addEmp(){
 	char more;
 	do {
 		Emp e;
@@ -21,8 +21,8 @@ void addEmp(std::vector<Emp>& emplist){
 }
 
 // 2. Display All Employees
-void showEmp(std::vector<Emp>& emplist) {
-	for (size_t i = 0; i < emplist.size(); i++){
+void company::showEmp() {
+	for (size_t i = 0; i < this->size(); i++){
 		printf("Employee %03ld\n"
 		"\tID: \t\t%03d\n"
 		"\tName: \t\t%s\n"
@@ -30,36 +30,36 @@ void showEmp(std::vector<Emp>& emplist) {
 		"\tPosition: \t%s\n"
 		"\tSalary: \t%.1f\n"
 		"-------------------------\n"
-		,i+1, emplist[i].id, emplist[i].name, emplist[i].age, emplist[i].position, emplist[i].salary
+		,i+1, this[i]->id, this[i]->name, this[i]->age, this[i]->position, this[i]->salary
 	);
 	}
 }
 
 // 3. Display Employee with Highest Salary
-void highest(std::vector<Emp>& emplist){
-	Emp* max = &emplist[0];
-	for(int i = 1; i < emplist.size(); ++i){
-		if (emplist[i].salary > max->salary){
-			max = &emplist[i];
+void company::highest(){
+	Emp* max = &this[0];
+	for(int i = 1; i < this.size(); ++i){
+		if (this[i]->salary > max->salary){
+			max = &this[i];
 		}
 	}
 	printf("The highest paid employee is:\n");
-	max->showEmp();
+	max->Emp::showEmp();
 }
 
 // 4. Display Average Salary
-void avg(std::vector<Emp>& emplist){
+void company::avg(){
 		float avg = 0;
-		for (int i = 0; i < emplist.size(); i++){
-			avg = avg + emplist[i].salary;
+		for (int i = 0; i < this->size(); i++){
+			avg = avg + this[i]->salary;
 		}
-		avg = avg / emplist.size();
+		avg = avg / this->size();
 		printf("The avarge salary is: \n\t%.1f\n",avg);
 }
 
 // 5. Find Employee by ID
-void findid(std::vector<Emp>& emplist){
-	if (emplist.empty()){
+void company::findid(){
+	if (this->empty()){
 		printf("Please input employees first\n\n");
 		return;
 	}
@@ -67,9 +67,9 @@ void findid(std::vector<Emp>& emplist){
 	Emp* empid = nullptr;
 	while (!foundMatch){
 		unsigned int id = validateint("Please input desired ID: ");
-		for(int i = 0; i < emplist.size() && !foundMatch; ++i){
-			if (emplist[i].id == id) {
-				empid = &emplist[i];
+		for(int i = 0; i < this->size() && !foundMatch; ++i){
+			if (this[i]->id == id) {
+				empid = &this[i];
 				foundMatch = true;
 			}
 		}
@@ -78,6 +78,5 @@ void findid(std::vector<Emp>& emplist){
 			}
 	}
 	printf("The employee is:\n");
-	empid->showEmp();
+	empid->Emp::showEmp();
 }
-

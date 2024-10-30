@@ -4,10 +4,13 @@
 class compnay
 {
 public:
-	std::vector emp;
-void addEmp(std::vector<Emp>& emplist);
-void showEmp(std::vector<Emp>& emplist);
-void highest(std::vector<Emp>& emplist);
-void avg(std::vector<Emp>& emplist);
-void findid(std::vector<Emp>& emplist);
-}
+	// fields: emp that gets it information from emp.hpp
+	std::vector<Emp> emplist;
+
+	// methods
+	void addEmp();
+	void showEmp();
+	void highest();
+	void avg();
+	void findid();
+};
