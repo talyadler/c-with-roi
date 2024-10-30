@@ -7,7 +7,7 @@ public:
 	// fields: emp that gets it information from emp.hpp
 	std::vector<Emp> emplist;
 
-	// methods
+	// methods; functions for compnay use
 	void addEmp();
 	void showEmp();
 	void highest();

@@ -67,7 +67,7 @@ void company::findid(){
 	Emp* empid = nullptr;
 	while (!foundMatch){
 		unsigned int id = validateint("Please input desired ID: ");
-		for(int i = 0; i < this->size() && !foundMatch; ++i){
+		for(int i = 0; i < this->emplist.size() && !foundMatch; ++i){
 			if (this->emplist[i].id == id) {
 				empid = &this->emplist[i];
 				foundMatch = true;
