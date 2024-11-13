@@ -8,7 +8,6 @@ String::String(const char* str) {
 	for (const char *t = str ; *t != '\0'; t++) {
 		size++;
 	}
-
 	start = new char[size+1];
 	for (int i = 0; i< size; i++) {
 		start[i] = str[i]; // str[i] = *(str + i*sizeof(char))
@@ -19,12 +18,11 @@ String::String(const char* str) {
 String::String(const String& o) {
 	std::cout << "String: Using copy CTOR" << std::endl;
 	size = o.size; // accessing a private member is allowed because we write code that is part of the class
-
 	start = new char[size+1];
 	for (int i = 0; i< size; i++) {
 		start[i] = o.start[i]; 
 	}
-	start[size] = '\0';
+	start[size] = '\0'; // at the end of the array of chars add null char '\0' that is a 0
 }
 
 String& String::operator=(const String& o) {
