@@ -2,14 +2,13 @@
 #include <iostream>
 
 class String {
-// class starts with implicit 'private:' devition
-
 // every piece of code can access these members
 public:
 	/**
 	 * @brief Creates an instance of String from a given array of characters.
 	 */
 	String(const char* str);
+
 	/**
 	 * @brief Copy CTOR (constructor) - creates a deep copy of another String instance.
 	 * @param o An existing String instance to copy.
@@ -29,8 +28,14 @@ public:
 	 */
 	int length();
 
+	/*
+	 *@brief Functionality for using String and variables with = 
+	 */
 	String& operator=(const String& o);
 
+	/*
+	 *@brief Functionality to output data to outpu stream
+	 */
 	friend std::ostream& operator<<(std::ostream& o, String& s) {
 		o << s.start;
 		return o;
