@@ -21,4 +21,5 @@ int main() {
 
 	s3 = s4; // calling operator=
 	std::cout << "s3: " << s3 << std::endl << std::endl;
+
 }

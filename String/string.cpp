@@ -32,7 +32,6 @@ String& String::operator=(const String& o) {
 	 */
 	std::cout << "String: Using operator=" << std::endl;
 	size = o.size; // accessing a private member is allowed because we write code that is part of the class
-
 	start = new char[size+1];
 	for (int i = 0; i< size; i++) {
 		start[i] = o.start[i]; 
