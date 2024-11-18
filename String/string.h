@@ -41,6 +41,11 @@ public:
 		return o;
 	}
 
+	/*
+	 *@brief Compares two strings lexicographically.
+	 */
+	int compareTo(String anotherString);
+
 // only code of methods of this class can access these members
 private:
 	unsigned int size;

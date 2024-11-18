@@ -49,3 +49,22 @@ char String::charAt(int index) {
 	// and throw exceptions otherwise
 	return start[index];
 }
+
+int String::compareTo(String anotherString){
+	// 2 options
+	// 1. size is different
+	if (size !== anotherString.size){
+		std::cout << "Strings are diferent lengths" << std::endl;
+		std::cout << "given string size= " << anotherString.size << std::endl;
+		std::cout << "target string size= " << anotherString.size << std::endl;
+		return 0;
+	}
+	// 2. char in index is different
+	for (const char *t = anotherString.start; *t != '\0'; t++) {
+		if (*t){
+			;
+		}
+	}
+	return;
+}
+
