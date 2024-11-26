@@ -44,6 +44,12 @@ public:
 	/*
 	 *@brief Compares two strings lexicographically.
 	 */
+	// examples: 
+	// "asdf".compareTo("qwer") < 0  --> first letter difference: a < q
+	// "asdf".compareTo("asdf") == 0 --> no difference in letters or length
+	// "qwer".compareTo("asdf") > 0 --> first letter difference: q > a
+	// "aaa".compareTo("aab") < 0 --> 3rd letter difference : a < b
+	// "aaaa".compareTo("aaa") > 0 --> length difference: 4 > 3
 	int compareTo(String anotherString);
 
 // only code of methods of this class can access these members
