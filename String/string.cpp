@@ -54,18 +54,21 @@ char String::charAt(int index) {
 }
 
 int String::compareTo(String anotherString){
-	for(int i = 0; i<size; i++){
+	for(int i = 0; i<=size; i++){
 		if(start[i] == anotherString.start[i]){
 			continue;
 		}
+		else if(size > anotherString.size){
+			return size-anotherString.size;
+		}
+		else if(size < anotherString.size){
+			return size-anotherString.size;
+		}
 		else if(start[i] > anotherString.start[i]){
-			return 1;
+			return start[i]-anotherString.start[i];
 		}
 		else if(start[i] < anotherString.start[i]){
-			return 1;
-		}
-		else if(size != anotherString.size){
-			return 1;
+			return start[i]-anotherString.start[i];
 		}
 	}
 	return 0;
