@@ -66,5 +66,13 @@ int main() {
 	else{
 		std::cout << "6th case success actual: " << compareResult << std::endl;
 	}
+	
+	//char at tests
+	s1 = "a string test";
+	std::cout << "Testing charAt method with " << s1.length()+1 << " inputs" << std::endl;
+	for (int i = -1; i<=(s1.length());i++){
+		if(s1.charAt(i) == 0 && 0 < i < (s1.length()-1)){
+			std::cout << "Fail at " << i << std::endl;
+		}
+	}
 }
-
