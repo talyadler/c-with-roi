@@ -78,7 +78,7 @@ int main() {
 	s1 = usr_compareTo_input1;
 	s2 = usr_compareTo_input2;
 	bool skip = false;
-	std::cout << s1 << ";" << s2 << std::endl;
+	// std::cout << s1 << ";" << s2 << std::endl;
 	compareResult = s1.compareTo(s2);
 	//1
 	if ((compareResult == 0)) {
