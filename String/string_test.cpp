@@ -7,10 +7,10 @@ int main() {
 	String s2("qwer");
 	int compareResult = s1.compareTo(s2);
 	if (!(compareResult < 0)) {
-		std::cout << "1st case fail, result should have been < 0, actual: " << compareResult << std::endl;
+		std::cout << "\t1st case fail, result should have been < 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "1st case success actual: " << compareResult << std::endl;
+		std::cout << "\t1st case success actual: " << compareResult << std::endl;
 	}
 
 	// "asdf".compareTo("asdf") == 0 --> no difference in letters or length
@@ -18,10 +18,10 @@ int main() {
 	s2 = "asdf";
 	compareResult = s1.compareTo(s2);
 	if (!(compareResult == 0)) {
-		std::cout << "2nd case fail, result should have been == 0, actual: " << compareResult << std::endl;
+		std::cout << "\t2nd case fail, result should have been == 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "2nd case success actual: " << compareResult << std::endl;
+		std::cout << "\t2nd case success actual: " << compareResult << std::endl;
 	}
 	
 	// "qwer".compareTo("asdf") > 0 --> first letter difference: q > a
@@ -29,10 +29,10 @@ int main() {
 	s2 = "asdf";
 	compareResult = s1.compareTo(s2);
 	if (!(compareResult > 0)) {
-		std::cout << "3rd case fail, result should have been > 0, actual: " << compareResult << std::endl;
+		std::cout << "\t3rd case fail, result should have been > 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "3rd case success actual: " << compareResult << std::endl;
+		std::cout << "\t3rd case success actual: " << compareResult << std::endl;
 	}
 	
 	// "aaa".compareTo("aab") < 0 --> 3rd letter difference : a < b
@@ -40,10 +40,10 @@ int main() {
 	s2 = "aab";
 	compareResult = s1.compareTo(s2);
 	if (!(compareResult < 0)) {
-		std::cout << "4th case fail, result should have been < 0, actual: " << compareResult << std::endl;
+		std::cout << "\t4th case fail, result should have been < 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "4th case success actual: " << compareResult << std::endl;
+		std::cout << "\t4th case success actual: " << compareResult << std::endl;
 	}
 	
 	// "aaaa".compareTo("aaa") > 0 --> length difference: 4 > 3
@@ -51,10 +51,10 @@ int main() {
 	s2 = "aaa";
 	compareResult = s1.compareTo(s2);
 	if (!(compareResult > 0)) {
-		std::cout << "5th case fail, result should have been > 0, actual: " << compareResult << std::endl;
+		std::cout << "\t5th case fail, result should have been > 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "5th case success actual: " << compareResult << std::endl;
+		std::cout << "\t5th case success actual: " << compareResult << std::endl;
 	}
 	
 	// "".compareTo("  ")  < 0 --> length difference: 0 < 2
@@ -62,10 +62,10 @@ int main() {
 	s2 = "  ";
 	compareResult = s1.compareTo(s2);
 	if (!(compareResult < 0)) {
-		std::cout << "6th case fail, result should have been < 0, actual: " << compareResult << std::endl;
+		std::cout << "\t6th case fail, result should have been < 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "6th case success actual: " << compareResult << std::endl;
+		std::cout << "\t6th case success actual: " << compareResult << std::endl;
 	}
 	
 	// user input test for compareTo()
@@ -82,16 +82,16 @@ int main() {
 	compareResult = s1.compareTo(s2);
 	//1
 	if ((compareResult == 0)) {
-		std::cout << "Match\n";
+		std::cout << "\tMatch\n";
 	}
 	//3
 	else if ((compareResult <= -1000 || compareResult >= 1000)) {
-		std::cout << "Input size mismach\n";
+		std::cout << "\tInput size mismach\n";
 		bool skip = true;
 	}
 	//4
 	else if (compareResult < 0 || compareResult > 0) {
-		std::cout << "Input value mismatch\n";
+		std::cout << "\tInput value mismatch\n";
 	}
 
 	//char at tests
@@ -105,7 +105,7 @@ int main() {
 			}
 			// std::cout << "working as intended. Index: " << i << " is in bounds with " << s1.charAt(i) << std::endl;
 		} catch (int e){
-			std::cout << "working as intended. Index: " << e << " is out of bounds\n";
+			std::cout << "\tWorking as intended. Index: " << e << " is out of bounds\n";
 		}
 	}
 
@@ -122,7 +122,7 @@ int main() {
 			}
 			// std::cout << "working as intended. Index: " << i << " is in bounds with " << s1.charAt(i) << std::endl;
 		} catch (int e){
-			std::cout << "working as intended. Index: " << e << " is out of bounds\n";
+			std::cout << "\tWorking as intended. Index: " << e << " is out of bounds\n";
 		}
 	}
 }
