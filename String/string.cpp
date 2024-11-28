@@ -64,12 +64,8 @@ int String::compareTo(String anotherString){
 		if(start[i] == anotherString.start[i]){
 			continue;
 		} 
-		else if(start[i] > anotherString.start[i]){
+		else if(start[i] != anotherString.start[i]){
 			return start[i]-anotherString.start[i];
-		}
-		else if(start[i] < anotherString.start[i]){
-			return start[i]-anotherString.start[i];
-		}
 	}
 	return 0;
 }
