@@ -83,6 +83,5 @@ int main() {
 		} catch (int e){
 			std::cout << "working as intended. Index: " << e << " is out of bounds\n";
 		}
-		
 	}
 }
