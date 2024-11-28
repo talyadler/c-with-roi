@@ -68,11 +68,21 @@ int main() {
 	}
 	
 	//char at tests
-	s1 = "a string test";
-	std::cout << "Testing charAt method with " << s1.length()+1 << " inputs" << std::endl;
+	// s1 = "charAt test string";
+	char test[254];
+	std::cout << "input test text: ";
+	std::cin.getline(test, 254);
+	s1 = test;
+	std::cout << "Testing charAt method with '" << s1 << "' index inputs" << std::endl;
 	for (int i = -1; i<=(s1.length());i++){
-		if(s1.charAt(i) == 0 && 0 < i < (s1.length()-1)){
-			std::cout << "Fail at " << i << std::endl;
+		try{
+			if( i < 0 || i >= s1.length() ){
+				throw i;
+			}
+			// std::cout << "working as intended. Index: " << i << " is in bounds with " << s1.charAt(i) << std::endl;
+		} catch (int e){
+			std::cout << "working as intended. Index: " << e << " is out of bounds\n";
 		}
+		
 	}
 }

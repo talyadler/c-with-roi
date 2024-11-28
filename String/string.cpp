@@ -66,6 +66,7 @@ int String::compareTo(String anotherString){
 		} 
 		else if(start[i] != anotherString.start[i]){
 			return start[i]-anotherString.start[i];
+		}
 	}
 	return 0;
 }
