@@ -1,6 +1,7 @@
 #include "string.h"
 
 int main() {
+	std::cout << "Testing compareTo() method with hard coded inputs\n";
 	// "asdf".compareTo("qwer") < 0  --> first letter difference: a < q
 	String s1("asdf");
 	String s2("qwer");
@@ -67,13 +68,53 @@ int main() {
 		std::cout << "6th case success actual: " << compareResult << std::endl;
 	}
 	
-	//char at tests
-	// s1 = "charAt test string";
-	char test[254];
+	// user input test for compareTo()
+	char usr_compareTo_input1[254];
 	std::cout << "input test text: ";
-	std::cin.getline(test, 254);
-	s1 = test;
-	std::cout << "Testing charAt method with '" << s1 << "' index inputs" << std::endl;
+	std::cin.getline(usr_compareTo_input1, 254);
+	char usr_compareTo_input2[254];
+	std::cout << "input test text: ";
+	std::cin.getline(usr_compareTo_input2, 254);
+	s1 = usr_compareTo_input1;
+	s2 = usr_compareTo_input2;
+	bool skip = false;
+	std::cout << s1 << ";" << s2 << std::endl;
+	compareResult = s1.compareTo(s2);
+	//1
+	if ((compareResult == 0)) {
+		std::cout << "Match\n";
+	}
+	//3
+	else if ((compareResult <= -1000 || compareResult >= 1000)) {
+		std::cout << "Input size mismach\n";
+		bool skip = true;
+	}
+	//4
+	else if (compareResult < 0 || compareResult > 0) {
+		std::cout << "Input value mismatch\n";
+	}
+
+	//char at tests
+	// hard coded inputs
+	s1 = "charAt test string";
+	std::cout << "\nTesting hard coded input charAt method with '" << s1 << "' index inputs" << std::endl;
+	for (int i = -1; i<=(s1.length());i++){
+		try{
+			if( i < 0 || i >= s1.length() ){
+				throw i;
+			}
+			// std::cout << "working as intended. Index: " << i << " is in bounds with " << s1.charAt(i) << std::endl;
+		} catch (int e){
+			std::cout << "working as intended. Index: " << e << " is out of bounds\n";
+		}
+	}
+
+	//user input tests
+	char usr_charAt_test[254];
+	std::cout << "input test text: ";
+	std::cin.getline(usr_charAt_test, 254);
+	s1 = usr_charAt_test;
+	std::cout << "Testing user input charAt method with '" << s1 << "' index inputs" << std::endl;
 	for (int i = -1; i<=(s1.length());i++){
 		try{
 			if( i < 0 || i >= s1.length() ){
