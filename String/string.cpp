@@ -40,7 +40,6 @@ String& String::operator=(const String& o) {
 	return *this;
 }
 
-
 int String::length() {
 	return size;
 }
