@@ -117,7 +117,7 @@ int main() {
 	std::cout << "Testing user input charAt method with '" << s1 << "' index inputs" << std::endl;
 	for (int i = -1; i<=(s1.length());i++){
 		try{
-			if( i < 0 || i >= s1.length() ){
+			if(s1.charAt(i) == 0 ){
 				throw i;
 			}
 			// std::cout << "working as intended. Index: " << i << " is in bounds with " << s1.charAt(i) << std::endl;
