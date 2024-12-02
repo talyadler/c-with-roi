@@ -10,7 +10,7 @@ int main() {
 		std::cout << "\t1st case fail, result should have been < 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "\t1st case success actual: " << compareResult << std::endl;
+		std::cout << "\t1st case success, first letter difference: a < q.\tresult: " << compareResult << std::endl;
 	}
 
 	// "asdf".compareTo("asdf") == 0 --> no difference in letters or length
@@ -21,7 +21,7 @@ int main() {
 		std::cout << "\t2nd case fail, result should have been == 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "\t2nd case success actual: " << compareResult << std::endl;
+		std::cout << "\t2nd case success, no difference in letters or length\tresult: " << compareResult << std::endl;
 	}
 	
 	// "qwer".compareTo("asdf") > 0 --> first letter difference: q > a
@@ -32,7 +32,7 @@ int main() {
 		std::cout << "\t3rd case fail, result should have been > 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "\t3rd case success actual: " << compareResult << std::endl;
+		std::cout << "\t3rd case success, first letter difference: q > a\tresult: " << compareResult << std::endl;
 	}
 	
 	// "aaa".compareTo("aab") < 0 --> 3rd letter difference : a < b
@@ -43,7 +43,7 @@ int main() {
 		std::cout << "\t4th case fail, result should have been < 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "\t4th case success actual: " << compareResult << std::endl;
+		std::cout << "\t4th case success, 3rd letter difference : a < b;\tresult: " << compareResult << std::endl;
 	}
 	
 	// "aaaa".compareTo("aaa") > 0 --> length difference: 4 > 3
@@ -54,7 +54,7 @@ int main() {
 		std::cout << "\t5th case fail, result should have been > 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "\t5th case success actual: " << compareResult << std::endl;
+		std::cout << "\t5th case success, length difference: 4 > 3;\t\tresult: " << compareResult << std::endl;
 	}
 	
 	// "".compareTo("  ")  < 0 --> length difference: 0 < 2
@@ -65,15 +65,15 @@ int main() {
 		std::cout << "\t6th case fail, result should have been < 0, actual: " << compareResult << std::endl;
 	}
 	else{
-		std::cout << "\t6th case success actual: " << compareResult << std::endl;
+		std::cout << "\t6th case success, length difference: 0 < 2\t\tresult: " << compareResult << std::endl;
 	}
 	
 	// user input test for compareTo()
 	char usr_compareTo_input1[254];
-	std::cout << "input 1st test text: ";
+	std::cout << "Input 1st compareTo() test text: ";
 	std::cin.getline(usr_compareTo_input1, 254);
 	char usr_compareTo_input2[254];
-	std::cout << "input 2nd test text: ";
+	std::cout << "Input 2nd compareTo() test text: ";
 	std::cin.getline(usr_compareTo_input2, 254);
 	s1 = usr_compareTo_input1;
 	s2 = usr_compareTo_input2;
@@ -93,13 +93,13 @@ int main() {
 	//char at tests
 	// hard coded inputs
 	s1 = "charAt test string";
-	std::cout << "Testing hard coded charAt method with '" << s1.length()+2 << "' index inputs" << std::endl;
+	std::cout << "Testing hard coded charAt method\n";
 	for (int i = -1; i<=(s1.length());i++){
 		try{
 			s1.charAt(i);
 		}
 		catch (std::out_of_range& e){
-			std::cout << e.what() << " in index: " << i << std::endl;
+			std::cout << "\t" << e.what() << " in index: " << i << std::endl;
 		}
 	}
 	
@@ -108,13 +108,12 @@ int main() {
 	std::cout << "input test text: ";
 	std::cin.getline(usr_charAt_test, 254);
 	s1 = usr_charAt_test;
-	std::cout << "Testing user input charAt method with '" << s1.length()+2 << "' index inputs" << std::endl;
 	for (int i = -1; i <= (s1.length());i++){
 		try{
 			s1.charAt(i);
 		}
 		catch (std::out_of_range& e){
-			std::cout << e.what() << " in index: " << i << std::endl;
+			std::cout << "\t" << e.what() << " in index: " << i << std::endl;
 		}
 	}
 	
