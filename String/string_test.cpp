@@ -103,8 +103,9 @@ int main() {
 		try{
 			s1.charAt(i);
 		}
-		catch (...){
-			std::cout << "\tWorking as intended. Index: " << i << " is out of bounds\n";
+		catch (std::out_of_range& e){
+			std::cout << e.what() << std::endl;
+			// std::cout << "\tWorking as intended. Index: " << i << " is out of bounds\n";
 		}
 	}
 	std::cout << "done\n";
@@ -120,8 +121,9 @@ int main() {
 			s1.charAt(i);
 			std::cout << "test log: \tindex " << i << " \tcharAt is: " << s1.charAt(i) << std::endl;
 		}
-		catch (...){
-			std::cout << "\tWorking as intended. Index: " << i << " is out of bounds\n";
+		catch (std::out_of_range& e){
+			std::cout << e.what() << std::endl;
+			// std::cout << "\tWorking as intended. Index: " << i << " is out of bounds\n";
 		}
 	}
 	std::cout << "done\n";

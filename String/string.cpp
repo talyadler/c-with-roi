@@ -1,5 +1,4 @@
 #include "string.h"
-#include <stdexcept>
 
 String::String(const char* str) {
 	//std::cout << "String: Using normal CTOR" << std::endl;
@@ -47,7 +46,7 @@ int String::length() {
 
 char String::charAt(int index) {
 	// we can first do input check to make sure 0 <= index <= size - 1
-	if (0 <= index || index < (size)){
+	if (0 <= index && index < (size)){
 		return start[index];
 	}
 	else{
