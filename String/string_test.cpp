@@ -80,14 +80,14 @@ int main() {
 	bool skip = false;
 	compareResult = s1.compareTo(s2);
 	if ((compareResult == 0)) {
-		std::cout << "\tMatch\n";
+		std::cout << "\tMatch" << "\tResult: " << compareResult << std::endl;
 	}
 	else if ((compareResult <= -1000 || compareResult >= 1000)) {
-		std::cout << "\tInput size mismach\n";
+		std::cout << "\tInput size mismach" << "\tResult: " << compareResult << std::endl;
 		bool skip = true;
 	}
 	else if (compareResult < 0 || compareResult > 0) {
-		std::cout << "\tInput value mismatch\n";
+		std::cout << "\tInput value mismatch" << "\tResult: " << compareResult << std::endl;
 	}
 
 	//char at tests

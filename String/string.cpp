@@ -56,7 +56,7 @@ char String::charAt(int index) {
 
 int String::compareTo(String anotherString){
 	// compare 2 instanses of String and evaluate if they match.
-	// for size return by factor of 1000 to distingush of type of mismatch
+	// for size return by factor of 1000 to distingush type of mismatch
 	if(size != anotherString.size){
 		return (size-anotherString.size)*1000;
 	}
