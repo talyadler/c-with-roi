@@ -1,7 +1,6 @@
 #include "string.h"
 
 int main() {
-
 	std::cout << "Testing compareTo() method with hard coded inputs\n";
 	// "asdf".compareTo("qwer") < 0  --> first letter difference: a < q
 	String s1("asdf");
@@ -79,18 +78,14 @@ int main() {
 	s1 = usr_compareTo_input1;
 	s2 = usr_compareTo_input2;
 	bool skip = false;
-	// std::cout << s1 << ";" << s2 << std::endl;
 	compareResult = s1.compareTo(s2);
-	//1
 	if ((compareResult == 0)) {
 		std::cout << "\tMatch\n";
 	}
-	//3
 	else if ((compareResult <= -1000 || compareResult >= 1000)) {
 		std::cout << "\tInput size mismach\n";
 		bool skip = true;
 	}
-	//4
 	else if (compareResult < 0 || compareResult > 0) {
 		std::cout << "\tInput value mismatch\n";
 	}
@@ -99,18 +94,16 @@ int main() {
 	// hard coded inputs
 	s1 = "charAt test string";
 	std::cout << "Testing hard coded charAt method with '" << s1.length()+2 << "' index inputs" << std::endl;
-	for (int i = -1; i<=(s1.length()+4);i++){
+	for (int i = -1; i<=(s1.length());i++){
 		try{
 			s1.charAt(i);
 		}
 		catch (std::out_of_range& e){
-			std::cout << e.what() << std::endl;
-			// std::cout << "\tWorking as intended. Index: " << i << " is out of bounds\n";
+			std::cout << e.what() << " in index: " << i << std::endl;
 		}
 	}
-	std::cout << "done\n";
+	
 	//user input tests
-	// String s1("asdf");
 	char usr_charAt_test[254];
 	std::cout << "input test text: ";
 	std::cin.getline(usr_charAt_test, 254);
@@ -119,13 +112,11 @@ int main() {
 	for (int i = -1; i <= (s1.length());i++){
 		try{
 			s1.charAt(i);
-			std::cout << "test log: \tindex " << i << " \tcharAt is: " << s1.charAt(i) << std::endl;
 		}
 		catch (std::out_of_range& e){
-			std::cout << e.what() << std::endl;
-			// std::cout << "\tWorking as intended. Index: " << i << " is out of bounds\n";
+			std::cout << e.what() << " in index: " << i << std::endl;
 		}
 	}
-	std::cout << "done\n";
+	
 	return 0;
 }
