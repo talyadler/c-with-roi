@@ -1,5 +1,4 @@
 #include "string.h"
-#include <stdexcept>
 
 int main() {
 
@@ -72,10 +71,10 @@ int main() {
 	
 	// user input test for compareTo()
 	char usr_compareTo_input1[254];
-	std::cout << "input test text: ";
+	std::cout << "input 1st test text: ";
 	std::cin.getline(usr_compareTo_input1, 254);
 	char usr_compareTo_input2[254];
-	std::cout << "input test text: ";
+	std::cout << "input 2nd test text: ";
 	std::cin.getline(usr_compareTo_input2, 254);
 	s1 = usr_compareTo_input1;
 	s2 = usr_compareTo_input2;
@@ -100,14 +99,15 @@ int main() {
 	// hard coded inputs
 	s1 = "charAt test string";
 	std::cout << "Testing hard coded charAt method with '" << s1.length()+2 << "' index inputs" << std::endl;
-	for (int i = -1; i<=(s1.length());i++){
+	for (int i = -1; i<=(s1.length()+4);i++){
 		try{
-			s1.charAt(i);	
-			// std::cout << "working as intended. Index: " << i << " is in bounds with " << s1.charAt(i) << std::endl;
-		} catch (...){
+			s1.charAt(i);
+		}
+		catch (...){
 			std::cout << "\tWorking as intended. Index: " << i << " is out of bounds\n";
 		}
 	}
+	std::cout << "done\n";
 	//user input tests
 	// String s1("asdf");
 	char usr_charAt_test[254];
@@ -118,10 +118,12 @@ int main() {
 	for (int i = -1; i <= (s1.length());i++){
 		try{
 			s1.charAt(i);
-			// std::cout << "working as intended. Index: " << i << " is in bounds with " << s1.charAt(i) << std::endl;
-		} catch (...){
+			std::cout << "test log: \tindex " << i << " \tcharAt is: " << s1.charAt(i) << std::endl;
+		}
+		catch (...){
 			std::cout << "\tWorking as intended. Index: " << i << " is out of bounds\n";
 		}
 	}
+	std::cout << "done\n";
 	return 0;
 }

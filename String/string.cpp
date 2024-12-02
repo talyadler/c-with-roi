@@ -47,7 +47,7 @@ int String::length() {
 
 char String::charAt(int index) {
 	// we can first do input check to make sure 0 <= index <= size - 1
-	if (0 <= index <= size -1){
+	if (0 <= index || index < (size)){
 		return start[index];
 	}
 	else{
@@ -56,6 +56,8 @@ char String::charAt(int index) {
 }
 
 int String::compareTo(String anotherString){
+	// compare 2 instanses of String and evaluate if they match.
+	// for size return by factor of 1000 to distingush of type of mismatch
 	if(size != anotherString.size){
 		return (size-anotherString.size)*1000;
 	}
