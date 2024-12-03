@@ -1,0 +1,46 @@
+
+
+#include "arraylist.h"
+#include "linkedlist.h"
+
+
+int main() {
+//	List l;
+	LinkedList ll;
+	ArrayList al;
+
+	ll.add(1);
+	ll.remove();
+	ll.numAt(0);
+	ll.llOnly();
+	ll.alOnly();
+
+	al.add(1);
+	al.remove();
+	al.numAt(0);
+	al.llOnly();
+	al.alOnly();
+
+
+	List *pl = new LinkedList();
+	// List is the 'static class' of the object pl points to
+	// LinkedList is the 'dynamic class' of the object pl points to
+	pl->add(2);
+	pl->remove();
+	pl->numAt(0);
+	pl->llOnly();//pl's static class is 'List' which doesn't have such a method
+	pl->alOnly();//pl's static class is 'List' which doesn't have such a method
+
+	pl = new ArrayList();
+	pl->add(2);
+	pl->remove();
+	pl->numAt(0);
+	pl->llOnly();//pl's static class is 'List' which doesn't have such a method
+	pl->alOnly();//pl's static class is 'List' which doesn't have such a method
+
+	pl = &ll;
+	pl->remove();
+	ll.llOnly();
+	(*pl).llOnly();
+}
+

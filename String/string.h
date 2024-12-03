@@ -4,6 +4,7 @@
 class String {
 // every piece of code can access these members
 public:
+	String() = delete;
 	/**
 	 * @brief Creates an instance of String from a given array of characters.
 	 */
@@ -15,18 +16,20 @@ public:
 	 */
 	String(const String& o); 
 
+	virtual ~String();
+
 	//doxygen documentation style:
 	/** 
 	 * @brief Returns the character at a given index - if such an index exists for the string
 	 * @param index The given index.
 	 * @returns The character at the given index.
 	 */
-	char charAt(int index);
+	char charAt(int index) const;
 
 	/**
 	 * @returns The length of this string.
 	 */
-	int length();
+	int length() const;
 
 	/*
 	 *@brief Functionality for using String and variables with = 
@@ -36,7 +39,7 @@ public:
 	/*
 	 *@brief Functionality to output data to outpu stream
 	 */
-	friend std::ostream& operator<<(std::ostream& o, String& s) {
+	friend std::ostream& operator<<(std::ostream& o, const String& s) {
 		o << s.start;
 		return o;
 	}
@@ -57,3 +60,4 @@ private:
 	unsigned int size;
 	char* start;
 };
+

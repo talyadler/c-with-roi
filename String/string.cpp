@@ -25,6 +25,10 @@ String::String(const String& o) {
 	start[size] = '\0'; // at the end of the array of chars add null char '\0' that is a 0
 }
 
+String::~String() {
+	delete[] start;
+}
+
 String& String::operator=(const String& o) {
 	/* default operator= is like:
 	 * size = o.size;
@@ -40,31 +44,31 @@ String& String::operator=(const String& o) {
 	return *this;
 }
 
-int String::length() {
+int String::length() const{
 	return size;
 }
 
-char String::charAt(int index) {
+char String::charAt(int index) const{
 	// we can first do input check to make sure 0 <= index <= size - 1
 	if (0 <= index && index < (size)){
 		return start[index];
 	}
-	else{
-		throw std::out_of_range("Index out of bounds");
-	}
+	throw std::out_of_range("Index out of bounds");
 }
 
-int String::compareTo(const String& anotherString) const {
+int String::compareTo(const String& anotherString) const{
 	// compare 2 instanses of String and evaluate if they match.
 	// for size return by factor of 1000 to distingush type of mismatch
-    int minLength = std::min(size, anotherString.size);
-    for (int i = 0; i < minLength; ++i) {
-        if (start[i] != anotherString.start[i]) {
-            return start[i] - anotherString.start[i];
-        }
-    }
-    if (size != anotherString.size) {
-        return (size - anotherString.size) * 1000;
-    }   
-    return 0;
+	int minLength = std::min(size, anotherString.size);
+	for (int i = 0; i < minLength; ++i) {
+		if (start[i] != anotherString.start[i]) {
+			return start[i] - anotherString.start[i];
+		}
+	}
+	if (size != anotherString.size) {
+		return (size - anotherString.size) * 1000;
+	}   
+	return 0;
 }
+
+
