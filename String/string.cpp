@@ -57,20 +57,15 @@ char String::charAt(int index) {
 int String::compareTo(String anotherString){
 	// compare 2 instanses of String and evaluate if they match.
 	// for size return by factor of 1000 to distingush type of mismatch
-	for(int i = 0; i<size; i++){
-		if(start[i] == anotherString.start[i]){
-			continue;
-		}
-		else if (start[i] == 0 || anotherString.start[i] == 0){
-			break;
-		}
-		else if(start[i] != anotherString.start[i]){
-			return start[i]-anotherString.start[i];
-		}
-	}
-	if(size != anotherString.size){
-		return (size-anotherString.size)*1000;
-	}
-	return 0;
+    int minLength = std::min(size, anotherString.size);
+    
+    for (int i = 0; i < minLength; ++i) {
+        if (start[i] != anotherString.start[i]) {
+            return start[i] - anotherString.start[i];
+        }
+    }
+    if (size != anotherString.size) {
+        return (size - anotherString.size) * 1000;
+    }   
+    return 0;
 }
-
