@@ -50,7 +50,7 @@ public:
 	// "qwer".compareTo("asdf") > 0 --> first letter difference: q > a
 	// "aaa".compareTo("aab") < 0 --> 3rd letter difference : a < b
 	// "aaaa".compareTo("aaa") > 0 --> length difference: 4 > 3
-	int compareTo(String anotherString);
+    int compareTo(const String& anotherString) const;
 
 // only code of methods of this class can access these members
 private:

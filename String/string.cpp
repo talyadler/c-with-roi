@@ -54,7 +54,7 @@ char String::charAt(int index) {
 	}
 }
 
-int String::compareTo(String anotherString){
+int String::compareTo(const String& anotherString) const {
 	// compare 2 instanses of String and evaluate if they match.
 	// for size return by factor of 1000 to distingush type of mismatch
     int minLength = std::min(size, anotherString.size);
