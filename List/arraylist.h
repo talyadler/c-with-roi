@@ -1,6 +1,7 @@
 #pragma once
 #include "list.h"
 
+// a subclass of List (List is the baseclass of ArrayList, ArrayList is a subclass of List)
 class ArrayList : public List {
 public:
 	ArrayList();

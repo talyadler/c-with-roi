@@ -14,4 +14,17 @@ public:
 
 	// returns the element at given index, if exists
 	virtual int numAt(int index) const;
+
+private:
+	class Link {
+		public: 
+			Link() = default;
+			virtual ~Link() = default;
+			int value;
+			Link* next = nullptr;
+	};
+
+	Link* head = nullptr;
+
+	Link* getLast();
 };
