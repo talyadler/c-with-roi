@@ -50,9 +50,7 @@ int ArrayList::numAt(int index) const {
 
 // returns the length of the list
 int ArrayList::length(){
-	int __counter = 1;
-	for (int i = 1; i < size; i++) __counter ++;
-	return __counter;
+	return size;
 }
 
 // returns whether the list is devoid of elements or not
