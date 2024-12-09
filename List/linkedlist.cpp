@@ -55,14 +55,14 @@ void LinkedList::remove() {
 }
 
 // returns the length of the list
-int LinkedList::length(){
-	Link* ll = head;
-	int __counter = 1;
-	while (ll->next != nullptr){
-		ll = ll->next;
-		__counter ++;
-	}
-	return __counter;
+int LinkedList::length() {
+    int __counter = 0;
+    Link* ll = head;
+    while (ll != nullptr) {
+        __counter++;
+        ll = ll->next;
+    }
+    return __counter;
 }
 
 // returns whether the list is devoid of elements or not
