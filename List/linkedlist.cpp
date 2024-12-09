@@ -1,4 +1,5 @@
 #include "linkedlist.h"
+#include <iostream>
 
 LinkedList::LinkedList() : List() {}
 
@@ -15,15 +16,24 @@ void LinkedList::add(int i) {
 		head = toAdd;
 		return;
 	}
-	Link* ll = getLast();	
+	Link* ll = getLast();
 	ll->next = toAdd;
 }
 
-LinkedList::Link* LinkedList::getLast() {
-	Link* ll = head;	
-	while (ll->next != nullptr) ll = ll->next;
-	// after while loop `ll->next == nullptr` meaning ll points to the last link
-	return ll;
+int LinkedList::numAt(int index) const {
+	Link* l = head;
+	if (index < 0) throw "index out of range";
+	while (index > 0){
+		l = l->next;
+		if (l == nullptr || index < 0) {
+			throw "index out of range";
+		}
+		index --;
+	}
+	if (l == nullptr) {
+		throw "index out of range";
+	}
+	return l->value;
 }
 
 void LinkedList::remove() {
@@ -42,16 +52,43 @@ void LinkedList::remove() {
 	ll->next = nullptr;
 }
 
-int LinkedList::numAt(int index) const {
-	Link* l = head; 
-	while (index > 0){
-		if (l == nullptr) {
-			throw "index out of range";
-		}
-		index --;
+
+// returns the length of the list
+int LinkedList::length(){
+	Link* ll = head;
+	int __counter = 1;
+	while (ll->next != nullptr){
+		ll = ll->next;
+		__counter ++;
 	}
-	if (l == nullptr) {
-		throw "index out of range";
+	return __counter;
+}
+
+// returns whether the list is devoid of elements or not
+bool LinkedList::isEmpty(){
+	bool _check = false;
+	if (head == nullptr){
+		_check = true;
 	}
-	return l->value;
+	return _check;
+}
+
+/*
+// adds the element `n` at the index `index` of the list, if possible 
+void LinkedList::addAt(int n, int index){
+	return;
+}
+
+// removes the element at the index `index` of the list, if possible 
+void LinkedList::removeAt(int index){
+	return;
+}
+*/
+ 
+// Private function to provide funstionality to add
+LinkedList::Link* LinkedList::getLast() {
+	Link* ll = head;
+	while (ll->next != nullptr)	ll = ll->next;
+	// after while loop `ll->next == nullptr` meaning ll points to the last link
+	return ll;
 }

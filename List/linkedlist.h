@@ -15,6 +15,19 @@ public:
 	// returns the element at given index, if exists
 	virtual int numAt(int index) const;
 
+	// returns the length of the list
+	virtual int length();
+
+	// returns whether the list is devoid of elements or not
+	virtual bool isEmpty();
+
+/*
+	// adds the element `n` at the index `index` of the list, if possible 
+	virtual void addAt(int n, int index);
+	
+	// removes the element at the index `index` of the list, if possible 
+	virtual void removeAt(int index);
+*/
 private:
 	class Link {
 		public: 

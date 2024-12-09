@@ -15,14 +15,16 @@ public:
 	virtual int numAt(int index) const = 0;
 
 	// returns the length of the list
-	virtual int length();
+	virtual int length() = 0;
 
 	// returns whether the list is devoid of elements or not
-	virtual bool isEmpty();
+	virtual bool isEmpty() = 0;
 
+/*
 	// adds the element `n` at the index `index` of the list, if possible 
 	virtual void addAt(int n, int index);
 	
 	// removes the element at the index `index` of the list, if possible 
 	virtual void removeAt(int index);
+*/
 };
