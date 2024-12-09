@@ -7,7 +7,6 @@ int main (){
 	ArrayList al;
 
 // linked list testing
-/*
     int __llscope = 2;
     std::cout << "Adding " << __llscope << " Items to Linked List" <<std::endl;
     for (int i = 1; i <= __llscope; i++){
@@ -42,7 +41,6 @@ int main (){
     std::cout << "Is ll empty? " << ll.isEmpty() << std::endl;
 
     std::cout << std::endl << std::endl;
-*/
 
 // array list testing
     int __alscope = 2;
