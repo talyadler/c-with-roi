@@ -3,6 +3,8 @@
 
 LinkedList::LinkedList() : List() {}
 
+LinkedList::LinkedList() : head(nullptr) {}
+
 LinkedList::~LinkedList() {
 	while (head != nullptr) {
 		remove();
@@ -64,12 +66,8 @@ int LinkedList::length(){
 }
 
 // returns whether the list is devoid of elements or not
-bool LinkedList::isEmpty(){
-	bool _check = false;
-	if (head == nullptr){
-		_check = true;
-	}
-	return _check;
+bool LinkedList::isEmpty() {
+    return head == nullptr;
 }
 
 /*
