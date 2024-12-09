@@ -21,13 +21,11 @@ void ArrayList::increaseCapacity(unsigned int addedCap) {
 }
 
 void ArrayList::add(int i) {
-	// std::cout << size << "\t" << i << std::endl;
 	if (size == capacity) {
 		increaseCapacity(16);
 	}
 	data[size] = i;
 	size++;
-	// std::cout << size << "\t" << i << std::endl;
 }
 
 int ArrayList::getCapacity() {
@@ -42,7 +40,6 @@ void ArrayList::remove() {
 }
 
 int ArrayList::numAt(int index) const {
-	// std::cout << size << "<--- size \t index--->" << index << std::endl;
 	int _size_check = size;
 	_size_check --;
 	if (index < 0 || index > _size_check){

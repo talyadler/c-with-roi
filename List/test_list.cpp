@@ -54,7 +54,6 @@ int main (){
     for(int i = -1; i <= __alscope; i++){
         try{
             std::cout << al.numAt(i) << std::endl;
-            // al.numAt(i)
         }
         catch(...){
             std::cout << "exception in index: " << i << "\n";

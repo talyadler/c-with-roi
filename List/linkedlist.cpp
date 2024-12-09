@@ -1,5 +1,5 @@
 #include "linkedlist.h"
-#include <iostream>
+// #include <iostream>
 
 LinkedList::LinkedList() : List() {}
 
@@ -51,7 +51,6 @@ void LinkedList::remove() {
 	delete ll->next;
 	ll->next = nullptr;
 }
-
 
 // returns the length of the list
 int LinkedList::length(){
