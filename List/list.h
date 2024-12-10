@@ -20,11 +20,9 @@ public:
 	// returns whether the list is devoid of elements or not
 	virtual bool isEmpty() = 0;
 
-/*
 	// adds the element `n` at the index `index` of the list, if possible 
-	virtual void addAt(int n, int index);
-	
+	virtual void addAt(int n, int index) = 0;
+
 	// removes the element at the index `index` of the list, if possible 
-	virtual void removeAt(int index);
-*/
+	virtual void removeAt(int index) = 0;
 };

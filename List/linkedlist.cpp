@@ -3,8 +3,6 @@
 
 LinkedList::LinkedList() : List() {}
 
-LinkedList::LinkedList() : head(nullptr) {}
-
 LinkedList::~LinkedList() {
 	while (head != nullptr) {
 		remove();
@@ -56,13 +54,13 @@ void LinkedList::remove() {
 
 // returns the length of the list
 int LinkedList::length() {
-    int __counter = 0;
+    int counter = 0;
     Link* ll = head;
     while (ll != nullptr) {
-        __counter++;
+        counter++;
         ll = ll->next;
     }
-    return __counter;
+    return counter;
 }
 
 // returns whether the list is devoid of elements or not
@@ -70,7 +68,6 @@ bool LinkedList::isEmpty() {
     return head == nullptr;
 }
 
-/*
 // adds the element `n` at the index `index` of the list, if possible 
 void LinkedList::addAt(int n, int index){
 	return;
@@ -80,7 +77,6 @@ void LinkedList::addAt(int n, int index){
 void LinkedList::removeAt(int index){
 	return;
 }
-*/
  
 // Private function to provide funstionality to add
 LinkedList::Link* LinkedList::getLast() {

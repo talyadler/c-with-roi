@@ -40,9 +40,9 @@ void ArrayList::remove() {
 }
 
 int ArrayList::numAt(int index) const {
-	int _size_check = size;
-	_size_check --;
-	if (index < 0 || index > _size_check){
+	int size_check = size;
+	size_check --;
+	if (index < 0 || index > size_check){
 		throw std::out_of_range("Index out of bounds");
 	}
 	return data[index];
@@ -55,21 +55,25 @@ int ArrayList::length(){
 
 // returns whether the list is devoid of elements or not
 bool ArrayList::isEmpty(){
-	bool _check = false;
-	if (size == 0){
-		_check = true;
-	}
-	return _check;
+	return size == 0;
 }
 
-/*
 // adds the element `n` at the index `index` of the list, if possible 
 void ArrayList::addAt(int n, int index){
+		int size_check = size;
+	size_check --;
+	if (index < 0 || index > size_check){
+		throw std::out_of_range("Index out of bounds");
+	}
 	return;
 }
 
 // removes the element at the index `index` of the list, if possible 
 void ArrayList::removeAt(int index){
+		int size_check = size;
+	size_check --;
+	if (index < 0 || index > size_check){
+		throw std::out_of_range("Index out of bounds");
+	}
 	return;
 }
-*/

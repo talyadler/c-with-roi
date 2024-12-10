@@ -28,13 +28,12 @@ public:
 	// inner function to increase capacity
 	void increaseCapacity(unsigned int addedCapacity);
 
-/*
 	// adds the element `n` at the index `index` of the list, if possible 
 	virtual void addAt(int n, int index);
-	
+
 	// removes the element at the index `index` of the list, if possible 
 	virtual void removeAt(int index);
-*/
+
 private:
 	int *data;
 	int capacity;
