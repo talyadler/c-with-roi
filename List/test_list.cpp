@@ -7,13 +7,15 @@ int main (){
 	ArrayList al;
 
 // linked list testing
-    int __llscope = 2;
-    std::cout << "Adding " << __llscope << " Items to Linked List" <<std::endl;
-    for (int i = 1; i <= __llscope; i++){
+    int llscope = 5;
+    std::cout << "Adding " << llscope << " Items to Linked List" <<std::endl;
+    for (int i = 1; i <= llscope; i++){
         ll.add(i);
     }
+
+/*
     std::cout << "Testing numAt(index)\n";
-    for (int i = -1; i <=__llscope; i++){
+    for (int i = -1; i <=llscope; i++){
         try{
             ll.numAt(i);
         }
@@ -28,7 +30,7 @@ int main (){
     std::cout << "\nTesting remove()" <<std::endl;
     ll.remove();
     
-    for (int i = -1; i <= __llscope; i++){
+    for (int i = -1; i <= llscope; i++){
         try{
             std::cout << "Testing numAt(index) " << i <<std::endl;
             ll.numAt(i);
@@ -39,19 +41,42 @@ int main (){
     }
     
     std::cout << "Is ll empty? " << ll.isEmpty() << std::endl;
-
-    std::cout << std::endl << std::endl;
-
+*/
+    std::cout << "Testing addAt(2)\n";
+    int counter = llscope;
+    try{
+        ll.addAt(100, 2);
+    }
+    catch(...){
+        std::cout << "\tFound addAt() exception\n"; 
+    }
+    while(counter >= 0){
+        try{
+            try{
+                std::cout << ll.numAt(counter) << std::endl;
+            }
+            catch(...){
+                std::cout << "\tFound exception\n"; 
+            }
+            counter --;
+        }
+        catch(...){
+            std::cout << "\tFound exception\n"; 
+        }
+    }
+ 
+/*
 // array list testing
-    int __alscope = 2;
-    std::cout << "Adding " << __alscope << " Items to Array List" <<std::endl;
+    std::cout << std::endl << std::endl;
+    int alscope = 2;
+    std::cout << "Adding " << alscope << " Items to Array List" <<std::endl;
   
-    for(int i = 1; i <= __alscope; i++){
+    for(int i = 1; i <= alscope; i++){
         al.add(i);
     }
     
 
-    for(int i = -1; i <= __alscope; i++){
+    for(int i = -1; i <= alscope; i++){
         try{
             std::cout << al.numAt(i) << std::endl;
         }
@@ -69,4 +94,5 @@ int main (){
     std::cout << "Is al empty? " << al.isEmpty() << std::endl;
 
     return 0;
+*/
 }

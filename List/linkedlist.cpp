@@ -70,11 +70,37 @@ bool LinkedList::isEmpty() {
 
 // adds the element `n` at the index `index` of the list, if possible 
 void LinkedList::addAt(int n, int index){
-	return;
+	Link* ll = head;
+	Link* toAdd = new Link();
+	int counter = index;
+	//check valid index
+	if (index <= 0 || index > length()) throw "index out of range";
+	//find index link and get nextlink pointer to place in next
+	while(counter > 0){
+		ll = ll->next;
+		counter--;
+	};
+	ll = ll->next;
+	//add item
+	toAdd->value = n;
+	toAdd->next = ll;
+	ll->next = toAdd;
 }
 
 // removes the element at the index `index` of the list, if possible 
 void LinkedList::removeAt(int index){
+		Link* l = head;
+	if (index < 0) throw "index out of range";
+	while (index > 0){
+		l = l->next;
+		if (l == nullptr || index < 0) {
+			throw "index out of range";
+		}
+		index --;
+	}
+	if (l == nullptr) {
+		throw "index out of range";
+	}
 	return;
 }
  
