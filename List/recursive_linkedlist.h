@@ -26,7 +26,7 @@ public:
 
 	// returns whether the list is devoid of elements or not
 	// to do
-	virtual bool isEmpty();
+	virtual bool isEmpty(){return head == nullptr;}
 
 	// adds the element `n` at the index `index` of the list, if possible 
 	// to do
@@ -57,9 +57,10 @@ private:
 			int numAt(int index) const ;
 
 			// check if empty chain
-			bool isEmpty();
+			
 
 			// helper methods
+			bool isEmpty() {return next == nullptr;}
 			bool hasNext() { return next != nullptr; }
 			bool isLast() { return !hasNext(); }
 

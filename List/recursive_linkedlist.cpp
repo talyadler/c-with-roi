@@ -68,16 +68,6 @@ int RecursiveLinkedList::RecursiveLink::numAt(int index) const {
 	return next->numAt(index-1);
 }
 
-bool RecursiveLinkedList::isEmpty(){
-	// std::cout << head << std::endl;
-	return head == nullptr;
-}
-
-bool RecursiveLinkedList::RecursiveLink::isEmpty(){
-	// std::cout << next << std::endl;
-	return next == nullptr;
-}
-
 void RecursiveLinkedList::addAt(int n, int index){
 	return;
 }
