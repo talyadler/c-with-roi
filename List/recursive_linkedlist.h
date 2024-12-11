@@ -56,7 +56,11 @@ private:
 			// gives value of link by index
 			int numAt(int index) const ;
 
-			// check if empty chain
+			//add new link at index
+			void addAt(int n, int index);
+
+			// remove link at index
+			void removeAt(int index);
 			
 
 			// helper methods

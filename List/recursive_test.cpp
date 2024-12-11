@@ -5,8 +5,10 @@ int main (){
     RecursiveLinkedList rll;
     int scope = 8;
     for (int i = 1; i <= scope; i++){
-        // std:: cout << "creating link " << i << std::endl;
-        rll.add(i);
+        try{
+            rll.add(i);
+        }
+        catch(...){std::cout << "cought error in add()";}
     }
 
     try{
@@ -16,9 +18,21 @@ int main (){
 
     for (int i = -1; i <= rll.length(); i++){
         try{
-            // int test = 4;
             std::cout << "numat " << i << " is " << rll.numAt(i) << std::endl;
         }
         catch(...){std::cout << "index out of bounds\n"; }
     }
+
+    int test_addAt_index = 1;
+    try{
+        rll.addAt(test_addAt_index*10, test_addAt_index-1);
+    }
+    catch(...){std::cout << "index out of bounds\n";}
+    for (int i = -1; i <= rll.length(); i++){
+        try{
+            std::cout << "numat " << i << " is " << rll.numAt(i) << std::endl;
+        }
+        catch(...){std::cout << "index out of bounds\n"; }
+    }
+
 }
