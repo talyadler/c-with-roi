@@ -52,7 +52,7 @@ int RecursiveLinkedList::length() {
 int counter = 0;
 int RecursiveLinkedList::RecursiveLink::length() {
 	if (isLast()){
-		return counter++;
+		return counter;
 	}
 	return next->length()+1;
 }
