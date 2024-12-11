@@ -49,12 +49,12 @@ int ArrayList::numAt(int index) const {
 }
 
 // returns the length of the list
-int ArrayList::length(){
+int ArrayList::length() const {
 	return size;
 }
 
 // returns whether the list is devoid of elements or not
-bool ArrayList::isEmpty(){
+bool ArrayList::isEmpty() const {
 	return size == 0;
 }
 

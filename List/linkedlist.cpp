@@ -53,7 +53,7 @@ void LinkedList::remove() {
 }
 
 // returns the length of the list
-int LinkedList::length() {
+int LinkedList::length() const {
     int counter = 0;
     Link* ll = head;
     while (ll != nullptr) {
@@ -64,7 +64,7 @@ int LinkedList::length() {
 }
 
 // returns whether the list is devoid of elements or not
-bool LinkedList::isEmpty() {
+bool LinkedList::isEmpty() const {
     return head == nullptr;
 }
 

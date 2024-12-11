@@ -17,10 +17,10 @@ public:
 	virtual int numAt(int index) const;
 
 	// returns the length of the list
-	virtual int length();
+	virtual int length() const ;
 
 	// returns whether the list is devoid of elements or not
-	virtual bool isEmpty();
+	virtual bool isEmpty() const ;
 
 	// inner function to find array capasity
 	int getCapacity();
