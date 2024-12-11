@@ -15,7 +15,8 @@ int main (){
     catch(...){std::cout << "error\n"; }
 
     try{
-        std::cout << "numat 5 is " << rll.numAt(7) << std::endl;
+        int test = 4;
+        std::cout << "numat " << test << " is " << rll.numAt(test-1) << std::endl;
     }
     catch(...){std::cout << "index out of bounds\n"; }
 }
