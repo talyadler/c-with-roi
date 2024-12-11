@@ -46,13 +46,12 @@ int RecursiveLinkedList::length() {
 	if (isEmpty()){
 		return 0;
 	}
-	return head->length()+1;
+	return head->length();
 }
 
-int counter = 0;
 int RecursiveLinkedList::RecursiveLink::length() {
 	if (isLast()){
-		return counter;
+		return 1;
 	}
 	return next->length()+1;
 }
