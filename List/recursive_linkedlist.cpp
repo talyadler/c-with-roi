@@ -42,14 +42,14 @@ void RecursiveLinkedList::RecursiveLink::remove() {
 	next->remove();
 }
 
-int RecursiveLinkedList::length() {
+int RecursiveLinkedList::length() const {
 	if (isEmpty()){
 		return 0;
 	}
 	return head->length();
 }
 
-int RecursiveLinkedList::RecursiveLink::length() {
+int RecursiveLinkedList::RecursiveLink::length() const {
 	if (isLast()){
 		return 1;
 	}
@@ -57,7 +57,7 @@ int RecursiveLinkedList::RecursiveLink::length() {
 }
 
 int RecursiveLinkedList::numAt(int index) const {
-	if (index < 0) throw "index out of range";
+	if (index < 0 || index >= length()) throw "index out of range";
 	return head->numAt(index);
 }
 

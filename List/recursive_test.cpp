@@ -14,7 +14,7 @@ int main (){
     }
     catch(...){std::cout << "error\n"; }
 
-    for (int i = -1; i < rll.length(); i++){
+    for (int i = -1; i <= rll.length(); i++){
         try{
             // int test = 4;
             std::cout << "numat " << i << " is " << rll.numAt(i) << std::endl;

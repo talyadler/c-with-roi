@@ -18,7 +18,7 @@ public:
 
 	// returns the length of the list
 	// to do
-	virtual int length();
+	virtual int length() const ;
 
 	// returns the element at given index, if exists
 	// to do
@@ -26,7 +26,7 @@ public:
 
 	// returns whether the list is devoid of elements or not
 	// to do
-	virtual bool isEmpty(){return head == nullptr;}
+	virtual bool isEmpty() const {return head == nullptr;}
 
 	// adds the element `n` at the index `index` of the list, if possible 
 	// to do
@@ -51,7 +51,7 @@ private:
 			void remove();
 
 			// gives chain length
-			int length();
+			int length() const ;
 
 			// gives value of link by index
 			int numAt(int index) const ;
@@ -60,9 +60,8 @@ private:
 			
 
 			// helper methods
-			bool isEmpty() {return next == nullptr;}
-			bool hasNext() { return next != nullptr; }
-			bool isLast() { return !hasNext(); }
+			bool hasNext() const { return next != nullptr; }
+			bool isLast() const { return !hasNext(); }
 
 			int value;
 			RecursiveLink* next = nullptr;
