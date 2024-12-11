@@ -9,5 +9,13 @@ int main (){
         rll.add(i);
     }
 
-    std::cout << rll.length() << std::endl;
+    try{
+    std::cout << "length is " << rll.length() << std::endl;
+    }
+    catch(...){std::cout << "error\n"; }
+
+    try{
+        std::cout << "numat 5 is " << rll.numAt(7) << std::endl;
+    }
+    catch(...){std::cout << "index out of bounds\n"; }
 }

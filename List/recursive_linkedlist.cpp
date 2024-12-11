@@ -57,13 +57,15 @@ int RecursiveLinkedList::RecursiveLink::length() {
 }
 
 int RecursiveLinkedList::numAt(int index) const {
-	// RecursiveLink* rll = head;
-	// if (index < 0) throw "index out of range";
-	return 0;
+	if (index < 0) throw "index out of range";
+	return head->numAt(index);
 }
 
 int RecursiveLinkedList::RecursiveLink::numAt(int index) const {
-	return 0;
+	if (index == 0){
+		return value;
+	}
+	return next->numAt(index-1);
 }
 
 bool RecursiveLinkedList::isEmpty(){
