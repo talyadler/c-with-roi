@@ -14,9 +14,11 @@ int main (){
     }
     catch(...){std::cout << "error\n"; }
 
-    try{
-        int test = 4;
-        std::cout << "numat " << test << " is " << rll.numAt(test-1) << std::endl;
+    for (int i = -1; i < rll.length(); i++){
+        try{
+            // int test = 4;
+            std::cout << "numat " << i << " is " << rll.numAt(i) << std::endl;
+        }
+        catch(...){std::cout << "index out of bounds\n"; }
     }
-    catch(...){std::cout << "index out of bounds\n"; }
 }
