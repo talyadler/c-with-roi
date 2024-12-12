@@ -23,7 +23,7 @@ int main (){
         catch(...){std::cout << "index out of bounds\n"; }
     }
 
-    int test_addAt_index = 1;
+    int test_addAt_index = 5;
     try{
         rll.addAt(test_addAt_index*10, test_addAt_index-1);
     }
@@ -34,5 +34,9 @@ int main (){
         }
         catch(...){std::cout << "index out of bounds\n"; }
     }
+    try{
+        std::cout << "length is " << rll.length() << std::endl;
+    }
+    catch(...){std::cout << "error\n"; }
 
 }

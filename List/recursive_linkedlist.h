@@ -42,6 +42,7 @@ private:
 		public: 
 			RecursiveLink() = default;
 			RecursiveLink(int value) : value(value) {}
+			RecursiveLink(int value, RecursiveLink* next) : value(value), next(next) {}
 			virtual ~RecursiveLink() = default;
 
 			// adds a new link at the end with value `value`
