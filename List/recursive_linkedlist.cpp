@@ -99,6 +99,6 @@ void RecursiveLinkedList::RecursiveLink::removeAt(int index){
 		next = next->next;
 		return;
 	}
-	else if (index == 0)remove();
+	if (index == 0)remove();
 	next->removeAt(index-1);
 }
