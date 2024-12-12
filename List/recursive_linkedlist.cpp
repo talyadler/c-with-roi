@@ -69,7 +69,7 @@ int RecursiveLinkedList::RecursiveLink::numAt(int index) const {
 }
 
 void RecursiveLinkedList::addAt(int n, int index){
-	if (index < 0 || index > length()) throw "index out of range";
+	if (index <= 0 || index > length()) throw "index out of range";
 	return head->addAt(n, index);
 }
 
