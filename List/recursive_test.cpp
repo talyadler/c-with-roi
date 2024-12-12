@@ -10,7 +10,7 @@ int main (){
         }
         catch(...){std::cout << "cought error in add()";}
     }
-/*
+
     try{
     std::cout << "length is " << rll.length() << std::endl;
     }
@@ -38,7 +38,6 @@ int main (){
         std::cout << "length is " << rll.length() << std::endl;
     }
     catch(...){std::cout << "error\n"; }
-*/
 
     int test_removeAt_index = rll.length();
     try{
@@ -55,5 +54,4 @@ int main (){
         std::cout << "length is " << rll.length() << std::endl;
     }
     catch(...){std::cout << "error\n"; }
-
 }
