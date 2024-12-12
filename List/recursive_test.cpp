@@ -10,7 +10,7 @@ int main (){
         }
         catch(...){std::cout << "cought error in add()";}
     }
-
+/*
     try{
     std::cout << "length is " << rll.length() << std::endl;
     }
@@ -22,10 +22,10 @@ int main (){
         }
         catch(...){std::cout << "index out of bounds\n"; }
     }
-
-    int test_addAt_index = rll.length()+1;
+*/
+    int test_addAt_index = 1;
     try{
-        rll.addAt(test_addAt_index*10, test_addAt_index-1);
+        rll.addAt(test_addAt_index, test_addAt_index-1);
     }
     catch(...){std::cout << "addAt() index out of bounds\n";}
     for (int i = -1; i <= rll.length(); i++){
