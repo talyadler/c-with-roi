@@ -4,7 +4,6 @@
 void RecursiveLinkedList::add(int i) {
 	if (isEmpty()) {
 		head = new RecursiveLink(i);
-		// std::cout << "add head " << head << std::endl;
 		return;
 	}
 	head->add(i);
@@ -14,7 +13,6 @@ void RecursiveLinkedList::RecursiveLink::add(int value) {
 	if (isLast()) { 
 		// I'm the last link
 		next = new RecursiveLink(value);
-		// std::cout << "add next " << next << std::endl;
 		return;
 	}
 	// now I'm not the last link
@@ -69,7 +67,11 @@ int RecursiveLinkedList::RecursiveLink::numAt(int index) const {
 }
 
 void RecursiveLinkedList::addAt(int n, int index){
-	if (index <= 0 || index > length()) throw "index out of range";
+	if (index < 0 || index > length()) throw "index out of range";
+	else if (index == 0){
+		head = new RecursiveLink(n, head->next);
+		return;
+	}
 	return head->addAt(n, index);
 }
 
@@ -78,23 +80,25 @@ void RecursiveLinkedList::RecursiveLink::addAt(int n, int index){
 		next = new RecursiveLink(n, next);
 		return;
 	}
-	else if (index == 0){
-		next = new RecursiveLink(n);
-		return;
-	}
 	return next->addAt(n, index-1);
 }
 
 void RecursiveLinkedList::removeAt(int index){
 	if (index < 0 || index >= length()) throw "index out of range";
+	else if (index == 0) {
+		delete head;
+		head = head->next;
+		return;
+	}
 	return head->removeAt(index);
 }
 
 void RecursiveLinkedList::RecursiveLink::removeAt(int index){
-		if (hasNext() && next->isLast()){
+	if (index == 1){
 		delete next;
-		// next = nullptr;
+		next = next->next;
 		return;
 	}
-	next->remove();
+	else if (index == 0)remove();
+	next->removeAt(index-1);
 }

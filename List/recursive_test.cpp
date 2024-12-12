@@ -22,10 +22,10 @@ int main (){
         }
         catch(...){std::cout << "index out of bounds\n"; }
     }
-*/
-    int test_addAt_index = 1;
+
+    int test_addAt_index = 5;
     try{
-        rll.addAt(test_addAt_index, test_addAt_index-1);
+        rll.addAt(test_addAt_index*10, 0);
     }
     catch(...){std::cout << "addAt() index out of bounds\n";}
     for (int i = -1; i <= rll.length(); i++){
@@ -38,12 +38,13 @@ int main (){
         std::cout << "length is " << rll.length() << std::endl;
     }
     catch(...){std::cout << "error\n"; }
-/*
-    int test_removeAt_index = 5;
+*/
+
+    int test_removeAt_index = rll.length();
     try{
         rll.removeAt(test_removeAt_index-1);
     }
-    catch(...){std::cout << "index out of bounds\n";}
+    catch(...){std::cout << "removeAT() index out of bounds\n";}
     for (int i = -1; i <= rll.length(); i++){
         try{
             std::cout << "numat " << i << " is " << rll.numAt(i) << std::endl;
@@ -54,5 +55,5 @@ int main (){
         std::cout << "length is " << rll.length() << std::endl;
     }
     catch(...){std::cout << "error\n"; }
-*/
+
 }
