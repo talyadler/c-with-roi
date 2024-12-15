@@ -89,18 +89,21 @@ void LinkedList::addAt(int n, int index){
 
 // removes the element at the index `index` of the list, if possible 
 void LinkedList::removeAt(int index){
-		Link* l = head;
-	if (index < 0) throw "index out of range";
-	while (index > 0){
+	if (index < 0 || index >= length()) throw "index out of range";
+	std::cout << length();
+	if (head == nullptr) throw "empty list";
+	if (index == 0 ){
+		delete head;
+		head = head-> next;
+		return;
+	}
+	Link* l = head;
+	while (index > 1){
 		l = l->next;
-		if (l == nullptr || index < 0) {
-			throw "index out of range";
-		}
 		index --;
 	}
-	if (l == nullptr) {
-		throw "index out of range";
-	}
+	delete l->next;
+	l->next = l->next->next;
 	return;
 }
  

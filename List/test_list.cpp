@@ -41,7 +41,7 @@ int main (){
     }
     
     std::cout << "Is ll empty? " << ll.isEmpty() << std::endl;
-*/
+
     std::cout << "Testing addAt(2)\n";
     int counter = llscope;
     try{
@@ -64,7 +64,23 @@ int main (){
             std::cout << "\tFound exception\n"; 
         }
     }
- 
+*/
+    std::cout << "Testing removeAt(2)\n";
+    try{
+        ll.removeAt(4);
+    }
+    catch(...){
+        std::cout << "\tFound removeAt() exception\n"; 
+    }
+    for (int i = -1; i <= llscope; i++){
+        try{
+            std::cout << "Testing numAt(index) " << i << "=" << ll.numAt(i)<<std::endl;
+            
+        }
+        catch(...){
+            std::cout << "\t\tFound numAt() exception\n"; 
+        }
+    }
 /*
 // array list testing
     std::cout << std::endl << std::endl;
