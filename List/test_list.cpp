@@ -67,13 +67,13 @@ int main (){
 */
     int testtt = 5;
     try{
-        std::cout << "Testin removeAt(" << testtt<<")\n";
-        ll.removeAt(testtt);
+        std::cout << "Testin addAt(" << testtt<<")\n";
+        ll.addAt((testtt+1)*100,testtt);
     }
     catch(...){
         std::cout << "\tFound removeAt(" << testtt<<") exception\n"; 
     }
-for (int i = -1; i <= llscope; i++){
+for (int i = 0; i < ll.length(); i++){
     try{
             std::cout << "Testing numAt(index) " << i << "= " << ll.numAt(i)<<std::endl;
             
