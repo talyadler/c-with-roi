@@ -37,9 +37,7 @@ int LinkedList::numAt(int index) const {
 }
 
 void LinkedList::remove() {
-	if (head == nullptr) {
-		return;
-	}
+	if (head == nullptr) throw "empty list";
 	if (head->next == nullptr) {
 		delete head;
 		head = nullptr;
@@ -54,6 +52,7 @@ void LinkedList::remove() {
 
 // returns the length of the list
 int LinkedList::length() const {
+	if (head == nullptr) throw "empty list";
     int counter = 0;
     Link* ll = head;
     while (ll != nullptr) {
@@ -87,24 +86,21 @@ void LinkedList::addAt(int n, int index){
 	ll->next = toAdd;
 }
 
-// removes the element at the index `index` of the list, if possible 
-void LinkedList::removeAt(int index){
-	if (index < 0 || index >= length()) throw "index out of range";
-	std::cout << length();
-	if (head == nullptr) throw "empty list";
-	if (index == 0 ){
-		delete head;
-		head = head-> next;
-		return;
-	}
+void LinkedList::removeAt(int index) {
+    if (index < 0 || index >= length()) throw "index out of range";
 	Link* l = head;
-	while (index > 1){
-		l = l->next;
-		index --;
-	}
-	delete l->next;
-	l->next = l->next->next;
-	return;
+    if (index == 0) {
+        head = head->next;
+        delete l;
+        return;
+    }
+    while(index > 1) {
+        l = l->next;
+		index--;
+    }
+    Link* toDelete = l->next;
+    l->next = toDelete->next;
+    delete toDelete;
 }
  
 // Private function to provide funstionality to add

@@ -65,22 +65,42 @@ int main (){
         }
     }
 */
-    std::cout << "Testing removeAt(2)\n";
+    int testtt = 5;
     try{
-        ll.removeAt(4);
+        std::cout << "Testin removeAt(" << testtt<<")\n";
+        ll.removeAt(testtt);
     }
     catch(...){
-        std::cout << "\tFound removeAt() exception\n"; 
+        std::cout << "\tFound removeAt(" << testtt<<") exception\n"; 
     }
-    for (int i = -1; i <= llscope; i++){
-        try{
-            std::cout << "Testing numAt(index) " << i << "=" << ll.numAt(i)<<std::endl;
+for (int i = -1; i <= llscope; i++){
+    try{
+            std::cout << "Testing numAt(index) " << i << "= " << ll.numAt(i)<<std::endl;
             
         }
-        catch(...){
-            std::cout << "\t\tFound numAt() exception\n"; 
+    catch(...){
+            std::cout << "Found numAt(" << i <<") exception\n"; 
         }
     }
+
+/*
+    try{
+        std::cout << "Testin removeAt(1)\n";
+        ll.removeAt(1);
+    }
+    catch(...){
+        std::cout << "\tFound removeAt(0) exception\n"; 
+    }
+for (int i = -1; i <= llscope; i++){
+    try{
+            std::cout << "Testing numAt(index) " << i << "= " << ll.numAt(i)<<std::endl;
+            
+        }
+    catch(...){
+            std::cout << "Found numAt(" << i <<") exception\n"; 
+        }
+    }
+
 /*
 // array list testing
     std::cout << std::endl << std::endl;
