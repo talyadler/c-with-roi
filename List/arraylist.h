@@ -23,7 +23,7 @@ public:
 	virtual bool isEmpty() const ;
 
 	// inner function to find array capasity
-	int getCapacity();
+	int getCapacity() const;
 
 	// inner function to increase capacity
 	void increaseCapacity(unsigned int addedCapacity);
@@ -33,6 +33,7 @@ public:
 
 	// removes the element at the index `index` of the list, if possible 
 	virtual void removeAt(int index);
+
 
 private:
 	int *data;

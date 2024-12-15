@@ -1,35 +1,25 @@
 #include "arraylist.h"
 #include <iostream>
 
+// constructors
 ArrayList::ArrayList() : List() {
 	data = new int[16];
 	capacity = 16;
 	size = 0;
 }
 
+// destructors
 ArrayList::~ArrayList() {
 	delete[] data;
 }
 
-void ArrayList::increaseCapacity(unsigned int addedCap) {
-	int *newData = new int[capacity + addedCap];
-	for (int i = 0; i < capacity ; i++) {
-		newData[i] = data[i];
-	}
-	delete[] data;
-	data = newData;
-}
-
+// user methods
 void ArrayList::add(int i) {
 	if (size == capacity) {
 		increaseCapacity(16);
 	}
 	data[size] = i;
 	size++;
-}
-
-int ArrayList::getCapacity() {
-	return capacity;
 }
 
 void ArrayList::remove() {
@@ -60,20 +50,37 @@ bool ArrayList::isEmpty() const {
 
 // adds the element `n` at the index `index` of the list, if possible 
 void ArrayList::addAt(int n, int index){
-		int size_check = size;
-	size_check --;
-	if (index < 0 || index > size_check){
+	if (index < 0 || index > size){
 		throw std::out_of_range("Index out of bounds");
 	}
-	return;
+	add(data[size-1]);
+	for (int i = size; i >= index;i--){
+		data[i] = data[i-1];
+	}
+	data[index] = n;
 }
 
-// removes the element at the index `index` of the list, if possible 
-void ArrayList::removeAt(int index){
-		int size_check = size;
-	size_check --;
-	if (index < 0 || index > size_check){
-		throw std::out_of_range("Index out of bounds");
+void ArrayList::removeAt(int index) {
+    if (index < 0 || index >= size) {
+        throw std::out_of_range("Index out of bounds");
+    }
+    for (int i = index; i < size - 1; ++i) {
+        data[i] = data[i + 1];
+    }
+    size--;
+}
+
+//-----------------------------------------------------------
+//helper functions
+void ArrayList::increaseCapacity(unsigned int addedCap) {
+	int *newData = new int[capacity + addedCap];
+	for (int i = 0; i < capacity ; i++) {
+		newData[i] = data[i];
 	}
-	return;
+	delete[] data;
+	data = newData;
+}
+
+int ArrayList::getCapacity() const {
+	return capacity;
 }

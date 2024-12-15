@@ -5,7 +5,7 @@
 int main (){
     LinkedList ll;
 	ArrayList al;
-
+/*
 // linked list testing
     int llscope = 5;
     std::cout << "Adding " << llscope << " Items to Linked List" <<std::endl;
@@ -64,7 +64,7 @@ int main (){
             std::cout << "\tFound exception\n"; 
         }
     }
-*/
+
     int testtt = 5;
     try{
         std::cout << "Testin addAt(" << testtt<<")\n";
@@ -100,19 +100,35 @@ for (int i = -1; i <= llscope; i++){
             std::cout << "Found numAt(" << i <<") exception\n"; 
         }
     }
-
-/*
-// array list testing
     std::cout << std::endl << std::endl;
-    int alscope = 2;
+
+*/
+// array list testing
+    int alscope = 5;
     std::cout << "Adding " << alscope << " Items to Array List" <<std::endl;
   
     for(int i = 1; i <= alscope; i++){
         al.add(i);
     }
     
+    int test = 4;
 
-    for(int i = -1; i <= alscope; i++){
+    // try{
+    // al.addAt((test+1)*100, test);
+    // }
+    // catch(...){
+    //     std::cout << "exception in addAt()\n";
+    // }
+
+    try{
+    al.removeAt(test);
+    }
+    catch(...){
+        std::cout << "exception in addAt()\n";
+    }
+    // std::cout << test << "\n";
+
+    for(int i = 0; i <= alscope; i++){
         try{
             std::cout << al.numAt(i) << std::endl;
         }
@@ -121,14 +137,13 @@ for (int i = -1; i <= llscope; i++){
         }
     }
 
-    std::cout << "\nTesting remove()\n";
-    al.remove();
+    // std::cout << "\nTesting remove()\n";
+    // al.remove();
 
-    std::cout << "Length is: " << al.length() << std::endl;
+    // std::cout << "Length is: " << al.length() << std::endl;
 
-    std::cout << "\nTesting isEmpty()\n";
-    std::cout << "Is al empty? " << al.isEmpty() << std::endl;
+    // std::cout << "\nTesting isEmpty()\n";
+    // std::cout << "Is al empty? " << al.isEmpty() << std::endl;
 
     return 0;
-*/
 }
