@@ -13,27 +13,27 @@ public:
 	virtual void add(int i);
 
 	// removes last element in the list
-	//done
+	// done
 	virtual void remove();
 
 	// returns the length of the list
-	// to do
+	// done
 	virtual int length() const ;
 
 	// returns the element at given index, if exists
-	// to do
+	// done
 	virtual int numAt(int index) const;
 
 	// returns whether the list is devoid of elements or not
-	// to do
+	// done
 	virtual bool isEmpty() const {return head == nullptr;}
 
 	// adds the element `n` at the index `index` of the list, if possible 
-	// to do
+	// done
 	virtual void addAt(int n, int index);
 
 	// removes the element at the index `index` of the list, if possible 
-	// to do
+	// done
 	virtual void removeAt(int index);
 
 
