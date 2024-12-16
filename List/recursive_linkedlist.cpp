@@ -86,8 +86,10 @@ void RecursiveLinkedList::RecursiveLink::addAt(int n, int index){
 void RecursiveLinkedList::removeAt(int index){
 	if (index < 0 || index >= length()) throw "index out of range";
 	if (index == 0) {
+		RecursiveLink* temp;
+		temp = head->next;
 		delete head;
-		head = head->next;
+		head = temp;
 		return;
 	}
 	return head->removeAt(index);
@@ -95,8 +97,10 @@ void RecursiveLinkedList::removeAt(int index){
 
 void RecursiveLinkedList::RecursiveLink::removeAt(int index){
 	if (index == 1){
+		RecursiveLink* temp;
+		temp = next->next;
 		delete next;
-		next = next->next;
+		next = temp;
 		return;
 	}
 	if (index == 0)remove();
