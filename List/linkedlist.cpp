@@ -27,6 +27,7 @@ int LinkedList::numAt(int index) const {
         l = l->next;
         index--;
     }
+				if (l == nullptr) throw "index out of range";
     return l->value;
 }
 
