@@ -52,7 +52,7 @@ void LinkedList::remove() {
 
 // returns the length of the list
 int LinkedList::length() const {
-	if (head == nullptr) throw "empty list";
+	if (head == nullptr) return 0;
     int counter = 0;
     Link* ll = head;
     while (ll != nullptr) {
