@@ -29,13 +29,12 @@ void ArrayList::remove() {
 	size--;
 }
 
+// int ArrayList::numAt(int index) const {
 int ArrayList::numAt(int index) const {
-	int size_check = size;
-	size_check --;
-	if (index < 0 || index > size_check){
-		throw std::out_of_range("Index out of bounds");
-	}
-	return data[index];
+    if (index < 0 || index >= size) {
+        throw std::out_of_range("Index out of bounds");
+    }
+    return data[index];
 }
 
 // returns the length of the list

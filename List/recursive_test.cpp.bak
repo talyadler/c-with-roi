@@ -54,4 +54,5 @@ int main (){
         std::cout << "length is " << rll.length() << std::endl;
     }
     catch(...){std::cout << "error\n"; }
+
 }

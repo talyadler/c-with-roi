@@ -21,19 +21,13 @@ void LinkedList::add(int i) {
 }
 
 int LinkedList::numAt(int index) const {
-	Link* l = head;
-	if (index < 0) throw "index out of range";
-	while (index > 0){
-		l = l->next;
-		if (l == nullptr || index < 0) {
-			throw "index out of range";
-		}
-		index --;
-	}
-	if (l == nullptr) {
-		throw "index out of range";
-	}
-	return l->value;
+	if (index < 0 || head == nullptr) throw "index out of range";
+    Link* l = head;
+	while (index > 0 && l != nullptr) {
+        l = l->next;
+        index--;
+    }
+    return l->value;
 }
 
 void LinkedList::remove() {
