@@ -6,10 +6,16 @@
 class List {
 public:
 	// adds an integer at the end of the list
-	virtual void add(int i) = 0;
+	virtual void addLast(int i) = 0;
+	//
+	// adds an integer at the start of the list
+	virtual void addFirst(int i) = 0;
 
 	// removes last element in the list
-	virtual void remove() = 0;
+	virtual int removeLast() = 0;
+	
+	// removes first element in the list
+	virtual int removeFirst() = 0;
 
 	// returns the element at given index, if exists
 	virtual int numAt(int index) const = 0;
