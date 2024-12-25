@@ -56,5 +56,5 @@ private:
 
 	Link* head = nullptr;
 	Link* tail = nullptr;
-	unsigned int size;
+	unsigned int size = 0;
 };

@@ -47,16 +47,16 @@ void LinkedList::addAt(int n, int index) {
 
 // adds an integer at the end of the list
 void LinkedList::addLast(int i) {
-	Link* toAdd = new Link(i, nullptr, head);
-	head = toAdd;
-	if (tail == nullptr) tail = toAdd;
+	Link* toAdd = new Link(i, nullptr, tail);
+	tail = toAdd;
+	if (head == nullptr) head = toAdd;
 	size ++;
 }
 
 void LinkedList::addFirst(int i) {
-	Link* toAdd = new Link(i, tail, nullptr);
-	tail = toAdd;
-	if (head == nullptr) head = toAdd;
+	Link* toAdd = new Link(i, head, nullptr);
+	head = toAdd;
+	if (tail == nullptr) tail = toAdd;
 	size ++;
 }
 
@@ -85,16 +85,16 @@ void LinkedList::removeLast() {
 	Link* toRemove = head;
 	delete head;
 	head = toRemove->prev;
-	if (tail == toRemove) tail = nullptr;
+	if (head == toRemove) tail = nullptr;
 	size --;
 }
 
 void LinkedList::removeFirst() {
 	if (isEmpty()) throw "empty list";
-	Link* toRemove = tail;
-	delete tail;
-	tail = toRemove->next;
-	if (head == toRemove) head = nullptr;
+	Link* toRemove = head;
+	delete head;
+	head = toRemove->next;
+	if (head == toRemove) tail = nullptr;
 	size --;
 }
 
