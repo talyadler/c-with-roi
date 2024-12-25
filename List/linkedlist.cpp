@@ -28,7 +28,7 @@ int LinkedList::length() const {
 
 // returns whether the list is devoid of elements or not
 bool LinkedList::isEmpty() const {
-	return head == nullptr;
+	return size == 0;
 } // O(1)
 
 // adds the element `n` at the index `index` of the list, if possible 
@@ -47,16 +47,15 @@ void LinkedList::addAt(int n, int index) {
 
 // adds an integer at the end of the list
 void LinkedList::addLast(int i) {
-	Link* toAdd = new Link(i, nullptr, tail);
-	tail = toAdd;
-	if (head == nullptr) head = toAdd;
+	tail = new Link(i, nullptr, tail);
+	if (isEmpty()) head = tail;
 	size ++;
 }
 
+// adds an integer at the start of the list
 void LinkedList::addFirst(int i) {
-	Link* toAdd = new Link(i, head, nullptr);
-	head = toAdd;
-	if (tail == nullptr) tail = toAdd;
+	head = new Link(i, head, nullptr);
+	if (isEmpty()) tail = head;
 	size ++;
 }
 
@@ -80,6 +79,7 @@ void LinkedList::removeAt(int index) {
 	size --;
 } // O(n)
 
+// removes last element in the list (tail)
 void LinkedList::removeLast() {
 	if (isEmpty()) throw "empty list";
 	Link* toRemove = head;
@@ -89,6 +89,7 @@ void LinkedList::removeLast() {
 	size --;
 }
 
+// removes first element in the list (head)
 void LinkedList::removeFirst() {
 	if (isEmpty()) throw "empty list";
 	Link* toRemove = head;

@@ -8,13 +8,13 @@ int main (){
     int llscope = 5;
     std::cout << "Adding " << llscope << " Items to Linked List" <<std::endl;
     for (int i = 1; i <= llscope; i++){
-        ll.addLast(i);
+        ll.addFirst(i);
     }
 
     std::cout << "Testing numAt(index)\n";
     for (int i = -1; i <=llscope; i++){
         try{
-            ll.numAt(i);
+            std::cout << "numAt(" << i << ") is: " << ll.numAt(i) << "\n";
         }
         catch(...){
             std::cout << "\tFound exception\n"; 
