@@ -1,23 +1,102 @@
 #include "linkedlist.h"
 #include <iostream>
 
+/*
+* CONSTRUCTORS
+*/
+
 LinkedList::LinkedList() : List() {}
+
+/*
+* DESTRUTORS
+*/
 
 LinkedList::~LinkedList() {
 	while (head != nullptr) {
-		remove();
+		removeLast();
 	}
 }
 
-void LinkedList::add(int i) {
-	Link* toAdd = new Link(i); // O(1)
-	if (head == nullptr) { // O(1)
-		head = toAdd; // O(1)
+/*
+* USER METHODS
+*/
+
+// returns the length of the list
+int LinkedList::length() const {
+	return size;
+} // O(1)
+
+// returns whether the list is devoid of elements or not
+bool LinkedList::isEmpty() const {
+	return head == nullptr;
+} // O(1)
+
+// adds the element `n` at the index `index` of the list, if possible 
+void LinkedList::addAt(int n, int index) {
+	if (index < 0 || index > length()) throw "index out of range"; // O(1)
+	if (index == 0) {
+		head = new Link(n, head, nullptr);
+		size ++;
 		return;
-	} // O(1)
-	Link* ll = getLast(); // O(n)
-	ll->next = toAdd; // O(1)
+	}
+	Link* ll = head;
+	for (int i = 0; i < index - 1; ++i)ll = ll->next;
+	ll->next = new Link(n, ll->next , ll->prev);
+	size ++;
 } // O(n)
+
+// adds an integer at the end of the list
+void LinkedList::addLast(int i) {
+	Link* toAdd = new Link(i, nullptr, head);
+	head = toAdd;
+	if (tail == nullptr) tail = toAdd;
+	size ++;
+}
+
+void LinkedList::addFirst(int i) {
+	Link* toAdd = new Link(i, tail, nullptr);
+	tail = toAdd;
+	if (head == nullptr) head = toAdd;
+	size ++;
+}
+
+// remove the link at index "n", if possible
+void LinkedList::removeAt(int index) {
+	if (index < 0 || index >= length()) throw "index out of range";
+	Link* l = head;
+	if (index == 0) {
+		head = head->next;
+		delete l;
+		size --;
+		return;
+	}
+	while(index > 1) {
+		l = l->next;
+		index--;
+	}
+	Link* toDelete = l->next;
+	l->next = toDelete->next;
+	delete toDelete;
+	size --;
+} // O(n)
+
+void LinkedList::removeLast() {
+	if (isEmpty()) throw "empty list";
+	Link* toRemove = head;
+	delete head;
+	head = toRemove->prev;
+	if (tail == toRemove) tail = nullptr;
+	size --;
+}
+
+void LinkedList::removeFirst() {
+	if (isEmpty()) throw "empty list";
+	Link* toRemove = tail;
+	delete tail;
+	tail = toRemove->next;
+	if (head == toRemove) head = nullptr;
+	size --;
+}
 
 int LinkedList::numAt(int index) const {
 	if (index < 0 || isEmpty()) throw "index out of range";
@@ -28,73 +107,4 @@ int LinkedList::numAt(int index) const {
 	}
 	if (l == nullptr) throw "index out of range";
 	return l->value;
-} // O(n)
-
-void LinkedList::remove() {
-	if (isEmpty()) throw "empty list";
-	if (head->next == nullptr) {
-		delete head;
-		head = nullptr;
-		return;
-	}
-	Link* ll = head;	
-	while ((ll->next)->next != nullptr) ll = ll->next;
-	// after while loop `ll->next == nullptr` meaning ll points to the last link
-	delete ll->next;
-	ll->next = nullptr;
-} // O(n - 1) == O(n)
-
-// returns the length of the list
-int LinkedList::length() const {
-	if (isEmpty()) return 0;
-	int counter = 0;
-	Link* ll = head;
-	while (ll != nullptr) {
-		counter++;
-		ll = ll->next;
-	}
-	return counter;
-} // O(n)
-
-// returns whether the list is devoid of elements or not
-bool LinkedList::isEmpty() const {
-	return head == nullptr;
-} // O(1)
-
-// adds the element `n` at the index `index` of the list, if possible 
-void LinkedList::addAt(int n, int index) {
-	if (index < 0 || index > length())throw "index out of range";
-	if (index == 0) {
-		head = new Link(n, head);
-		return;
-	}
-	Link* ll = head;
-	for (int i = 0; i < index - 1; ++i)ll = ll->next;
-	ll->next = new Link(n, ll->next);
-} // O(n)
-
-// remove the link at index "n", if possible
-void LinkedList::removeAt(int index) {
-	if (index < 0 || index >= length()) throw "index out of range";
-	Link* l = head;
-	if (index == 0) {
-		head = head->next;
-		delete l;
-		return;
-	}
-	while(index > 1) {
-		l = l->next;
-		index--;
-	}
-	Link* toDelete = l->next;
-	l->next = toDelete->next;
-	delete toDelete;
-} // O(n)
-
-// Private function to provide funstionality to add
-LinkedList::Link* LinkedList::getLast() {
-	Link* ll = head; // O(1)
-	while (ll->next != nullptr)	ll = ll->next;  //O(n)
-	// after while loop `ll->next == nullptr` meaning ll points to the last link
-	return ll; 
 } // O(n)

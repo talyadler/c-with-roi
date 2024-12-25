@@ -1,42 +1,27 @@
 #include "arraylist.h"
 #include <iostream>
 
-// constructors
+/*
+* CONSTRUCTORS
+*/
+
 ArrayList::ArrayList() : List() {
 	data = new int[16];
 	capacity = 16;
 	size = 0;
 }
 
-// destructors
+/*
+* DESTRUCTORS
+*/
+
 ArrayList::~ArrayList() {
 	delete[] data;
 }
 
-// user methods
-//
-void ArrayList::add(int i) {
-	if (size == capacity) { // O(1)
-		increaseCapacity(16); // O(n)
-	}
-	data[size] = i; // O(1)
-	size++; // O(1)
-} // O(n)
-
-void ArrayList::remove() {
-	if (isEmpty()) { // O(1)
-		throw std::out_of_range("Arry is at minimum"); // O(1)
-	}
-	size--; // O(1)
-} // O(1)
-
-// int ArrayList::numAt(int index) const {
-int ArrayList::numAt(int index) const {
-    if (index < 0 || index >= size) { // O(1)
-        throw std::out_of_range("Index out of bounds"); // O(1)
-    }
-    return data[index]; // O(1)
-} // O(1)
+/*
+* USER METHODS
+*/
 
 // returns the length of the list
 int ArrayList::length() const {
@@ -53,12 +38,30 @@ void ArrayList::addAt(int n, int index){
 	if (index < 0 || index > size){ // O(1)
 		throw std::out_of_range("Index out of bounds"); // O(1)
 	}
-	add(data[size-1]); //O(n)
+	addLast(data[size-1]); //O(n)
 	for (int i = size; i >= index;i--){ //O(n)
 		data[i] = data[i-1]; // O(1)
 	} // O(n)
 	data[index] = n; // O(1)
 } //O(n)
+
+//
+void ArrayList::addLast(int i) {
+	if (size == capacity) { // O(1)
+		increaseCapacity(16); // O(n)
+	}
+	data[size] = i; // O(1)
+	size++; // O(1)
+} // O(n)
+
+//
+void ArrayList::addFirst(int i) {
+	if (size == capacity) { // O(1)
+		increaseCapacity(16); // O(n)
+	}
+	data[size] = i; // O(1)
+	size++; // O(1)
+} // O(n)
 
 void ArrayList::removeAt(int index) {
     if (index < 0 || index >= size) {
@@ -70,8 +73,38 @@ void ArrayList::removeAt(int index) {
     size--;
 } // O(n)
 
+void ArrayList::removeLast() {
+	if (isEmpty()) { // O(1)
+		throw std::out_of_range("Arry is at minimum"); // O(1)
+	}
+	size--; // O(1)
+} // O(1)
+
+void ArrayList::removeFirst() {
+	if (isEmpty()) { // O(1)
+		throw std::out_of_range("Arry is at minimum"); // O(1)
+	}
+	size--; // O(1)
+} // O(1)
+
+// int ArrayList::numAt(int index) const {
+int ArrayList::numAt(int index) const {
+    if (index < 0 || index >= size) { // O(1)
+        throw std::out_of_range("Index out of bounds"); // O(1)
+    }
+    return data[index]; // O(1)
+} // O(1)
+
+
 //-----------------------------------------------------------
-//helper functions
+/*
+* HELPER FUNCTIONS
+*/
+
+int ArrayList::getCapacity() const {
+	return capacity;
+} // O(1)
+
 void ArrayList::increaseCapacity(unsigned int addedCap) {
 	int *newData = new int[capacity + addedCap]; // O(1)
 	for (int i = 0; i < capacity ; i++) { // O(n)
@@ -82,6 +115,3 @@ void ArrayList::increaseCapacity(unsigned int addedCap) {
 	capacity += addedCap; // O(1)
 } // O(n)
 
-int ArrayList::getCapacity() const {
-	return capacity;
-} // O(1)
