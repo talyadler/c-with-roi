@@ -42,6 +42,14 @@ public:
 	// O(n)
 	virtual int numAt(int index) const;
 
+	// returns the element at start of linkedlist, if exists
+	// O(1)
+	virtual int numFirst() const;
+
+	// returns the element at end of linkedlist, if exists
+	// O(1)
+	virtual int numLast() const;
+
 private:
 	class Link {
 		public: 

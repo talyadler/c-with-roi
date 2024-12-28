@@ -123,6 +123,8 @@ void LinkedList::removeFirst() {
 int LinkedList::numAt(int index) const {
 	if (index < 0 || isEmpty()) throw "index out of range";
 	Link* l = head;
+	if (index == 0) return numFirst();
+	if (index == length()-1) return numLast();
 	while (index > 0 && l != nullptr) {
 		l = l->next;
 		index--;
@@ -130,3 +132,15 @@ int LinkedList::numAt(int index) const {
 	if (l == nullptr) throw "index out of range";
 	return l->value;
 } // O(n)
+
+// returns the element at start of linkedlist, if exists
+int LinkedList::numFirst() const {
+	if (isEmpty()) throw "empty list";
+	return head->value;
+} // O(1)
+
+// returns the element at end of linkedlist, if exists
+int LinkedList::numLast() const{
+	if (isEmpty()) throw "empty list";
+	return tail->value;
+} //O(1)

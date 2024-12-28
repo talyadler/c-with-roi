@@ -1,29 +1,36 @@
-#include "arraylist.h"
 #include "linkedlist.h"
+#include "stack.h"
+#include "queue.h"
 #include <iostream>
 
 int main (){
-    LinkedList ll;
+    Stack q;
 
-    int llscope = 5;
-    std::cout << "Adding " << llscope << " Items to Linked List" <<std::endl;
-    for (int i = 1; i <= llscope; i++){
-        ll.addLast(i);
+    int llqscope = 5;
+    std::cout << "Adding " << llqscope << " Items to Queued List" <<std::endl;
+    for (int i = 1; i <= llqscope; i++){
+        q.push(i);
     }
 
-    // std::cout << "Testing numAt(index)\n";
-    // for (int i = -1; i <=llscope; i++){
-    //     try{
-    //         std::cout << "numAt(" << i << ") is: " << ll.numAt(i) << "\n\n";
-    //     }
-    //     catch(...){
-    //         std::cout << "\tFound exception\n"; 
-    //     }
-    // }
+    std::cout << "Front: " << q.peek() << std::endl;
+    q.pop();
+    std::cout << "Front: " << q.peek() << std::endl;
+
+/*
+    std::cout << "Testing numAt(index)\n";
+    for (int i = -1; i <=llscope; i++){
+        try{
+            std::cout << "numAt(" << i << ") is: " << ll.numAt(i) << "\n\n";
+        }
+        catch(...){
+            std::cout << "\tFound exception\n"; 
+        }
+    }
     
     std::cout << "\nTesting length()" <<std::endl;
     std::cout << ll.length() << std::endl;
 
+/*
     std::cout << "\nTesting removeLast()" <<std::endl;
     try {
         ll.removeAt(ll.length()-1);
