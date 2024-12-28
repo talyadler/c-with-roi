@@ -45,17 +45,27 @@ void LinkedList::addAt(int n, int index) {
 	size ++;
 } // O(n)
 
-// adds an integer at the end of the list
+// adds an integer at the end of the list (tail)
 void LinkedList::addLast(int i) {
 	tail = new Link(i, nullptr, tail);
-	if (isEmpty()) head = tail;
+	if (isEmpty()) {
+		head = tail;
+		size ++;
+		return;
+	}
+	tail->prev->next = tail;
 	size ++;
 }
 
-// adds an integer at the start of the list
+// adds an integer at the start of the list (head)
 void LinkedList::addFirst(int i) {
 	head = new Link(i, head, nullptr);
-	if (isEmpty()) tail = head;
+	if (isEmpty()) {
+		tail = head;
+		size ++;
+		return;
+	}
+	head->next->prev = head;
 	size ++;
 }
 
@@ -64,18 +74,26 @@ void LinkedList::removeAt(int index) {
 	if (index < 0 || index >= length()) throw "index out of range";
 	Link* l = head;
 	if (index == 0) {
-		head = head->next;
-		delete l;
-		size --;
+		removeFirst();
 		return;
 	}
-	while(index > 1) {
+	if (index == length()) {
+		removeLast();
+		return;
+	}
+	while(index > 0) {
 		l = l->next;
 		index--;
 	}
-	Link* toDelete = l->next;
-	l->next = toDelete->next;
-	delete toDelete;
+	// std::cout << "link address is " << l << "\n";
+	// std::cout << "value is " << l->value << "\n";
+	// std::cout << "head is " << head << "\n";
+	// std::cout << "tail is " << tail << "\n";
+	// std::cout << "prev is " << l->prev << "\n";
+	// std::cout << "next is " << l->next << "\n\n";
+	l->prev->next = l->next;
+	l->next->prev = l->prev;
+	delete l;
 	size --;
 } // O(n)
 
@@ -107,5 +125,11 @@ int LinkedList::numAt(int index) const {
 		index--;
 	}
 	if (l == nullptr) throw "index out of range";
+	std::cout << "link address is " << l << "\n";
+	std::cout << "value is " << l->value << "\n";
+	std::cout << "head is " << head << "\n";
+	std::cout << "tail is " << tail << "\n";
+	std::cout << "prev is " << l->prev << "\n";
+	std::cout << "next is " << l->next << "\n";
 	return l->value;
 } // O(n)

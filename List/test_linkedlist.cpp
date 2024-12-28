@@ -8,35 +8,35 @@ int main (){
     int llscope = 5;
     std::cout << "Adding " << llscope << " Items to Linked List" <<std::endl;
     for (int i = 1; i <= llscope; i++){
-        ll.addFirst(i);
+        ll.addLast(i);
     }
 
-    std::cout << "Testing numAt(index)\n";
-    for (int i = -1; i <=llscope; i++){
-        try{
-            std::cout << "numAt(" << i << ") is: " << ll.numAt(i) << "\n";
-        }
-        catch(...){
-            std::cout << "\tFound exception\n"; 
-        }
-    }
+    // std::cout << "Testing numAt(index)\n";
+    // for (int i = -1; i <=llscope; i++){
+    //     try{
+    //         std::cout << "numAt(" << i << ") is: " << ll.numAt(i) << "\n\n";
+    //     }
+    //     catch(...){
+    //         std::cout << "\tFound exception\n"; 
+    //     }
+    // }
     
     std::cout << "\nTesting length()" <<std::endl;
     std::cout << ll.length() << std::endl;
-/*
-    std::cout << "\nTesting remove()" <<std::endl;
-    ll.remove();
-    
+
+    std::cout << "\nTesting removeAt(3)" <<std::endl;
+    ll.removeAt(2);
+
     for (int i = -1; i <= llscope; i++){
         try{
-            std::cout << "Testing numAt(index) " << i <<std::endl;
-            ll.numAt(i);
+            std::cout << "numAt(" << i << ") is: " << ll.numAt(i) << "\n\n";
         }
         catch(...){
             std::cout << "\tFound exception\n"; 
         }
     }
     
+/*
     std::cout << "Is ll empty? " << ll.isEmpty() << std::endl;
 
     std::cout << "Testing addAt(2)\n";
