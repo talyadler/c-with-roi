@@ -24,8 +24,13 @@ int main (){
     std::cout << "\nTesting length()" <<std::endl;
     std::cout << ll.length() << std::endl;
 
-    std::cout << "\nTesting removeAt(3)" <<std::endl;
-    ll.removeAt(2);
+    std::cout << "\nTesting removeLast()" <<std::endl;
+    try {
+        ll.removeAt(ll.length()-1);
+    }
+    catch(...){
+        std::cout << "error\n";
+    }
 
     for (int i = -1; i <= llscope; i++){
         try{
@@ -35,6 +40,9 @@ int main (){
             std::cout << "\tFound exception\n"; 
         }
     }
+
+    std::cout << "\nTesting length()" <<std::endl;
+    std::cout << ll.length() << std::endl;
     
 /*
     std::cout << "Is ll empty? " << ll.isEmpty() << std::endl;
