@@ -35,13 +35,19 @@ bool LinkedList::isEmpty() const {
 void LinkedList::addAt(int n, int index) {
 	if (index < 0 || index > length()) throw "index out of range";
 	if (index == 0) {
-		head = new Link(n, head, nullptr);
-		size ++;
+		addFirst(n);
+		return;
+	}
+	if (index == length()){
+		addLast(n);
 		return;
 	}
 	Link* ll = head;
-	for (int i = 0; i < index - 1; ++i)ll = ll->next;
-	ll->next = new Link(n, ll->next , ll->prev);
+	for (int i = 0; i < index -1; ++i){
+		ll = ll->next;
+	}
+	ll->next = new Link(n, ll->next , ll);
+	ll->next->next->prev = ll->next;
 	size ++;
 } // O(n)
 
@@ -121,10 +127,12 @@ void LinkedList::removeFirst() {
 } // O(1)
 
 int LinkedList::numAt(int index) const {
-	if (index < 0 || isEmpty()) throw "index out of range";
-	Link* l = head;
+	if (index < 0 || index >= length() || isEmpty()) throw "index out of range";
 	if (index == 0) return numFirst();
+	// std::cout << "not first\n" ;
 	if (index == length()-1) return numLast();
+	// std::cout << "not last\n" ;
+	Link* l = head;
 	while (index > 0 && l != nullptr) {
 		l = l->next;
 		index--;

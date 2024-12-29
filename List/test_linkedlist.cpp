@@ -4,26 +4,49 @@
 #include <iostream>
 
 int main (){
-    Stack q;
+    // Stack q;
+    LinkedList ll;
 
-    int llqscope = 5;
-    std::cout << "Adding " << llqscope << " Items to Queued List" <<std::endl;
-    for (int i = 1; i <= llqscope; i++){
-        q.push(i);
+    // int llqscope = 5;
+    // std::cout << "Adding " << llqscope << " Items to Queued List" <<std::endl;
+    // for (int i = 1; i <= llqscope; i++){
+    //     q.push(i);
+    // }
+
+    // std::cout << "Front: " << q.peek() << std::endl;
+    // q.pop();
+    // std::cout << "Front: " << q.peek() << std::endl;
+
+    int llscope = 4;
+    std::cout << "Adding " << llscope << " Items to Linked List\n" <<std::endl;
+    for (int i = 1; i <= llscope; i++){
+        try{
+                ll.addLast(i);
+                // std::cout << i << "\n";
+                // std::cout << "length is: " << ll.length() << "\n";
+            }
+        catch(...){
+            std::cout << "yo" << i << "\n";
+        }
     }
 
-    std::cout << "Front: " << q.peek() << std::endl;
-    q.pop();
-    std::cout << "Front: " << q.peek() << std::endl;
-
-/*
-    std::cout << "Testing numAt(index)\n";
-    for (int i = -1; i <=llscope; i++){
+    for (int i = 0; i <= llscope; i++){
         try{
-            std::cout << "numAt(" << i << ") is: " << ll.numAt(i) << "\n\n";
+            ll.addAt(i*100, i+1);
         }
         catch(...){
-            std::cout << "\tFound exception\n"; 
+            std::cout << "bad input at" << /*i <<*/ "\n";
+        }
+    } 
+
+    std::cout << "~~~~~Testing numAt(index)~~~~~\n";
+    for (int i = -1; i <=ll.length(); i++){
+        try{
+            std::cout << "numAt(" << i << ") is: " << ll.numAt(i) << "\n\n";
+            // ll.numLast();
+        }
+        catch(...){
+            std::cout << "\tFound exception in numAt(" << i << ")\n"; 
         }
     }
     
