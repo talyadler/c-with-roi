@@ -1,6 +1,6 @@
 #pragma once
 #include "linkedlist.h"
-// #include "arraylist.h"
+#include "arraylist.h"
 
 // FIFO = first in first out
 class Queue {
@@ -19,6 +19,6 @@ public:
 
 private:
 	LinkedList ll;
-	// ArrayList al;
+	ArrayList al;
 };
 

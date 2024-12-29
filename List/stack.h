@@ -1,6 +1,6 @@
 #pragma once
 #include "linkedlist.h"
-// #include "arraylist.h"
+#include "arraylist.h"
 
 // LIFO = last in first out
 class Stack {
@@ -19,5 +19,5 @@ public:
 
 private:
 	LinkedList ll;
-	// ArrayList al;
+	ArrayList al;
 };

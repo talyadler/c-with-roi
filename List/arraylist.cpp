@@ -35,11 +35,11 @@ bool ArrayList::isEmpty() const {
 
 // adds the element `n` at the index `index` of the list, if possible 
 void ArrayList::addAt(int n, int index){
-	if (index < 0 || index > size){ // O(1)
+	if (index < 0 || index > length()){ // O(1)
 		throw std::out_of_range("Index out of bounds"); // O(1)
 	}
 	addLast(data[size-1]); //O(n)
-	for (int i = size; i >= index;i--){ //O(n)
+	for (int i = length(); i >= index; i--){ //O(n)
 		data[i] = data[i-1]; // O(1)
 	} // O(n)
 	data[index] = n; // O(1)
@@ -50,7 +50,7 @@ void ArrayList::addLast(int i) {
 	if (size == capacity) { // O(1)
 		increaseCapacity(16); // O(n)
 	}
-	data[size] = i; // O(1)
+	data[length()] = i; // O(1)
 	size++; // O(1)
 } // O(n)
 
@@ -59,15 +59,14 @@ void ArrayList::addFirst(int i) {
 	if (size == capacity) { // O(1)
 		increaseCapacity(16); // O(n)
 	}
-	data[size] = i; // O(1)
-	size++; // O(1)
+	addAt(i,0);
 } // O(n)
 
 void ArrayList::removeAt(int index) {
     if (index < 0 || index >= size) {
         throw std::out_of_range("Index out of bounds");
     }
-    for (int i = index; i < size - 1; ++i) {
+    for (int i = index; i < length() - 1; ++i) {
         data[i] = data[i + 1];
     }
     size--;
@@ -84,17 +83,28 @@ void ArrayList::removeFirst() {
 	if (isEmpty()) { // O(1)
 		throw std::out_of_range("Arry is at minimum"); // O(1)
 	}
-	size--; // O(1)
+	removeAt(0);
 } // O(1)
 
 // int ArrayList::numAt(int index) const {
 int ArrayList::numAt(int index) const {
-    if (index < 0 || index >= size) { // O(1)
+	if (isEmpty()) throw std::out_of_range("Arry is at minimum");;
+    if (index < 0 || index >= length()) { // O(1)
         throw std::out_of_range("Index out of bounds"); // O(1)
     }
     return data[index]; // O(1)
 } // O(1)
 
+// returns the element at start of arraylist, if exists
+int ArrayList::numFirst() const{
+	return numAt(0);
+} // O(1)
+
+// returns the element at end of arraylist, if exists
+// 
+int ArrayList::numLast() const{
+	return numAt(length()-1);
+} //O(1)
 
 //-----------------------------------------------------------
 /*

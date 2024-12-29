@@ -43,6 +43,14 @@ public:
 	// O(1)
 	virtual int numAt(int index) const;
 
+	// returns the element at start of arraylist, if exists
+	// 
+	virtual int numFirst() const;
+
+	// returns the element at end of arraylist, if exists
+	// 
+	virtual int numLast() const;
+
 	// inner function to find array capasity
 	// O(1)
 	int getCapacity() const;
