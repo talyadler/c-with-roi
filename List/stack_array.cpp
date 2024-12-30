@@ -5,13 +5,17 @@
 * CONSTRUCTORS
 */
 
-ArrayStack::ArrayStack() :Stack() {}
+ArrayStack::ArrayStack() : Stack() {
+    al;
+}
 
 /*
 * DESTRUTORS
 */
 
-ArrayStack::~ArrayStack() {}
+ArrayStack::~ArrayStack() {
+    while (!al.isEmpty()) al.removeLast();
+}
 
 /*
 * USER METHODS

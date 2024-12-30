@@ -6,13 +6,13 @@
 int main (){
     std::cout << "thanks\n";
 
-    // Queue qal;
-    // int alscope = 5;
+    ArrayQueue qal;
+    int alscope = 5;
     
-    // std::cout << "Adding " << alscope << " Items to Array List" <<std::endl;
-    // for(int i = 1; i <= alscope; i++){
-    //     qal.enqueue(i);
-    // }
+    std::cout << "Adding " << alscope << " Items to Array List" <<std::endl;
+    for(int i = 1; i <= alscope; i++){
+        qal.enqueue(i);
+    }
 
 /*
     ArrayList al;

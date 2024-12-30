@@ -5,13 +5,17 @@
 * CONSTRUCTORS
 */
 
-LinkedStack::LinkedStack() : Stack() {}
+LinkedStack::LinkedStack() : Stack() {
+    ll;
+}
 
 /*
 * DESTRUTORS
 */
 
-LinkedStack::~LinkedStack() {}
+LinkedStack::~LinkedStack() {
+    while (!ll.isEmpty()) pop();
+}
 
 /*
 * USER METHODS
