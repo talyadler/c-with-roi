@@ -1,21 +1,59 @@
 #include "linkedlist.h"
-#include "stack.h"
-#include "queue.h"
+#include "stack_linked.h"
+#include "queue_linked.h"
 #include <iostream>
 
 int main (){
-    // Stack q;
-    LinkedList ll;
+    LinkedQueue qll;
+    LinkedStack sll;
+    int llscope = 5;
+    
+    std::cout << "\nThis is the LinkedList tests\n";
+    std::cout << "Adding " << llscope << " Items to QueueLinked List" <<std::endl;
+    try{
+        for(int i = 1; i <= llscope; i++){
+            std::cout << "Enqueueing " << i << " and is at the end if the QueueLinkedList\n";
+            qll.enqueue(i);
+        }
+        std::cout << "Peeking = " << qll.peek() << "\n" ;
+        for(int i = 1; i <= llscope; i++){
+            std::cout << "Dequeueing " << qll.dequeue() << "\n" ;
+        }
+        std::cout << "Peeking = " << qll.peek() << "\n" ;
+        std::cout << "Dequeueing " << qll.dequeue() << "\n" ;
+        std::cout << "Peeking = " << qll.peek() << "\n" ;
+    }
+    catch(...){
+        std::cout << "Failed";
+    }
+    
+    std::cout << "\n\nAdding " << llscope << " Items to StackLinked List" <<std::endl;
+    try{
+        for(int i = 1; i <= llscope; i++){
+            std::cout << "pushing " << i << " and is at the start if the StackLinkedlist\n";
+            sll.push(i);
+        }
+        std::cout << "Peeking = " << sll.peek() << "\n" ;
+        for(int i = 1; i <= llscope; i++){
+            std::cout << "Poping " << sll.pop() << "\n" ;
+        }
+        std::cout << "Poping " << sll.pop() << "\n" ;
+        std::cout << "Peeking = " << sll.peek() << "\n" ;
+    }
+    catch(...){
+            std::cout << "Failed \n";
+    }
 
-    // int llqscope = 5;
-    // std::cout << "Adding " << llqscope << " Items to Queued List" <<std::endl;
-    // for (int i = 1; i <= llqscope; i++){
-    //     q.push(i);
-    // }
+/*
+    int llqscope = 5;
+    std::cout << "Adding " << llqscope << " Items to Queued List" <<std::endl;
+    for (int i = 1; i <= llqscope; i++){
+        q.push(i);
+    }
 
-    // std::cout << "Front: " << q.peek() << std::endl;
-    // q.pop();
-    // std::cout << "Front: " << q.peek() << std::endl;
+    std::cout << "Front: " << q.peek() << std::endl;
+    q.pop();
+    std::cout << "Front: " << q.peek() << std::endl;
 
     int llscope = 4;
     std::cout << "Adding " << llscope << " Items to Linked List\n" <<std::endl;
@@ -35,9 +73,10 @@ int main (){
             ll.addAt(i*100, i+1);
         }
         catch(...){
-            std::cout << "bad input at" << /*i <<*/ "\n";
+            std::cout << "bad input\n";
         }
-    } 
+    }
+
 
     std::cout << "~~~~~Testing numAt(index)~~~~~\n";
     for (int i = -1; i <=ll.length(); i++){
@@ -53,7 +92,6 @@ int main (){
     std::cout << "\nTesting length()" <<std::endl;
     std::cout << ll.length() << std::endl;
 
-/*
     std::cout << "\nTesting removeLast()" <<std::endl;
     try {
         ll.removeAt(ll.length()-1);
@@ -136,4 +174,5 @@ int main (){
     }
     std::cout << std::endl << std::endl;
 */
+    return 0;
 }

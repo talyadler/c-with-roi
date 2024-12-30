@@ -3,33 +3,51 @@
 #include "stack_array.h"
 #include <iostream>
 
-int main (){
+int main_1 (){
     ArrayQueue qal;
     ArrayStack sal;
     int alscope = 5;
     
+    std::cout << "\nThis is the Arrylist tests\n";
     std::cout << "Adding " << alscope << " Items to QueueArray List" <<std::endl;
-    for(int i = 1; i <= alscope; i++){
-        qal.enqueue(i);
+    try{
+        for(int i = 1; i <= alscope; i++){
+            std::cout << "Enqueueing " << i << " and is at the end if the QueueArrayList\n";
+            qal.enqueue(i);
+        }
+        std::cout << "Peeking = " << qal.peek() << "\n" ;
+        for(int i = 1; i <= alscope; i++){
+            std::cout << "Dequeueing " << qal.dequeue() << "\n" ;
+        }
+        std::cout << "Dequeueing " << qal.dequeue() << "\n" ;
+        std::cout << "Peeking = " << qal.peek() << "\n" ;
+    }
+    catch(...){
+        std::cout << "Failed\n" ;
     }
 
-    std::cout << "Peeking = " << qal.peek() << "\n" ;
-
-    std::cout << "Dequeueing " << qal.dequeue() << "\n" ;
-
-    std::cout << "Peeking = " << qal.peek() << "\n" ;
-
-    std::cout << "Adding " << alscope << " Items to StackArray List" <<std::endl;
-    for(int i = 1; i <= alscope; i++){
-        sal.push(i);
-        std::cout << sal.peek() << "\n";
+    
+    std::cout << "\n\nAdding " << alscope << " Items to StackArray List" <<std::endl;
+    try{
+        for(int i = 1; i <= alscope; i++){
+            try{
+                std::cout << "pushing " << i << " and is at the start if the StackArraylist\n";
+                sal.push(i);
+            }
+            catch(...){
+                std::cout << "found error in push \n";
+            }
+        }
+        std::cout << "Peeking = " << sal.peek() << "\n" ;
+        for(int i = 1; i <= alscope; i++){
+            std::cout << "Poping " << sal.pop() << "\n" ;
+        }
+        std::cout << "Poping " << sal.pop() << "\n" ;
+        std::cout << "Peeking = " << sal.peek() << "\n" ;
     }
-
-    std::cout << "Peeking = " << sal.peek() << "\n" ;
-
-    std::cout << "Poping " << sal.pop() << "\n" ;
-
-    std::cout << "Peeking = " << qal.peek() << "\n" ;
+    catch(...){
+        std::cout << "Failed\n" ;
+    }
 /*
     ArrayList al;
     std::cout << "Adding " << alscope << " Items to Array List" <<std::endl;
@@ -63,7 +81,6 @@ int main (){
     catch(...){
         std::cout << "exception in index: " << "\n";
     }
-
 */
     return 0;
 }
