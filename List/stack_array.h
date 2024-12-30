@@ -1,20 +1,21 @@
 #pragma once
+#include "stack.h"
 #include "arraylist.h"
 
 // LIFO = last in first out
-class Stack {
+class ArrayStack : public Stack {
 public:
-	Stack();
-	virtual ~Stack();
+	ArrayStack();
+	virtual ~ArrayStack();
 
 	// adds the element `e` to the stack
-	virtual void push(int e) =0;
+	virtual void push(int e);
 
 	// removes and returns the top element in the stack
-	virtual int pop() =0;
+	virtual int pop();
 
 	// returns the top element in the stack without removing it
-	virtual int peek() =0;
+	virtual int peek();
 
 private:
 	ArrayList al;

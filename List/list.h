@@ -31,4 +31,10 @@ public:
 
 	// returns the element at given index, if exists
 	virtual int numAt(int index) const = 0;
+
+	// returns the element at start of list, if exists
+	virtual int numFirst() const = 0;
+
+	// returns the element at end of list, if exists
+	virtual int numLast() const = 0;
 };

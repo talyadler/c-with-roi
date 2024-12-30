@@ -1,16 +1,18 @@
 #include "arraylist.h"
-#include "queue.h"
-#include "stack.h"
+#include "queue_array.h"
+#include "stack_array.h"
 #include <iostream>
 
 int main (){
-    Queue qal;
-    int alscope = 5;
+    std::cout << "thanks\n";
+
+    // Queue qal;
+    // int alscope = 5;
     
-    std::cout << "Adding " << alscope << " Items to Array List" <<std::endl;
-    for(int i = 1; i <= alscope; i++){
-        qal.enqueue(i);
-    }
+    // std::cout << "Adding " << alscope << " Items to Array List" <<std::endl;
+    // for(int i = 1; i <= alscope; i++){
+    //     qal.enqueue(i);
+    // }
 
 /*
     ArrayList al;

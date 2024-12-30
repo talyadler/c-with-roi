@@ -3,9 +3,6 @@
 // LIFO = last in first out
 class Stack {
 public:
-	Stack();
-	virtual ~Stack();
-
 	// adds the element `e` to the stack
 	virtual void push(int e) =0;
 

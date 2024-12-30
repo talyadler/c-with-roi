@@ -1,11 +1,12 @@
 #pragma once
+#include "stack.h"
 #include "linkedlist.h"
 
 // LIFO = last in first out
-class Stack {
+class LinkedStack : public Stack {
 public:
-	Stack();
-	virtual ~Stack();
+	LinkedStack();
+	virtual ~LinkedStack();
 
 	// adds the element `e` to the stack
 	virtual void push(int e);

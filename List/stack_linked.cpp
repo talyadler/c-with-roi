@@ -5,31 +5,31 @@
 * CONSTRUCTORS
 */
 
-Stack::Stack() {}
+LinkedStack::LinkedStack() : Stack() {}
 
 /*
 * DESTRUTORS
 */
 
-Stack::~Stack() {}
+LinkedStack::~LinkedStack() {}
 
 /*
 * USER METHODS
 */
 
 // adds the element `e` to the stack
-void Stack::push(int e){
+void LinkedStack::push(int e){
     ll.addFirst(e);
 }
 
 // removes and returns the top element in the stack
-int Stack::pop(){
+int LinkedStack::pop(){
     int pop = ll.numFirst();
     ll.removeFirst();
     return pop;
 }
 
 // returns the top element in the stack without removing it
-int Stack::peek(){
+int LinkedStack::peek(){
     return ll.numFirst();
 }

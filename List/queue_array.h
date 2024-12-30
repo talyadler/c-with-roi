@@ -3,10 +3,10 @@
 #include "arraylist.h"
 
 // FIFO = first in first out
-class Queue {
+class ArrayQueue : public Queue  {
 public:
-	Queue();
-	virtual ~Queue();
+	ArrayQueue();
+	virtual ~ArrayQueue();
 
 	// adds new element `e` to the queue
 	virtual void enqueue(int e);

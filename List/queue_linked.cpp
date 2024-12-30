@@ -5,31 +5,31 @@
 * CONSTRUCTORS
 */
 
-Queue::Queue() {}
+LinkedQueue::LinkedQueue() : Queue() {}
 
 /*
 * DESTRUTORS
 */
 
-Queue::~Queue() {}
+LinkedQueue::~LinkedQueue() {}
 
 /*
 * USER METHODS
 */
 
 // adds new element `e` to the queue
-void Queue::enqueue(int e){
+void LinkedQueue::enqueue(int e){
     ll.addLast(e);
 }
 
 // removes and returns the first element in the queue
-int Queue::dequeue(){
+int LinkedQueue::dequeue(){
     int deq = ll.numFirst();
     ll.removeFirst();
     return deq;
 }
 
 // returns the first element in the queue without removing it
-int Queue::peek(){
+int LinkedQueue::peek(){
     return ll.numFirst();
 }

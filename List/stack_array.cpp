@@ -5,31 +5,31 @@
 * CONSTRUCTORS
 */
 
-Stack::Stack() {}
+ArrayStack::ArrayStack() :Stack() {}
 
 /*
 * DESTRUTORS
 */
 
-Stack::~Stack() {}
+ArrayStack::~ArrayStack() {}
 
 /*
 * USER METHODS
 */
 
 // adds the element `e` to the stack
-void Stack::push(int e){
+void ArrayStack::push(int e){
     al.addFirst(e);
 }
 
 // removes and returns the top element in the stack
-int Stack::pop(){
+int ArrayStack::pop(){
     int pop = al.numFirst();
     al.removeFirst();
     return pop;
 }
 
 // returns the top element in the stack without removing it
-int Stack::peek(){
+int ArrayStack::peek(){
     return al.numFirst();
 }
