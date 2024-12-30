@@ -1,4 +1,5 @@
 #pragma once
+#include "arraylist.h"
 
 // LIFO = last in first out
 class Stack {
@@ -14,4 +15,7 @@ public:
 
 	// returns the top element in the stack without removing it
 	virtual int peek() =0;
+
+private:
+	ArrayList al;
 };

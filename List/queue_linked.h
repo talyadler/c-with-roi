@@ -1,4 +1,6 @@
 #pragma once
+#include "linkedlist.h"
+#include "arraylist.h"
 
 // FIFO = first in first out
 class Queue {
@@ -14,5 +16,9 @@ public:
 
 	// returns the first element in the queue without removing it
 	virtual int peek() =0;
+
+private:
+	LinkedList ll;
+	ArrayList al;
 };
 

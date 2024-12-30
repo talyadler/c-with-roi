@@ -1,4 +1,4 @@
-#include "queue.h"
+#include "queue_linked.h"
 #include <iostream>
 
 /*

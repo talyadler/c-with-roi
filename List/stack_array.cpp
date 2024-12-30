@@ -1,4 +1,4 @@
-#include "stack.h"
+#include "stack_array.h"
 #include <iostream>
 
 /*
