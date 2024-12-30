@@ -4,16 +4,32 @@
 #include <iostream>
 
 int main (){
-    std::cout << "thanks\n";
-
     ArrayQueue qal;
+    ArrayStack sal;
     int alscope = 5;
     
-    std::cout << "Adding " << alscope << " Items to Array List" <<std::endl;
+    std::cout << "Adding " << alscope << " Items to QueueArray List" <<std::endl;
     for(int i = 1; i <= alscope; i++){
         qal.enqueue(i);
     }
 
+    std::cout << "Peeking = " << qal.peek() << "\n" ;
+
+    std::cout << "Dequeueing " << qal.dequeue() << "\n" ;
+
+    std::cout << "Peeking = " << qal.peek() << "\n" ;
+
+    std::cout << "Adding " << alscope << " Items to StackArray List" <<std::endl;
+    for(int i = 1; i <= alscope; i++){
+        sal.push(i);
+        std::cout << sal.peek() << "\n";
+    }
+
+    std::cout << "Peeking = " << sal.peek() << "\n" ;
+
+    std::cout << "Poping " << sal.pop() << "\n" ;
+
+    std::cout << "Peeking = " << qal.peek() << "\n" ;
 /*
     ArrayList al;
     std::cout << "Adding " << alscope << " Items to Array List" <<std::endl;
