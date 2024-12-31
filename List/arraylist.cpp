@@ -84,7 +84,7 @@ void ArrayList::removeFirst() {
 		throw std::out_of_range("Arry is at minimum"); // O(1)
 	}
 	removeAt(0);
-} // O(1)
+} // O(n)
 
 // int ArrayList::numAt(int index) const {
 int ArrayList::numAt(int index) const {

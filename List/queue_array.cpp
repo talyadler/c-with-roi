@@ -5,13 +5,17 @@
 * CONSTRUCTORS
 */
 
-ArrayQueue::ArrayQueue() : Queue() {}
+ArrayQueue::ArrayQueue() : Queue() {
+    al;
+}
 
 /*
 * DESTRUTORS
 */
 
-ArrayQueue::~ArrayQueue() {}
+ArrayQueue::~ArrayQueue() {
+    while (!al.isEmpty()) al.removeLast();
+}
 
 /*
 * USER METHODS
@@ -19,17 +23,17 @@ ArrayQueue::~ArrayQueue() {}
 
 // adds new element `e` to the queue
 void ArrayQueue::enqueue(int e){
-    al.addLast(e);
-}
+    al.addLast(e); // O(n)
+} // O(n)
 
 // removes and returns the first element in the queue
 int ArrayQueue::dequeue(){
-    int deq = al.numFirst();
-    al.removeFirst();
+    int deq = al.numFirst(); // O(1)
+    al.removeFirst(); // O(n)
     return deq;
-}
+} // O(n)
 
 // returns the first element in the queue without removing it
 int ArrayQueue::peek(){
     return al.numFirst();
-}
+} // O(1)

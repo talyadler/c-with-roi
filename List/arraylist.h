@@ -36,7 +36,7 @@ public:
 	virtual void removeLast();
 
 	// removes first element in the list
-	// O(1)
+	// O(n)
 	virtual void removeFirst();
 
 	// returns the element at given index, if exists
