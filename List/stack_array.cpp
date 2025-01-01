@@ -23,17 +23,17 @@ ArrayStack::~ArrayStack() {
 
 // adds the element `e` to the stack
 void ArrayStack::push(int e){
-    al.addFirst(e); // O(n)
-} // O(n)
+    al.addLast(e); // O(1) amortized
+} // O(1) amortized
 
 // removes and returns the top element in the stack
 int ArrayStack::pop(){
-    int pop = al.numFirst(); // O(1)
-    al.removeFirst(); // O(n)
+    int pop = al.numLast(); // O(1)
+    al.removeLast(); // O(1)
     return pop;
 } // O(n)
 
 // returns the top element in the stack without removing it
 int ArrayStack::peek(){
-    return al.numFirst();
+    return al.numLast(); // O(1)
 } // O(1)

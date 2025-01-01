@@ -3,7 +3,7 @@
 #include "queue_linked.h"
 #include <iostream>
 
-int main (){
+int main_1 (){
     LinkedQueue qll;
     LinkedStack sll;
     int llscope = 5;
