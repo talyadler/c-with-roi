@@ -31,7 +31,7 @@ int ArrayStack::pop(){
     int pop = al.numLast(); // O(1)
     al.removeLast(); // O(1)
     return pop;
-} // O(n)
+} // O(1)
 
 // returns the top element in the stack without removing it
 int ArrayStack::peek(){
