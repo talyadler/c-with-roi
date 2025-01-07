@@ -37,3 +37,8 @@ int LinkedStack::pop(){
 int LinkedStack::peek(){
     return ll.numFirst(); // O(1)
 } // O(1)
+
+// return bool on empty list
+bool LinkedStack::isEmpty(){
+    return ll.isEmpty(); // O(1)
+}

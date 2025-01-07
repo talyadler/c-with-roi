@@ -11,5 +11,8 @@ public:
 
 	// returns the first element in the queue without removing it
 	virtual int peek() =0;
+
+	// return bool on empty list
+	virtual bool isEmpty() = 0;
 };
 

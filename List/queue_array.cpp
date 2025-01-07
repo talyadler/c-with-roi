@@ -37,3 +37,8 @@ int ArrayQueue::dequeue(){
 int ArrayQueue::peek(){
     return al.numFirst();
 } // O(1)
+
+// return bool on empty list
+bool ArrayQueue::isEmpty(){
+    return al.isEmpty(); // O(1)
+}

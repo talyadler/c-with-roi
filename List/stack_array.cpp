@@ -37,3 +37,8 @@ int ArrayStack::pop(){
 int ArrayStack::peek(){
     return al.numLast(); // O(1)
 } // O(1)
+
+// return bool on empty list
+bool ArrayStack::isEmpty(){
+    return al.isEmpty(); // O(1)
+}

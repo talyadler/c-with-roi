@@ -17,6 +17,9 @@ public:
 	// returns the first element in the queue without removing it
 	virtual int peek();
 
+	// return bool on empty list
+	virtual bool isEmpty();
+
 private:
 	LinkedList ll;
 };

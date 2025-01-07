@@ -35,3 +35,8 @@ int LinkedQueue::dequeue(){
 int LinkedQueue::peek(){
     return ll.numFirst(); // O(1)
 } // O(1)
+
+// return bool on empty list
+bool LinkedQueue::isEmpty(){
+    return ll.isEmpty(); // O(1)
+}
