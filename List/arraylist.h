@@ -59,9 +59,54 @@ public:
 	// O(n)
 	void increaseCapacity(unsigned int addedCapacity);
 
+	class iterator {
+	public:
+		iterator(int* curr) : curr(curr) {}
+		iterator(const iterator& o) : curr(o.curr) {}
+
+
+		int operator*() {
+			return *curr;
+		};
+
+		bool operator!=(const iterator& o) const {
+			return curr != o.curr;
+		}
+
+		iterator operator++() {
+			curr++;
+			return *this;
+		}
+
+		iterator operator++(int) {
+			iterator prevState(*this);
+			curr++;
+			return prevState;
+		}
+
+
+	private:
+		int* curr;
+	};
+
+	iterator begin() { return iterator(data); }
+	iterator end() { return iterator(data + size); }
+
+	int& operator[](int index) {
+		// input check on index
+		return data[index];
+	}
+
+	const int& operator[](int index) const {
+		return data[index];
+	}
+
+
 private:
 	int *data;
 	int capacity;
 	int size;
 };
+
+
 
