@@ -3,7 +3,7 @@
 #include "stack_array.h"
 #include <iostream>
 
-int main (){
+int main_1 (){
     ArrayQueue qal;
     ArrayStack sal;
     int alscope = 5;

@@ -1,9 +1,18 @@
 #include "linkedlist.h"
 #include "stack_linked.h"
 #include "queue_linked.h"
+#include "queue_with_stack.hpp"
 #include <iostream>
 
-int main_1 (){
+int main (){
+    QueueWithStack qws(new LinkedStack());
+
+    qws.enqueue(1);
+    std::cout << "peeking at first " << qws.peek() << "\n" ;
+    qws.enqueue(2);
+    std::cout << "peeking at second " << qws.peek() << "\n" ;
+
+    /*
     LinkedQueue qll;
     LinkedStack sll;
     int llscope = 5;
