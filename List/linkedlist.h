@@ -65,4 +65,37 @@ private:
 	Link* head = nullptr;
 	Link* tail = nullptr;
 	unsigned int size = 0;
+
+	class iterator {
+	public:
+		iterator(Link* curr) : curr(curr) {}
+		iterator(const iterator& o) : curr(o.curr) {}
+
+
+		Link operator*() {
+			return *curr;
+		};
+
+		bool operator!=(const iterator& o) const {
+			return curr != o.curr;
+		}
+
+		iterator operator++() {
+			curr->next;
+			return *this;
+		}
+
+		iterator operator++(int) {
+			iterator prevState(*this);
+			curr++;
+			return prevState;
+		}
+
+
+	private:
+		Link* curr;
+	};
+
+	iterator begin() { return iterator(tail); }
+	iterator end() { return iterator(head); }
 };
