@@ -73,21 +73,21 @@ private:
 
 
 		Link operator*() {
-			return *curr;
+			return curr->value;
 		};
 
 		bool operator!=(const iterator& o) const {
 			return curr != o.curr;
 		}
 
-		iterator operator++() {
-			curr->next;
+		iterator& operator++() {
+			curr = curr->next;
 			return *this;
 		}
 
 		iterator operator++(int) {
 			iterator prevState(*this);
-			curr++;
+			curr = curr->next;
 			return prevState;
 		}
 
@@ -96,6 +96,6 @@ private:
 		Link* curr;
 	};
 
-	iterator begin() { return iterator(tail); }
-	iterator end() { return iterator(head); }
+	friend iterator begin() { return iterator(head); }
+	friend iterator end() { return iterator(nullptr); }
 };
