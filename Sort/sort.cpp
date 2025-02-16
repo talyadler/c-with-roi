@@ -8,6 +8,11 @@ int max (int const a[], int const l);
 /*
 working
 */
+int min (int const a[], int const l);
+
+/*
+working
+*/
 int search(int const a[], int const v, int const l);
 
 /*
@@ -46,6 +51,17 @@ int max (int const a[], int const l) {
     return max;
 }
 
+int min (int const a[], int const l){
+    if (l <= 0) return -1;
+    int min = a[0];
+    for(int i = 1; i < l; i++){
+        if (a[i] < min){
+            min = a[i];
+        }
+    }
+    return min;
+}
+
 int search(int const a[], int const v, int const l){
     for (int i = 0; i < l; i++){
         if (a[i] == v){
@@ -61,10 +77,10 @@ void sort(int a[], int l){
         temp[i] = a[i];
     }
     temp[l-1] = max(a,l);
-    a[search(a,max(a,l),l)] = -2147483648;
+    a[search(a,max(a,l),l)] = min(a,l);
     for (int i = l -2; i>=0 ;i--){
         temp[i] = max(a,l);
-        a[search(a,max(a,l),l)] = -2147483648;
+        a[search(a,max(a,l),l)] = min(a,l);
     }
     for (int i = 0; i < l; i++){
         a[i] = temp[i];
