@@ -20,7 +20,7 @@ void bubble_sort(int array[], int size){
             if(array[j] > array[j + 1]){
                 temp = array[j]; //save value in temp for swap
                 array[j] = array[j + 1]; // swap places for bigger value
-                array[j + 1] = temp; // place the lower value in prev index
+                array[j + 1] = temp; // place the higher value in next index
             }
         }
     }
