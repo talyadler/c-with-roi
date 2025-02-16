@@ -11,7 +11,7 @@ working
 int search(int const a[], int const v, int const l);
 
 /*
-need to build
+working
 */
 void sort(int a[], int l);
 
