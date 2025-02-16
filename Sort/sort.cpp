@@ -32,11 +32,14 @@ int main()
     std::cout << "print array:\n";
     print(a,size);
     std::cout << "max of array is \t" << max(a,size) << "\n";
+    std::cout << "min of array is \t" << min(a,size) << "\n";
     std::cout << "position of max  is \t" << search(a,max(a,size),size) << "\n";
+    std::cout << "position of min  is \t" << search(a,min(a,size),size) << "\n";
     std::cout << "start sort\n";
     sort(a,size);
     print(a,size);
     std::cout << "position of max  is \t" << search(a,max(a,size),size) << "\n";
+    std::cout << "position of min  is \t" << search(a,min(a,size),size) << "\n";
     return 0;
 }
 
