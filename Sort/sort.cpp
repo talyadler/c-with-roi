@@ -22,7 +22,7 @@ void print(int a[], int l);
 
 int main()
 {
-    int a[] = {7,2,10,15,9,3,7,8};
+    int a[] = {-7,2,10,15,9,-3,7,8};
     int size = 8;
     std::cout << "print array:\n";
     print(a,size);
@@ -30,9 +30,8 @@ int main()
     std::cout << "position of max  is \t" << search(a,max(a,size),size) << "\n";
     std::cout << "start sort\n";
     sort(a,size);
-    std::cout << "print sort:\n";
     print(a,size);
-    std::cout << "\n";
+    std::cout << "position of max  is \t" << search(a,max(a,size),size) << "\n";
     return 0;
 }
 
