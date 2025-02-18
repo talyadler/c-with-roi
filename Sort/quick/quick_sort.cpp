@@ -14,18 +14,20 @@ void print(int a[], int length);
 int main(){
     int a[] = {-5,-8,5,9,88,71,3,100};
     int length = 8;
+    std::cout << "original array\n";
     print(a,length);
 
     quicksort(a,length);
-
+    std::cout << "quick sorted array\n";
     print(a,length);
 
     return 0;
 }
 
 void quicksort(int a[], int length){
-    // initialize with start of array and end of array
+    //seed rand in recursion
     std::srand(std::time(NULL));
+    // initialize with start of array and end of array
     quicksort_recursion(a, 0, length - 1);
 }
 
@@ -40,8 +42,9 @@ void quicksort_recursion(int a[], int low_index, int high_index){
 }
 
 int partition_index(int a[], int low_index, int high_index){
+    //use rand for better efficiancy to start the partitioning in random index in case the array is sorted.
     int pivot_index = low_index +(std::rand() % (high_index - low_index + 1));
-    
+    // swap the values of high_index with rand_index to lower run time.
     if (pivot_index != high_index) std::swap(a[pivot_index], a[high_index]);
 
     int pivot_value = a[high_index];
@@ -60,7 +63,7 @@ int partition_index(int a[], int low_index, int high_index){
 
 void print(int a[], int length){
     for (int i = 0; i < length; i++){
-        std::cout << a[i] << " ";
+        std::cout << "a[" << i << "]" << a[i] << " ";
     }
     std::cout << "\n";
 }
