@@ -1,50 +1,62 @@
+#pragma once
 #include <iostream>
 #include "BTnode.cpp"
 
 class binarytree {
 private:
-    BTnode* root;
-    int size;
-    class iterator{
+    BTnode* root = nullptr;
+    unsigned int size = 0;
+    
+    // class iterator{
+    // public:
+    //     iterator(){}
+    //     binarytree operator*(){};
+    // private:
+    // };
     public:
-        iterator(){}
-        BTnode operator*(){};
-        bool operator!=(){};
-    private:
-    };
-public:
-    binarytree();
+    binarytree() = default;
     ~binarytree();
     bool isEmpty();
     void insert(int v);
-    bool containsbt(int v);
+    bool contains(int v) const;
+    void remove();
     void remove(int v);
-    int size();
+    unsigned int length() const;
     int depth();
 };
 
-binarytree::binarytree(){
-}
-
 binarytree::~binarytree(){
+    while (!isEmpty()){
+        remove();
+    }
 }
 
-bool isEmpty(){
+bool binarytree::isEmpty(){
+    return size == 0;
 }
 
-void insert(int v){
+void binarytree::insert(int v){
+    if (isEmpty()){
+        root = new BTnode(v);
+        return;
+    }
+    this->insert(v);
+    return;
+}
+
+bool binarytree::contains(int v) const {
 
 }
 
-bool containsbt(int v){
+void binarytree::remove(){
+ return;
+}
+
+void binarytree::remove(int v){
 
 }
 
-void remove(int v){
-
-}
-
-int size(){
+unsigned int binarytree::length() const{
     return size;
 }
 

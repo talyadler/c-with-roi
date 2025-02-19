@@ -1,36 +1,48 @@
 #pragma once
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 
 class BTnode{
 private:
     
 public:
-    BTnode(/* args */);
-    ~BTnode();
+    BTnode() = default;
+    BTnode(int v) : value(v){}
+    BTnode(int v, BTnode* father) : value(v), father(father){}
+    ~BTnode() = default;
     BTnode* father;
-    BTnode* left;
-    BTnode* right;
+    BTnode* left = nullptr;
+    BTnode* right = nullptr;
     int value;
     void insert(int v);
     void remove(int v);
-    void contains(int v);
+    bool contains(int v) const;
 };
 
-BTnode::BTnode(/* args */){
+void BTnode::insert(int v){
+    srand(time(0));
+    if ((rand() % 100)<50){
+        if (right==nullptr){
+            right = new BTnode(v,this);
+            return;
+        }
+        right->insert(v);
+        return;
+    }
+    if (left == nullptr){
+        left = new BTnode(v,this);
+        return;
+    }
+    left->insert(v);
 }
 
-BTnode::~BTnode(){
+void BTnode::remove(int v){
+    return;
 }
 
-void insert(int v){
-
-}
-
-void remove(int v){
-
-}
-
-void contains(int v){
+bool BTnode::contains(int v) const {
+    if (value == v) return true;
+    return left->contains(v) || right->contains(v);
 
 }
