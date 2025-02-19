@@ -13,11 +13,14 @@ void print(int a[], int length);
 int main(){
     int a[] = {-5,-8,5,9,88,71,3,100,3};
     int length = 9;
+    
     std::cout << "original array\n";
     print(a,length);
 
     quicksort(a,length);
-
+    std::cout << "quick sorted array\n";
+    print(a,length);
+    
     return 0;
 }
 
@@ -28,34 +31,21 @@ void quicksort(int a[], int length){
 void quicksort_recursion(int a[], int low_index, int high_index){
     if (low_index<high_index){
         int pivot_index = partition_index(a,low_index,high_index);
-        //sort left partition
         quicksort_recursion(a, low_index, pivot_index - 1);
-        // sort right partition
         quicksort_recursion(a, pivot_index + 1, high_index);
     }
 }
 
 int partition_index(int a[], int low_index, int high_index){
-    int pivot_value = a[high_index]; // store the value in the pivot index for later use
-    int i = low_index; // i is the index for the left most part of the partition
-    std::cout << "\npartitioning...\nfound low index at, " <<low_index<<"\tfound high index at, "<< high_index << " \tkey value is,"  << pivot_value <<  "\n"; 
-    for (int j = low_index; j < high_index; j++){ // j is the index containg a value that will be swaped with the value in index i if the value in j index is lower than the key value (pivot)
-        std::cout << "j=" <<j<<"\ti="<< i << "\t a[j]=" << a[j] << "\t a[i]=" << a[i] << "\tkey value=" << pivot_value <<"\n";
+    int pivot_value = a[high_index];
+    int i = low_index;
+    for (int j = low_index; j < high_index; j++){
         if (a[j] <= pivot_value){
-            std::cout << "a[j]," <<a[j]<<" is lower than key, "<< pivot_value<<".\t swapping...\n"; 
             std::swap(a[i], a[j]);
-            std::cout << "incrementing i by 1\n";
             i++;
-            
         }
-        else{
-            std::cout << "a[j]," <<a[j]<<" is NOT lower than key, "<< pivot_value<<"\n"; 
-        }
-        std::cout << "incrementing j by 1" << "\n";
     }
-    std::cout << "loop done... swapping a["<<i<<"]" << a[i] << " with a["<<high_index<<"]" <<a[high_index]<<"\n"; 
     std::swap(a[i], a[high_index]);
-    print(a, high_index+1);
     return i;
 }
 

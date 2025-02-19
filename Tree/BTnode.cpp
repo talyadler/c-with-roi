@@ -1,18 +1,36 @@
+#pragma once
 #include <iostream>
+#include <cstdlib>
 
 class BTnode{
 private:
-    /* data */
+    
 public:
     BTnode(/* args */);
     ~BTnode();
+    BTnode* father;
+    BTnode* left;
+    BTnode* right;
     int value;
+    void insert(int v);
+    void remove(int v);
+    void contains(int v);
 };
 
-BTnode::BTnode(/* args */)
-{
+BTnode::BTnode(/* args */){
 }
 
-BTnode::~BTnode()
-{
+BTnode::~BTnode(){
+}
+
+void insert(int v){
+
+}
+
+void remove(int v){
+
+}
+
+void contains(int v){
+
 }

@@ -3,30 +3,51 @@
 
 class binarytree {
 private:
-        class BTnode{
-    private:
-        /* data */
+    BTnode* root;
+    int size;
+    class iterator{
     public:
-        BTnode(/* args */);
-        ~BTnode();
-        BTnode* father;
-        BTnode* left;
-        BTnode* right;
-        int value;
-        void insert(int v);
-        void remove(int v);
-        void contains(int v);
+        iterator(){}
+        BTnode operator*(){};
+        bool operator!=(){};
+    private:
     };
 public:
-    binarytree(/* args */);
+    binarytree();
     ~binarytree();
-    BTnode* root;
+    bool isEmpty();
+    void insert(int v);
+    bool containsbt(int v);
+    void remove(int v);
+    int size();
+    int depth();
 };
 
-binarytree::binarytree(/* args */)
-{
+binarytree::binarytree(){
 }
 
-binarytree::~binarytree()
-{
+binarytree::~binarytree(){
+}
+
+bool isEmpty(){
+}
+
+void insert(int v){
+
+}
+
+bool containsbt(int v){
+
+}
+
+void remove(int v){
+
+}
+
+int size(){
+    return size;
+}
+
+int depth(){
+
 }
