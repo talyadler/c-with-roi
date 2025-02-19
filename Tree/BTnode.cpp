@@ -16,6 +16,7 @@ public:
     BTnode* right = nullptr;
     int value;
     void insert(int v);
+    void remove();
     void remove(int v);
     bool contains(int v) const;
 };
@@ -35,6 +36,10 @@ void BTnode::insert(int v){
         return;
     }
     left->insert(v);
+}
+
+void BTnode::remove(){
+    return;
 }
 
 void BTnode::remove(int v){

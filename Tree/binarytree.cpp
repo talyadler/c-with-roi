@@ -16,7 +16,7 @@ private:
     public:
     binarytree() = default;
     ~binarytree();
-    bool isEmpty();
+    bool isEmpty() const ;
     void insert(int v);
     bool contains(int v) const;
     void remove();
@@ -31,7 +31,7 @@ binarytree::~binarytree(){
     }
 }
 
-bool binarytree::isEmpty(){
+bool binarytree::isEmpty() const {
     return size == 0;
 }
 
@@ -45,15 +45,17 @@ void binarytree::insert(int v){
 }
 
 bool binarytree::contains(int v) const {
-
+    if (isEmpty()) return false;
+    return root->contains(v);
 }
 
 void binarytree::remove(){
- return;
+    if (isEmpty()) return;
+    this->remove();
 }
 
 void binarytree::remove(int v){
-
+    return;
 }
 
 unsigned int binarytree::length() const{
@@ -61,5 +63,5 @@ unsigned int binarytree::length() const{
 }
 
 int depth(){
-
+    return 0;
 }
