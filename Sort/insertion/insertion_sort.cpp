@@ -14,29 +14,22 @@ int main() {
 }
 
 void insertion_sort(int a[], int length){
-    std::cout << "first element is " << a[0] << "\n";
     for (int i = 1; i < length; i++){
-    /*
-    start at 2nd element of the array because first is "sorted".
-    i increment for each loop iteration and keep looking at next element in the right hand unsort portion of the array until we reach the last element of the array.
-    */
+        /*
+        start at 2nd element of the array because first is "sorted".
+        i increment for each loop iteration and keep looking at next element in the right hand unsort portion of the array until we reach the last element of the array.
+        */
         int key = a[i]; // store the index value for evaluation and storing of value in correct position.
         int j = i-1; // keep track of the position in the sorted portion of the array.
-        std::cout << "loop " << i << "\tat index " << j << "\tthe key value is " << key << "\n";
         // the value one index to the left of the current key value i, is the first value in the sorted portion of the array we are going to compare the key to.
-        if (a[j]>key){
-            std::cout <<"\t"<< a[j] <<">" <<key<< " and will be swapped with "<<a[j+1] <<"\n";
-        }
         while (j >= 0 && a[j] > key){ // stop at the start of the array and greater than key to actualy sort.
             /*
             loop to shift key value to the right at index i into its correct possition in the sorted position of the array.
             j keeps track of the element were looking at in the sorted portion of the array.
             */
-            std::cout << "a["<<j<<"] value is " << a[j] << "\ta["<<j+1<<"] value is " << a[j+1] <<"\n" ;
             a[j+1] = a[j]; // shift one to the right.
             j = j - 1; // keep shifting over the next element in the soreted portion of the array
         }
-        std::cout << "a["<<j+1<<"] is " << a[j+1] << "\tand replaced with key value " << key <<"\n\n" ;
         a[j + 1] = key;
     }
 }
