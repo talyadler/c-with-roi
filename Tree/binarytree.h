@@ -67,31 +67,30 @@ bool binarytree::have_childern() const{
 }
 
 void binarytree::insert(int v){
-    if (isEmpty()){
+    if (root == nullptr){
         root = new BTnode(v);
         size++;
         return;
     }
-    size++;
     root->BTNinsert(v);
+    size++;
     return;
 }
 
 bool binarytree::contains(int v) const {
     if (isEmpty()) return false;
-    printf("test for %d", v);
     return root->BTNcontains(v);
 }
 
 void binarytree::clear(){
-    if (isEmpty()) return;
+    // if (isEmpty()) return;
     if (root->left == nullptr && root->right == nullptr){
         delete root;
-        size--;
         return;
     }
-    printf("test for remove\n");
-    root->BTNremove();    
+    root->BTNremove();
+    size = 0;  
+    return;
 }
 
 void binarytree::remove(int v){

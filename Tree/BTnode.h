@@ -24,15 +24,17 @@ public:
     void BTNremove();
     void BTNremove(int v);
     bool BTNhave_childern() const;
+    bool BTNhave_parent() const;
     bool BTNcontains(int v) const;
+    BTnode* search(BTnode* root, int v);
 };
 
 void BTnode::showinfo(BTnode* btn){
-    std::cout << "info\tme=" <<btn<<"\n";
-    std::cout << "info\tvalue=" <<value<<"\n";
-    std::cout << "info\tfather=" <<father<<"\n";
-    std::cout << "info\tleft=" <<left<<"\n";
-    std::cout << "info\tright=" <<right<<"\n\n";
+    std::cout << "SHOWINFO\t\t\tinfo\tme=" <<btn<<"\n";
+    std::cout << "SHOWINFO\t\t\tinfo\tvalue=" <<value<<"\n";
+    std::cout << "SHOWINFO\t\t\tinfo\tfather=" <<father<<"\n";
+    std::cout << "SHOWINFO\t\t\tinfo\tleft=" <<left<<"\n";
+    std::cout << "SHOWINFO\t\t\tinfo\tright=" <<right<<"\n\n";
 }
 
 void BTnode::BTNinsertChance(int v){
@@ -58,6 +60,14 @@ void BTnode::BTNinsertChance(int v){
     left->BTNinsertChance(v);
 }
 
+BTnode* BTnode::search(BTnode* root, int v){
+    // if (BTNhave_parent()) return root;
+    if (value == v) return root;
+    if (value <= v) return search(left, v);
+    if (value > v) return search(right, v);
+    return NULL;
+}
+
 void BTnode::BTNinsert(int v){
     if (value <= v){
         BTNinsertLeft(v);
@@ -71,9 +81,9 @@ void BTnode::BTNinsert(int v){
 
 void BTnode::BTNinsertRight(int v){
     if (right == nullptr){
-        std::cout << "insert left info\tthis=" <<this<<"\n";
         right = new BTnode(v,this);
-        showinfo(right);
+        right->father = this;
+        // showinfo(search(right,v));
         return;
     }
     right->BTNinsert(v);
@@ -81,9 +91,9 @@ void BTnode::BTNinsertRight(int v){
 
 void BTnode::BTNinsertLeft(int v){
     if (left == nullptr){
-        std::cout << "insert right info\tthis=" <<this<<"\n";
         left = new BTnode(v,this);
-        showinfo(left);
+        left->father = this;
+        // showinfo(search(left,v));
         return;
     }
     left->BTNinsert(v);
@@ -107,8 +117,11 @@ bool BTnode::BTNhave_childern() const{
     return (this->left != nullptr || this->right != nullptr);
 }
 
+bool BTnode::BTNhave_parent() const{
+    return father;
+}
+
 bool BTnode::BTNcontains(int v) const {
-    printf("value to check %d", v);
     if (value == v) return true;
     return left->BTNcontains(v) || right->BTNcontains(v);
 }
