@@ -45,7 +45,7 @@ private:
     bool have_childern() const;
     void insert(int v);
     bool contains(int v) const;
-    void remove();
+    void clear();
     void remove(int v);
     unsigned int length() const;
     int depth();
@@ -54,7 +54,7 @@ private:
 
 binarytree::~binarytree(){
     while (!isEmpty()){
-        remove();
+        clear();
     }
 }
 
@@ -83,7 +83,7 @@ bool binarytree::contains(int v) const {
     return root->BTNcontains(v);
 }
 
-void binarytree::remove(){
+void binarytree::clear(){
     if (isEmpty()) return;
     if (root->left == nullptr && root->right == nullptr){
         delete root;
