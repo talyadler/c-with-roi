@@ -107,5 +107,15 @@ int depth(){
 }
 
 void binarytree::showinfoo(){
-    root->showinfo(root);
+    BTnode* toshow = root;
+    if (toshow != nullptr){
+        toshow->showinfo(toshow);
+    }
+    if (toshow->right != nullptr){
+        toshow->showinfo(toshow->right);
+    }
+    if (toshow->left != nullptr){
+        toshow->showinfo(toshow->left);
+    }
+    // toshow = toshow->left;
 }

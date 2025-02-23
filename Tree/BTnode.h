@@ -17,22 +17,25 @@ public:
     BTnode* right = nullptr;
     int value;
     void showinfo(BTnode*);
+    void BTNinsertChance(int v);
     void BTNinsert(int v);
+    void BTNinsertRight(int v);
+    void BTNinsertLeft(int v);
     void BTNremove();
     void BTNremove(int v);
     bool BTNhave_childern() const;
     bool BTNcontains(int v) const;
 };
 
-void BTnode::showinfo(BTnode*){
-    std::cout << "info\tme=" <<this<<"\n";
+void BTnode::showinfo(BTnode* btn){
+    std::cout << "info\tme=" <<btn<<"\n";
     std::cout << "info\tvalue=" <<value<<"\n";
     std::cout << "info\tfather=" <<father<<"\n";
     std::cout << "info\tleft=" <<left<<"\n";
     std::cout << "info\tright=" <<right<<"\n\n";
 }
 
-void BTnode::BTNinsert(int v){
+void BTnode::BTNinsertChance(int v){
     std::random_device rd;  // Obtain a random seed from the hardware
     std::mt19937 gen(rd()); // Use Mersenne Twister engine with the seed
     std::uniform_real_distribution<> dis(0.0, 1.0); // Define the distribution range
@@ -44,10 +47,41 @@ void BTnode::BTNinsert(int v){
             showinfo(right);
             return;
         }
-        right->BTNinsert(v);
+        right->BTNinsertChance(v);
         return;
     }
     if (left == nullptr){
+        left = new BTnode(v,this);
+        showinfo(left);
+        return;
+    }
+    left->BTNinsertChance(v);
+}
+
+void BTnode::BTNinsert(int v){
+    if (value <= v){
+        BTNinsertLeft(v);
+        return;
+    }
+    if (value > v) {
+        BTNinsertRight(v);
+        return;
+    }
+}
+
+void BTnode::BTNinsertRight(int v){
+    if (right == nullptr){
+        std::cout << "insert left info\tthis=" <<this<<"\n";
+        right = new BTnode(v,this);
+        showinfo(right);
+        return;
+    }
+    right->BTNinsert(v);
+}
+
+void BTnode::BTNinsertLeft(int v){
+    if (left == nullptr){
+        std::cout << "insert right info\tthis=" <<this<<"\n";
         left = new BTnode(v,this);
         showinfo(left);
         return;

@@ -2,8 +2,17 @@
 
 int main(){
     binarytree BT;
-    int scope = 9;
-    for (int i = 1; i <= scope; i++)BT.insert(i);
+    // int tv[] = {10,5,11,90,3,8,7,2,6,-8,33,44};
+    // int length = 12;
+    int tv[] = {2,1,3};
+    int length = 3;
+    
+    // int scope = 4;
+    for (int i = 0; i < length; i++){
+        BT.insert(tv[i]);
+        
+    }
+    // BT.showinfoo();
     printf("items in tree %d\n",BT.length());
     // BT.showinfoo();
     
