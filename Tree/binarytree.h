@@ -59,6 +59,7 @@ public:
     unsigned int length() const;
     unsigned int depth();
     void showinfo(int v) const;
+    int play();
 };
 
 binarytree::~binarytree(){
@@ -125,3 +126,6 @@ void binarytree::showinfo(int v) const{
     }
 }
 
+int binarytree:: play (){
+    return root->BTNmax();
+}

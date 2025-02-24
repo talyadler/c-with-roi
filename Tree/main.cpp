@@ -24,12 +24,14 @@ int main(){
 
     // std::cout<< BT.depth()<<"\n";    
     
-    if (BT.contains(1000)){
-        printf("contains\n");
-    }
-    else {
-        printf("dose not contain\n");
-    }
+    // if (BT.contains(1000)){
+    //     printf("contains\n");
+    // }
+    // else {
+    //     printf("dose not contain\n");
+    // }
+
+    std::cout << BT.play() << "\n";
     
     return 0;
 }

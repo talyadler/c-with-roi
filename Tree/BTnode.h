@@ -34,7 +34,9 @@ public:
     bool BTNhave_childern() const;
     bool BTNhave_parent() const;
     bool BTNcontains(int v) const;
-	bool BTNisLeaf();
+	bool BTNisLeaf() const;
+    int BTNmin() const;
+    int BTNmax() const;
 
     //legacy
     void BTNinsertChance(int v);
@@ -57,17 +59,17 @@ void BTnode::BTNshowinfo(BTnode* btn){
 
 BTnode* BTnode::BTNsearch(BTnode* root, int v){
     if (root->value == v) return root;
-    if (root->value <= v) return BTNsearch(root->left, v);
-    if (root->value > v) return BTNsearch(root->right, v);
+    if (root->value <= v) return BTNsearch(root->right, v);
+    if (root->value > v) return BTNsearch(root->left, v);
     return NULL;
 }
 
-void BTnode::BTNinsert(int v){  
-    if (value <= v){
+void BTnode::BTNinsert(int v){
+    if (v <= value){
         BTNinsertLeft(v);
         return;
     }
-    if (value > v) {
+    if (v > value) {
         BTNinsertRight(v);
         return;
     }
@@ -105,12 +107,15 @@ void BTnode::BTNclear(){
 
 void BTnode::BTNremove(int v){
     if (!BTNcontains(v))return;
+
     BTnode* to_remove = BTNsearch(this,v);
+    
     //case 1, only 1 item on the. node is root without children.
     if (!to_remove->BTNhave_parent() && !to_remove->BTNhave_childern()){
         delete to_remove;
         return;
     }
+    
     // case 2, this node is a leaf on the tree.
     if (to_remove->BTNisLeaf()){
         //is left child of father
@@ -125,6 +130,7 @@ void BTnode::BTNremove(int v){
         }
         return;
     }
+    
     //case 3, is a child and a parent
     if (to_remove->BTNhave_parent() && to_remove->BTNhave_childern()){
         return;
@@ -145,7 +151,7 @@ bool BTnode::BTNcontains(int v) const {
     return left->BTNcontains(v) || right->BTNcontains(v);
 }
 
-bool BTnode::BTNisLeaf(){
+bool BTnode::BTNisLeaf() const{
 	return left == nullptr && right == nullptr;
 }
 
@@ -170,4 +176,14 @@ void BTnode::BTNinsertChance(int v){
         return;
     }
     left->BTNinsertChance(v);
+}
+
+int BTnode::BTNmin() const{
+    if (left == nullptr) return value;
+    return left->BTNmin();
+}
+
+int BTnode::BTNmax() const{
+    if (right == nullptr) return value;
+    return right->BTNmax();
 }
