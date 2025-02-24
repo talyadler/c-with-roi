@@ -4,8 +4,10 @@
 
 class binarytree {
 private:
+    //fields
     BTnode* root = nullptr;
     unsigned int size = 0;
+    unsigned int deep = 0;
     /*
     class iterator {
         public:
@@ -38,9 +40,15 @@ private:
     friend iterator begin() { return iterator(root); }
     friend iterator end() { return iterator(nullptr); }
     */
-    public:
+    
+public:
+    //constructors
     binarytree() = default;
+    
+    //destructors
     ~binarytree();
+    
+    //methods
     bool isEmpty() const;
     bool have_childern() const;
     bool have_parent() const;
@@ -49,7 +57,7 @@ private:
     void clear();
     void remove(int v);
     unsigned int length() const;
-    int depth();
+    unsigned int depth();
     void showinfo(int v) const;
 };
 
@@ -73,12 +81,14 @@ bool binarytree::have_parent() const{
 
 void binarytree::insert(int v){
     if (root == nullptr){
-        root = new BTnode(v);
+        root = new BTnode(v, 1);
         size++;
+        deep = 1;
         return;
     }
     root->BTNinsert(v);
     size++;
+    if (deep < root->BTNsearch(root,v)->level) deep = root->BTNsearch(root,v)->level;
     return;
 }
 
@@ -103,22 +113,14 @@ unsigned int binarytree::length() const{
     return size;
 }
 
-int depth(){
-    return 100;
+unsigned int binarytree::depth(){
+    return deep;
 }
 
 void binarytree::showinfo(int v) const{
     BTnode* toshow = root;
     if (toshow != nullptr){
-        std::cout << toshow << "\n";
-        std::cout << v << "\n";
         BTnode::showinfo(toshow->BTNsearch(toshow,v));
     }
-    // if (toshow->right != nullptr){
-    //     BTnode::showinfo(toshow->right);
-    // }
-    // if (toshow->left != nullptr){
-    //     BTnode::showinfo(toshow->left);
-    // }
 }
 

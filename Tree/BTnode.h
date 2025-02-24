@@ -8,14 +8,24 @@ class BTnode{
 private:
     
 public:
+    //construtors
     BTnode() = default;
     BTnode(int v) : value(v){}
     BTnode(int v, BTnode* father) : value(v), father(father){}
+    BTnode(int v, unsigned int level) : value(v), level(level){}
+    BTnode(int v, BTnode* father, unsigned int level) : value(v), father(father), level(level){}
+    
+    //destructors
     ~BTnode() = default;
+    
+    //fields
     BTnode* father = nullptr;
     BTnode* left = nullptr;
     BTnode* right = nullptr;
     int value;
+    unsigned int level;
+    
+    //methods
     static void showinfo(BTnode*);
     BTnode* BTNsearch(BTnode* root, int v);
     void BTNinsert(int v);
@@ -28,18 +38,20 @@ public:
     bool BTNcontains(int v) const;
 	bool BTNisLeaf();
 
+    //legacy
     void BTNinsertChance(int v);
 };
 
 void BTnode::showinfo(BTnode* btn){
-    std::cout << "SHOWINFO\t\t\tinfo\tme=" <<btn<<"\n";
-    std::cout << "SHOWINFO\t\t\tinfo\tvalue=" <<btn->value<<"\n";
-    std::cout << "SHOWINFO\t\t\tinfo\tfather=" <<btn->father<<"\n";
-    std::cout << "SHOWINFO\t\t\tinfo\tleft=" <<btn->left<<"\n";
-    std::cout << "SHOWINFO\t\t\tinfo\tright=" <<btn->right<<"\n";
-    std::cout << "SHOWINFO\t\t\tinfo\thave parent=" <<btn->BTNhave_parent()<<"\n";
-    std::cout << "SHOWINFO\t\t\tinfo\thave child=" <<btn->BTNhave_childern()<<"\n";
-    std::cout << "SHOWINFO\t\t\tinfo\tis leaf=" <<btn->BTNisLeaf()<<"\n";
+    std::cout << "SHOWINFO\tme\t\t" <<btn<<"\n";
+    std::cout << "SHOWINFO\tvalue\t\t" <<btn->value<<"\n";
+    std::cout << "SHOWINFO\tfather\t\t" <<btn->father<<"\n";
+    std::cout << "SHOWINFO\tlevel\t\t" <<btn->level<<"\n";
+    std::cout << "SHOWINFO\tleft\t\t" <<btn->left<<"\n";
+    std::cout << "SHOWINFO\tright\t\t" <<btn->right<<"\n";
+    std::cout << "SHOWINFO\thave parent\t" <<btn->BTNhave_parent()<<"\n";
+    std::cout << "SHOWINFO\thave child\t" <<btn->BTNhave_childern()<<"\n";
+    std::cout << "SHOWINFO\tis leaf\t\t" <<btn->BTNisLeaf()<<"\n";
     std::cout << "\n";
 }
 
@@ -64,9 +76,7 @@ void BTnode::BTNinsert(int v){
 
 void BTnode::BTNinsertRight(int v){
     if (right == nullptr){
-        right = new BTnode(v,this);
-        right->father = this;
-        // showinfo(search(right,v));
+        right = new BTnode(v,this,this->level+1);
         return;
     }
     right->BTNinsert(v);
@@ -74,8 +84,7 @@ void BTnode::BTNinsertRight(int v){
 
 void BTnode::BTNinsertLeft(int v){
     if (left == nullptr){
-        left = new BTnode(v,this);
-        // showinfo(search(left,v));
+        left = new BTnode(v,this,this->level+1);
         return;
     }
     left->BTNinsert(v);
