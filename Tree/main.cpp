@@ -8,9 +8,8 @@ int main(){
     // int tv[] = {2,1,3};
     // int length = 3;
 
-    int tv[] = {0};
-    int length = 1;
-    
+    int tv[] = {0, 1};
+    int length = 2;
     // int scope = 4;
     for (int i = 0; i < length; i++){
         BT.insert(tv[i]);
@@ -18,7 +17,7 @@ int main(){
     }
     // BT.showinfoo();
     printf("items in tree %d\n",BT.length());
-    // BT.showinfoo();
+    BT.showinfoo();
     
     // if (BT.contains(6)){
     //     printf("contains\n");
