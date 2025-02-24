@@ -16,7 +16,7 @@ public:
     BTnode* left = nullptr;
     BTnode* right = nullptr;
     int value;
-    void showinfo(BTnode*);
+    static void showinfo(BTnode*);
     void BTNinsertChance(int v);
     void BTNinsert(int v);
     void BTNinsertRight(int v);
@@ -27,14 +27,19 @@ public:
     bool BTNhave_parent() const;
     bool BTNcontains(int v) const;
     BTnode* search(BTnode* root, int v);
+	bool isLeaf();
 };
+
+bool BTnode::isLeaf() {
+	return left == nullptr && right == nullptr;
+}
 
 void BTnode::showinfo(BTnode* btn){
     std::cout << "SHOWINFO\t\t\tinfo\tme=" <<btn<<"\n";
-    std::cout << "SHOWINFO\t\t\tinfo\tvalue=" <<value<<"\n";
-    std::cout << "SHOWINFO\t\t\tinfo\tfather=" <<father<<"\n";
-    std::cout << "SHOWINFO\t\t\tinfo\tleft=" <<left<<"\n";
-    std::cout << "SHOWINFO\t\t\tinfo\tright=" <<right<<"\n\n";
+    std::cout << "SHOWINFO\t\t\tinfo\tvalue=" <<btn->value<<"\n";
+    std::cout << "SHOWINFO\t\t\tinfo\tfather=" <<btn->father<<"\n";
+    std::cout << "SHOWINFO\t\t\tinfo\tleft=" <<btn->left<<"\n";
+    std::cout << "SHOWINFO\t\t\tinfo\tright=" <<btn->right<<"\n\n";
 }
 
 void BTnode::BTNinsertChance(int v){
@@ -92,7 +97,6 @@ void BTnode::BTNinsertRight(int v){
 void BTnode::BTNinsertLeft(int v){
     if (left == nullptr){
         left = new BTnode(v,this);
-        left->father = this;
         // showinfo(search(left,v));
         return;
     }
@@ -100,10 +104,16 @@ void BTnode::BTNinsertLeft(int v){
 }
 
 void BTnode::BTNremove(){
-    if (left == nullptr) delete this;
-    else left->BTNremove();
-    if (right == nullptr) delete this;
-    right->BTNremove();
+    if (left != nullptr) {
+		left->BTNremove();
+		delete left;
+		left = nullptr;
+	}
+    if (right != nullptr) {
+		right->BTNremove();
+		delete right;
+		right = nullptr;
+	}
 }
 
 void BTnode::BTNremove(int v){
@@ -125,3 +135,4 @@ bool BTnode::BTNcontains(int v) const {
     if (value == v) return true;
     return left->BTNcontains(v) || right->BTNcontains(v);
 }
+

@@ -84,13 +84,10 @@ bool binarytree::contains(int v) const {
 
 void binarytree::clear(){
     // if (isEmpty()) return;
-    if (root->left == nullptr && root->right == nullptr){
-        delete root;
-        return;
-    }
     root->BTNremove();
+    delete root;
     size = 0;  
-    return;
+    root = nullptr;
 }
 
 void binarytree::remove(int v){
@@ -108,13 +105,14 @@ int depth(){
 void binarytree::showinfoo(){
     BTnode* toshow = root;
     if (toshow != nullptr){
-        toshow->showinfo(toshow);
+        BTnode::showinfo(toshow);
     }
     if (toshow->right != nullptr){
-        toshow->showinfo(toshow->right);
+        BTnode::showinfo(toshow->right);
     }
     if (toshow->left != nullptr){
-        toshow->showinfo(toshow->left);
+        BTnode::showinfo(toshow->left);
     }
     // toshow = toshow->left;
 }
+
