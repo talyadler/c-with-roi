@@ -10,7 +10,7 @@ private:
 public:
     //construtors
     BTnode() = default;
-    BTnode(int v) : value(v){}
+    BTnode(int v, unsigned int level) : value(v), level(level){}
     BTnode(int v, BTnode* father, unsigned int level) : value(v), father(father), level(level){}
     
     //destructors
@@ -145,7 +145,7 @@ bool BTnode::BTNcontains(int v) const {
     return left->BTNcontains(v) || right->BTNcontains(v);
 }
 
-bool BTnode::BTNisLeaf() {
+bool BTnode::BTNisLeaf(){
 	return left == nullptr && right == nullptr;
 }
 
