@@ -43,13 +43,14 @@ private:
     ~binarytree();
     bool isEmpty() const;
     bool have_childern() const;
+    bool have_parent() const;
     void insert(int v);
     bool contains(int v) const;
     void clear();
     void remove(int v);
     unsigned int length() const;
     int depth();
-    void showinfoo();
+    void showinfo(int v) const;
 };
 
 binarytree::~binarytree(){
@@ -64,6 +65,10 @@ bool binarytree::isEmpty() const {
 
 bool binarytree::have_childern() const{
     return (root->BTNhave_childern());
+}
+
+bool binarytree::have_parent() const{
+    return root->BTNhave_parent();
 }
 
 void binarytree::insert(int v){
@@ -84,7 +89,7 @@ bool binarytree::contains(int v) const {
 
 void binarytree::clear(){
     // if (isEmpty()) return;
-    root->BTNremove();
+    root->BTNclear();
     delete root;
     size = 0;  
     root = nullptr;
@@ -102,17 +107,18 @@ int depth(){
     return 100;
 }
 
-void binarytree::showinfoo(){
+void binarytree::showinfo(int v) const{
     BTnode* toshow = root;
     if (toshow != nullptr){
-        BTnode::showinfo(toshow);
+        std::cout << toshow << "\n";
+        std::cout << v << "\n";
+        BTnode::showinfo(toshow->BTNsearch(toshow,v));
     }
-    if (toshow->right != nullptr){
-        BTnode::showinfo(toshow->right);
-    }
-    if (toshow->left != nullptr){
-        BTnode::showinfo(toshow->left);
-    }
-    // toshow = toshow->left;
+    // if (toshow->right != nullptr){
+    //     BTnode::showinfo(toshow->right);
+    // }
+    // if (toshow->left != nullptr){
+    //     BTnode::showinfo(toshow->left);
+    // }
 }
 
