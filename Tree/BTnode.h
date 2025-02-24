@@ -11,8 +11,6 @@ public:
     //construtors
     BTnode() = default;
     BTnode(int v) : value(v){}
-    BTnode(int v, BTnode* father) : value(v), father(father){}
-    BTnode(int v, unsigned int level) : value(v), level(level){}
     BTnode(int v, BTnode* father, unsigned int level) : value(v), father(father), level(level){}
     
     //destructors
@@ -26,7 +24,7 @@ public:
     unsigned int level;
     
     //methods
-    static void showinfo(BTnode*);
+    static void BTNshowinfo(BTnode*);
     BTnode* BTNsearch(BTnode* root, int v);
     void BTNinsert(int v);
     void BTNinsertRight(int v);
@@ -42,7 +40,9 @@ public:
     void BTNinsertChance(int v);
 };
 
-void BTnode::showinfo(BTnode* btn){
+// defenistions
+
+void BTnode::BTNshowinfo(BTnode* btn){
     std::cout << "SHOWINFO\tme\t\t" <<btn<<"\n";
     std::cout << "SHOWINFO\tvalue\t\t" <<btn->value<<"\n";
     std::cout << "SHOWINFO\tfather\t\t" <<btn->father<<"\n";
@@ -56,7 +56,6 @@ void BTnode::showinfo(BTnode* btn){
 }
 
 BTnode* BTnode::BTNsearch(BTnode* root, int v){
-    // if (BTNhave_parent()) return root;
     if (root->value == v) return root;
     if (root->value <= v) return BTNsearch(root->left, v);
     if (root->value > v) return BTNsearch(root->right, v);
@@ -91,6 +90,7 @@ void BTnode::BTNinsertLeft(int v){
 }
 
 void BTnode::BTNclear(){
+    if (this == nullptr) return;
     if (left != nullptr) {
 		left->BTNclear();
 		delete left;
@@ -140,6 +140,7 @@ bool BTnode::BTNhave_parent() const{
 }
 
 bool BTnode::BTNcontains(int v) const {
+    if (this == nullptr) return false;
     if (value == v) return true;
     return left->BTNcontains(v) || right->BTNcontains(v);
 }
@@ -156,16 +157,16 @@ void BTnode::BTNinsertChance(int v){
     // double random_number = 0.1;
     if (random_number<0.5){
         if (right==nullptr){
-            right = new BTnode(v,this);
-            showinfo(right);
+            right = new BTnode(v,this,this->level+1);
+            BTNshowinfo(right);
             return;
         }
         right->BTNinsertChance(v);
         return;
     }
     if (left == nullptr){
-        left = new BTnode(v,this);
-        showinfo(left);
+        left = new BTnode(v,this,this->level+1);
+        BTNshowinfo(left);
         return;
     }
     left->BTNinsertChance(v);

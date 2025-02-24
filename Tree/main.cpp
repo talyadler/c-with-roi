@@ -16,20 +16,20 @@ int main(){
         BT.insert(tv[i]);
     }
     // BT.showinfoo();
-    printf("items in tree %d\n",BT.length());
+    // printf("items in tree %d\n",BT.length());
     
     // for (int i = 0; i < length; i++){
     //     BT.showinfo(tv[i]);
     // }
 
-    std::cout<< BT.depth()<<"\n";    
+    // std::cout<< BT.depth()<<"\n";    
     
-    // if (BT.contains(6)){
-    //     printf("contains\n");
-    // }
-    // else {
-    //     printf("dose not contain");
-    // }
+    if (BT.contains(1000)){
+        printf("contains\n");
+    }
+    else {
+        printf("dose not contain\n");
+    }
+    
     return 0;
-
 }
