@@ -155,6 +155,17 @@ bool BTnode::BTNisLeaf() const{
 	return left == nullptr && right == nullptr;
 }
 
+int BTnode::BTNmin() const{
+    if (left == nullptr) return value;
+    return left->BTNmin();
+}
+
+int BTnode::BTNmax() const{
+    if (right == nullptr) return value;
+    return right->BTNmax();
+}
+
+//legacy
 void BTnode::BTNinsertChance(int v){
     std::random_device rd;  // Obtain a random seed from the hardware
     std::mt19937 gen(rd()); // Use Mersenne Twister engine with the seed
@@ -176,14 +187,4 @@ void BTnode::BTNinsertChance(int v){
         return;
     }
     left->BTNinsertChance(v);
-}
-
-int BTnode::BTNmin() const{
-    if (left == nullptr) return value;
-    return left->BTNmin();
-}
-
-int BTnode::BTNmax() const{
-    if (right == nullptr) return value;
-    return right->BTNmax();
 }
