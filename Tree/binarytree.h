@@ -59,7 +59,8 @@ public:
     unsigned int length() const;
     unsigned int depth();
     void showinfo(int v) const;
-    int play();
+    int max() const;
+    int min() const;
 };
 
 binarytree::~binarytree(){
@@ -108,7 +109,31 @@ void binarytree::clear(){
 }
 
 void binarytree::remove(int v){
-    return;
+    if (isEmpty()) return;
+    
+    if (size == 1){
+        delete root;
+        root = nullptr;
+        size = 0;
+        deep = 0;
+        return;
+    }
+    
+    root->BTNremove(v);
+    size--;
+
+    //validate depth
+    //PROBABLY WRONG
+    /*
+    //get lowest levels from children
+    unsigned int lowest_min_level = root->BTNsearch(root,root->BTNmin())->level;
+    unsigned int lowest_max_level = root->BTNsearch(root,root->BTNmax())->level;
+    unsigned int lowest_level = 0;
+    if (lowest_max_level > lowest_min_level)lowest_level = lowest_max_level;
+    else lowest_level = lowest_min_level;
+    //update deepth
+    if (deep < lowest_level)deep = lowest_level;
+    */
 }
 
 unsigned int binarytree::length() const{
@@ -126,6 +151,10 @@ void binarytree::showinfo(int v) const{
     }
 }
 
-int binarytree:: play (){
+int binarytree:: max() const{
     return root->BTNmax();
+}
+
+int binarytree:: min() const{
+    return root->BTNmin();
 }

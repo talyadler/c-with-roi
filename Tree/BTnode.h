@@ -106,33 +106,39 @@ void BTnode::BTNclear(){
 }
 
 void BTnode::BTNremove(int v){
-    if (!BTNcontains(v))return;
+    if (!BTNcontains(v)) return;
 
     BTnode* to_remove = BTNsearch(this,v);
     
-    //case 1, only 1 item on the. node is root without children.
-    if (!to_remove->BTNhave_parent() && !to_remove->BTNhave_childern()){
-        delete to_remove;
-        return;
-    }
-    
-    // case 2, this node is a leaf on the tree.
     if (to_remove->BTNisLeaf()){
         //is left child of father
         if(to_remove->father->left == to_remove){
+            to_remove->father->left = nullptr;
             delete to_remove;
-            to_remove->father->left = nullptr;        
         }
         //is right child of father
         if(to_remove->father->right == to_remove){
-            delete to_remove;
             to_remove->father->right = nullptr;
+            delete to_remove;
         }
         return;
     }
-    
-    //case 3, is a child and a parent
-    if (to_remove->BTNhave_parent() && to_remove->BTNhave_childern()){
+
+    if (to_remove->right != nullptr){
+        //using successor
+        BTnode* successor = BTNsearch(to_remove, to_remove->right->BTNmin());
+        int min = successor->value;
+        BTNremove(min);
+        to_remove->value = min;
+        return;
+    }
+
+    if (to_remove->left != nullptr){
+        //using predeccessor
+        BTnode* predeccessor = BTNsearch(to_remove, to_remove->left->BTNmax());
+        int max = predeccessor->value;
+        BTNremove(max);
+        to_remove->value = max;
         return;
     }
 }
