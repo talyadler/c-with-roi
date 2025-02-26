@@ -31,6 +31,7 @@ public:
     void BTNinsertLeft(int v);
     void BTNclear();
     void BTNremove(int v);
+    void BTNnodeShift(BTnode* node, BTnode* target, int v);
     bool BTNhave_childern() const;
     bool BTNhave_parent() const;
     bool BTNcontains(int v) const;
@@ -110,13 +111,14 @@ void BTnode::BTNremove(int v){
 
     BTnode* to_remove = BTNsearch(this,v);
     
-    if (to_remove->BTNisLeaf()){
-        //is left child of father
+    // case 1 - is a leaf
+    if (to_remove->BTNisLeaf() && to_remove->BTNhave_parent()){
+        //is left leaf of father
         if(to_remove->father->left == to_remove){
             to_remove->father->left = nullptr;
             delete to_remove;
         }
-        //is right child of father
+        //is right leaf of father
         if(to_remove->father->right == to_remove){
             to_remove->father->right = nullptr;
             delete to_remove;
@@ -124,23 +126,67 @@ void BTnode::BTNremove(int v){
         return;
     }
 
-    if (to_remove->right != nullptr){
-        //using successor
-        BTnode* successor = BTNsearch(to_remove, to_remove->right->BTNmin());
-        int min = successor->value;
-        BTNremove(min);
-        to_remove->value = min;
-        return;
+    //case 2 - to_remove have one child
+    if (
+        (to_remove->right == nullptr && to_remove->left != nullptr) ||
+        (to_remove->right != nullptr && to_remove->left == nullptr) &&
+        to_remove->BTNhave_parent()
+    ){
+        //father's right ; child right
+        if (to_remove->right != nullptr && to_remove->father->right == to_remove){
+            to_remove->father->right = right;
+            delete to_remove;
+            return;
+        }
+        //father's right ; child left
+        if (to_remove->left != nullptr && to_remove->father->right == to_remove){
+            to_remove->father->right = left;
+            delete to_remove;
+            return;
+        }
+
+        //fathers left ; child right
+        if (to_remove->right != nullptr && to_remove->father->left == to_remove){
+            to_remove->father->left = right;
+            delete to_remove;
+            return;
+        }
+
+        //father's left ; child left
+        if (to_remove->left != nullptr && to_remove->father->left == to_remove){
+            to_remove->father->left = left;
+            delete to_remove;
+            return;
+        }
     }
 
-    if (to_remove->left != nullptr){
-        //using predeccessor
-        BTnode* predeccessor = BTNsearch(to_remove, to_remove->left->BTNmax());
-        int max = predeccessor->value;
-        BTNremove(max);
-        to_remove->value = max;
-        return;
+    //case 3 - two childs
+    if (to_remove->right != nullptr && to_remove->left != nullptr){
+        if (to_remove->right != nullptr){
+            //using successor
+            BTnode* successor = BTNsearch(to_remove, to_remove->right->BTNmin());
+            int min = successor->value;
+            BTNremove(min);
+            to_remove->value = min;
+            return;
+        }
+
+        if (to_remove->left != nullptr){
+            //using predeccessor
+            BTnode* predeccessor = BTNsearch(to_remove, to_remove->left->BTNmax());
+            int max = predeccessor->value;
+            BTNremove(max);
+            to_remove->value = max;
+            return;
+        }
     }
+}
+
+void BTnode::BTNnodeShift(BTnode* node, BTnode* target, int v){
+    if (target->father == nullptr) node->value = v;
+    if (target == target->father->left) target->father->left->value = v;
+    if (target == target->father->right) target->father->right->value = v;
+    return;
 }
 
 bool BTnode::BTNhave_childern() const{

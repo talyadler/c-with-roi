@@ -18,24 +18,21 @@ int main(){
     for (int i = 0; i < length; i++){
         BT.insert(tv[i]);
     }
-    printf("-----------------------------------------------------\n");
     
     for (int i = 0; i < BT.length(); i++){
         BT.showinfo(tv[i]);
     }
-    printf("-----------------------------------------------------\n");
 
-    printf("items in tree %d\n",BT.length());
 
     BT.remove(tv[0]);
 
-    // BT.showinfoo();
-    printf("items in tree %d\n",BT.length());
+    // printf("items in tree %d\n",BT.length());
+
     printf("-----------------------------------------------------\n");
     
-    for (int i = 0; i < BT.length(); i++){
-        BT.showinfo(tv[i+1]);
-    }
+    // for (int i = 0; i < BT.length(); i++){
+    //     BT.showinfo(tv[i+1]);
+    // }
 
     // std::cout<< BT.depth()<<"\n";    
     
