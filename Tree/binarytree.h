@@ -111,7 +111,7 @@ void binarytree::clear(){
 void binarytree::remove(int v){
     if (isEmpty()) return;
     
-    if (size == 1){
+    if (size == 1 && root->value == v){
         delete root;
         root = nullptr;
         size = 0;
