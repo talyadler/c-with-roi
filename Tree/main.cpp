@@ -14,34 +14,32 @@ int main(){
 
     // int tv[] = {10, 9, 11, 8, 12};
     // int length = 5;
-
+    
+    // index in array for later use in other functions
+    int c = 0;
+    
+    // insert
     for (int i = 0; i < length; i++){
         BT.insert(tv[i]);
     }
     
+    // START
+    printf("%d items in tree\n",BT.length());
     for (int i = 0; i < BT.length(); i++){
         BT.showinfo(tv[i]);
     }
-
-
-    BT.remove(tv[0]);
-
-    // printf("items in tree %d\n",BT.length());
-
     printf("-----------------------------------------------------\n");
     
-    // for (int i = 0; i < BT.length(); i++){
-    //     BT.showinfo(tv[i+1]);
-    // }
+    // remove function
+    BT.remove(tv[c]);
+    //
 
-    // std::cout<< BT.depth()<<"\n";    
+    printf("%d items in tree\n",BT.length());
+    for (int i = 0; i < BT.length(); i++){
+        BT.showinfo(tv[i]);
+    }
+    printf("-----------------------------------------------------\n");
     
-    // if (BT.contains(1000)){
-    //     printf("contains\n");
-    // }
-    // else {
-    //     printf("dose not contain\n");
-    // }
-    
+    // END
     return 0;
 }

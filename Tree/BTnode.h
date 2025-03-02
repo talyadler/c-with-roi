@@ -31,6 +31,7 @@ public:
     void insertLeft(int v);
     void clear();
     void remove(int v);
+    void remove (BTnode* to_remove);
     void nodeShift(BTnode* node, BTnode* target, int v);
     bool have_childern() const;
     bool have_parent() const;
@@ -62,9 +63,9 @@ void BTnode::showinfo(BTnode* btn){
 
 BTnode* BTnode::search(BTnode* root, int v){
     if (root->value == v) return root;
-    if (root->value <= v) return search(root->right, v);
-    if (root->value > v) return search(root->left, v);
-    return NULL;
+    if (root->value <= v && root->right) return search(root->right, v);
+    if (root->value > v && root->left) return search(root->left, v);
+    return nullptr;
 }
 
 void BTnode::insert(int v){
@@ -109,48 +110,57 @@ void BTnode::clear(){
 }
 
 void BTnode::remove(int v){
-    BTnode* to_remove = search(this,v);
+    if (value == v){
+        remove(this);
+        return;
+    }
+    if (left) left->remove(v);
+    if (right) right->remove(v);
+}
+
+void BTnode::remove (BTnode* to_remove){
     if (to_remove == nullptr) return;
-    
     // case 1 - is a leaf
-    if (to_remove->isLeaf() && to_remove->have_parent()){ // root is removed at BT level, so every to_remove will have a parent
+    if (to_remove->isLeaf()){
+        // check for root
+        if (!to_remove->have_parent()){
+            delete to_remove;
+            return;
+        }
         //is left leaf of father
         if(to_remove->father->left == to_remove){
             to_remove->father->left = nullptr;
             delete to_remove;
+            return;
         }
         //is right leaf of father
         if(to_remove->father->right == to_remove){
             to_remove->father->right = nullptr;
             delete to_remove;
+            return;
         }
-        return;
-    }
-    // from here on, to_remove is not a leaf, therefore has at least 1 child
+    } // from here on, to_remove is not a leaf, therefore has at least 1 child
 
-    //case 2 - to_remove have one child
-    if (to_remove->right == nullptr || to_remove->left == nullptr) 
-    {
+    // case 2 - to_remove have one child
+    if (to_remove->right == nullptr || to_remove->left == nullptr){
         // we'll replace to_remove->father pointer with to_remove's only child
-	BTnode* only_child = to_remove->right != nullptr ? to_remove->right : to_remove->left;
-	if (to_remove->father->right == to_remove) {
-       	    to_remove->father->right = only_child;
-	} else {
-	    to_remove->father->left = only_child;
-	}
-	only_child->father = to_remove->father;
+        // variable = (condition) ? expressionTrue : expressionFalse;
+        BTnode* only_child = to_remove->right != nullptr ? to_remove->right : to_remove->left;
+        if (to_remove->father->right == to_remove) {
+                to_remove->father->right = only_child;
+        }
+        else {
+            to_remove->father->left = only_child;
+        }
+        only_child->father = to_remove->father;
         delete to_remove;
         return;
     }
 
-    //case 3 - two childs
-    // replacing to_remove with its successor 
-    BTnode* successor = search(to_remove, to_remove->right->min()); // TODO: replace with `to_remove->successor()`
-    // this works only if there are no repeated values, TODO: fix with a remove(BTnode*) method
-    int min = successor->value;
-    remove(min);
-    to_remove->value = min;
-    return;
+    // case 3 - two childs
+    BTnode* successor = to_remove->successor();
+    to_remove->value = successor->value;
+    remove(successor);
 }
 
 void BTnode::nodeShift(BTnode* node, BTnode* target, int v){
@@ -185,6 +195,16 @@ int BTnode::min() const{
 int BTnode::max() const{
     if (right == nullptr) return value;
     return right->max();
+}
+
+BTnode* BTnode::successor() const{
+    if (left == nullptr) return const_cast<BTnode*>(this);
+    return left->successor();
+}
+
+BTnode* BTnode::predecessor() const{
+    if (right == nullptr) return const_cast<BTnode*>(this);
+    return right->predecessor();
 }
 
 //legacy

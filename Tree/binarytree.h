@@ -56,6 +56,7 @@ public:
     bool contains(int v) const;
     void clear();
     void remove(int v);
+    void remove(BTnode* to_remove);
     unsigned int length() const;
     unsigned int depth();
     void showinfo(int v) const;
@@ -111,13 +112,13 @@ void binarytree::clear(){
 void binarytree::remove(int v){
     if (isEmpty()) return;
     
-    if (size == 1 && root->value == v){
-        delete root;
-        root = nullptr;
-        size = 0;
-        deep = 0;
-        return;
-    }
+    // if (size == 1 && root->value == v){
+    //     delete root;
+    //     root = nullptr;
+    //     size = 0;
+    //     deep = 0;
+    //     return;
+    // }
     
     root->remove(v);
     size--;
@@ -136,6 +137,10 @@ void binarytree::remove(int v){
     */
 }
 
+void binarytree::remove(BTnode* to_remove){
+    return;
+}
+
 unsigned int binarytree::length() const{
     return size;
 }
@@ -145,9 +150,8 @@ unsigned int binarytree::depth(){
 }
 
 void binarytree::showinfo(int v) const{
-    BTnode* toshow = root;
-    if (toshow != nullptr){
-        BTnode::showinfo(toshow->search(toshow,v));
+    if (root->search(root,v) != nullptr){
+        BTnode::showinfo(root->search(root,v));
     }
 }
 
