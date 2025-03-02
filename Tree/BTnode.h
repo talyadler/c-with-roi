@@ -41,6 +41,9 @@ public:
     int max() const;
     BTnode* successor() const; // returns the next node (inorder) in the tree
     BTnode* predecessor() const; // returns the prev node (inorder) in the tree
+    void inOrder();
+    void preOrder();
+    void postOrder();
 
     //legacy
     void insertChance(int v);
@@ -206,6 +209,25 @@ BTnode* BTnode::predecessor() const{
     if (right == nullptr) return const_cast<BTnode*>(this);
     return right->predecessor();
 }
+
+void BTnode::inOrder(){
+    if (left) left->inOrder();
+    printf("%d\n",value);
+    if (right) right->inOrder();
+}
+
+void BTnode::preOrder(){
+    printf("%d\n",value);
+    if (left) left->preOrder();
+    if (right) right->preOrder();
+}
+
+void BTnode::postOrder(){
+    if (left) left->postOrder();
+    if (right) right->postOrder();
+    printf("%d\n",value);
+}
+
 
 //legacy
 void BTnode::insertChance(int v){

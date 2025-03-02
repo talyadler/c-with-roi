@@ -60,6 +60,7 @@ public:
     unsigned int length() const;
     unsigned int depth();
     void showinfo(int v) const;
+    void OrderShowInfo(int v) const;
     int max() const;
     int min() const;
 };
@@ -152,6 +153,22 @@ unsigned int binarytree::depth(){
 void binarytree::showinfo(int v) const{
     if (root->search(root,v) != nullptr){
         BTnode::showinfo(root->search(root,v));
+    }
+}
+
+void binarytree::OrderShowInfo(int v) const{
+    switch (v){
+        case 1:
+            root->inOrder();
+            break;
+        case 2:
+            root->preOrder();
+            break;
+        case 3:
+            root->postOrder();
+            break;
+        default:
+            root->inOrder();
     }
 }
 
