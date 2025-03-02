@@ -56,7 +56,6 @@ public:
     bool contains(int v) const;
     void clear();
     void remove(int v);
-    void remove(BTnode* to_remove);
     unsigned int length() const;
     unsigned int depth();
     void showinfo(int v) const;
@@ -112,34 +111,29 @@ void binarytree::clear(){
 
 void binarytree::remove(int v){
     if (isEmpty()) return;
-    
-    // if (size == 1 && root->value == v){
-    //     delete root;
-    //     root = nullptr;
-    //     size = 0;
-    //     deep = 0;
-    //     return;
-    // }
-    
     root->remove(v);
     size--;
-
+    
     //validate depth
     //PROBABLY WRONG
-    /*
     //get lowest levels from children
-    unsigned int lowest_min_level = root->search(root,root->min())->level;
-    unsigned int lowest_max_level = root->search(root,root->max())->level;
-    unsigned int lowest_level = 0;
-    if (lowest_max_level > lowest_min_level)lowest_level = lowest_max_level;
-    else lowest_level = lowest_min_level;
-    //update deepth
-    if (deep < lowest_level)deep = lowest_level;
-    */
-}
+    
+    int max = root->max();
+    int min = root->min();
+    std::cout << "min:" << min << "; max:" << max << "\n";
+    BTnode* temp_min = root->search(root,min);
+    BTnode* temp_max = root->search(root,max);
+    std::cout << "temp_min->level:" << temp_min  << "; temp_max->level:" << temp_max << "\n";
+    // unsigned int lowest_min_level = temp_min->level;
+    // unsigned int lowest_max_level = temp_max->level;
 
-void binarytree::remove(BTnode* to_remove){
-    return;
+    // unsigned int lowest_level = 0;
+    
+    // std::cout << lowest_min_level << ";" << lowest_max_level << "\n";
+    // if (lowest_max_level > lowest_min_level)lowest_level = lowest_max_level;
+    // else lowest_level = lowest_min_level;
+    //update deepth
+    // if (deep < lowest_level)deep = lowest_level;
 }
 
 unsigned int binarytree::length() const{

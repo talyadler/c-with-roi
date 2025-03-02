@@ -26,6 +26,8 @@ int main(){
     for (int i = 0; i < length; i++){
         BT.insert(tv[i]);
     }
+    
+    
     /*
         START
     */
@@ -36,7 +38,8 @@ int main(){
     // printf("-----------------------------------------------------\n");
     
     // // remove function
-    // BT.remove(tv[c]);
+    BT.remove(tv[c]);
+    // std::cout << BT.depth() << "\n";
     // //
 
     // printf("%d items in tree\n",BT.length());
@@ -44,8 +47,8 @@ int main(){
     //     BT.showinfo(tv[i]);
     // }
     // printf("-----------------------------------------------------\n");
-    BT.OrderShowInfo(5);
-    
+    // BT.OrderShowInfo(5);
+    std::cout << "MAIN: min:" << BT.min() << "; max:" << BT.max() << "\n";
     // END
     return 0;
 }

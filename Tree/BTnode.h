@@ -65,9 +65,12 @@ void BTnode::showinfo(BTnode* btn){
 }
 
 BTnode* BTnode::search(BTnode* root, int v){
+    // printf("start search %d\n",v);
+    
     if (root->value == v) return root;
     if (root->value <= v && root->right) return search(root->right, v);
     if (root->value > v && root->left) return search(root->left, v);
+    // showinfo(this);
     return nullptr;
 }
 
