@@ -24,96 +24,96 @@ public:
     unsigned int level;
     
     //methods
-    static void BTNshowinfo(BTnode*);
-    BTnode* BTNsearch(BTnode* root, int v); // returns nullptr if not found
-    void BTNinsert(int v);
-    void BTNinsertRight(int v);
-    void BTNinsertLeft(int v);
-    void BTNclear();
-    void BTNremove(int v);
-    void BTNnodeShift(BTnode* node, BTnode* target, int v);
-    bool BTNhave_childern() const;
-    bool BTNhave_parent() const;
-    bool BTNcontains(int v) const;
-    bool BTNisLeaf() const;
-    int BTNmin() const;
-    int BTNmax() const;
+    static void showinfo(BTnode*);
+    BTnode* search(BTnode* root, int v); // returns nullptr if not found
+    void insert(int v);
+    void insertRight(int v);
+    void insertLeft(int v);
+    void clear();
+    void remove(int v);
+    void nodeShift(BTnode* node, BTnode* target, int v);
+    bool have_childern() const;
+    bool have_parent() const;
+    bool contains(int v) const;
+    bool isLeaf() const;
+    int min() const;
+    int max() const;
     BTnode* successor() const; // returns the next node (inorder) in the tree
     BTnode* predecessor() const; // returns the prev node (inorder) in the tree
 
     //legacy
-    void BTNinsertChance(int v);
+    void insertChance(int v);
 };
 
 // defenistions
 
-void BTnode::BTNshowinfo(BTnode* btn){
+void BTnode::showinfo(BTnode* btn){
     std::cout << "SHOWINFO\tme\t\t" <<btn<<"\n";
     std::cout << "SHOWINFO\tvalue\t\t" <<btn->value<<"\n";
     std::cout << "SHOWINFO\tfather\t\t" <<btn->father<<"\n";
     std::cout << "SHOWINFO\tlevel\t\t" <<btn->level<<"\n";
     std::cout << "SHOWINFO\tleft\t\t" <<btn->left<<"\n";
     std::cout << "SHOWINFO\tright\t\t" <<btn->right<<"\n";
-    std::cout << "SHOWINFO\thave parent\t" <<btn->BTNhave_parent()<<"\n";
-    std::cout << "SHOWINFO\thave child\t" <<btn->BTNhave_childern()<<"\n";
-    std::cout << "SHOWINFO\tis leaf\t\t" <<btn->BTNisLeaf()<<"\n";
+    std::cout << "SHOWINFO\thave parent\t" <<btn->have_parent()<<"\n";
+    std::cout << "SHOWINFO\thave child\t" <<btn->have_childern()<<"\n";
+    std::cout << "SHOWINFO\tis leaf\t\t" <<btn->isLeaf()<<"\n";
     std::cout << "\n";
 }
 
-BTnode* BTnode::BTNsearch(BTnode* root, int v){
+BTnode* BTnode::search(BTnode* root, int v){
     if (root->value == v) return root;
-    if (root->value <= v) return BTNsearch(root->right, v);
-    if (root->value > v) return BTNsearch(root->left, v);
+    if (root->value <= v) return search(root->right, v);
+    if (root->value > v) return search(root->left, v);
     return NULL;
 }
 
-void BTnode::BTNinsert(int v){
+void BTnode::insert(int v){
     if (v <= value){
-        BTNinsertLeft(v);
+        insertLeft(v);
         return;
     }
     if (v > value) {
-        BTNinsertRight(v);
+        insertRight(v);
         return;
     }
 }
 
-void BTnode::BTNinsertRight(int v){
+void BTnode::insertRight(int v){
     if (right == nullptr){
         right = new BTnode(v,this,this->level+1);
         return;
     }
-    right->BTNinsert(v);
+    right->insert(v);
 }
 
-void BTnode::BTNinsertLeft(int v){
+void BTnode::insertLeft(int v){
     if (left == nullptr){
         left = new BTnode(v,this,this->level+1);
         return;
     }
-    left->BTNinsert(v);
+    left->insert(v);
 }
 
-void BTnode::BTNclear(){
+void BTnode::clear(){
     if (this == nullptr) return;
     if (left != nullptr) {
-		left->BTNclear();
+		left->clear();
 		delete left;
 		left = nullptr;
 	}
     if (right != nullptr) {
-		right->BTNclear();
+		right->clear();
 		delete right;
 		right = nullptr;
 	}
 }
 
-void BTnode::BTNremove(int v){
-    BTnode* to_remove = BTNsearch(this,v);
+void BTnode::remove(int v){
+    BTnode* to_remove = search(this,v);
     if (to_remove == nullptr) return;
     
     // case 1 - is a leaf
-    if (to_remove->BTNisLeaf() && to_remove->BTNhave_parent()){ // root is removed at BT level, so every to_remove will have a parent
+    if (to_remove->isLeaf() && to_remove->have_parent()){ // root is removed at BT level, so every to_remove will have a parent
         //is left leaf of father
         if(to_remove->father->left == to_remove){
             to_remove->father->left = nullptr;
@@ -145,50 +145,50 @@ void BTnode::BTNremove(int v){
 
     //case 3 - two childs
     // replacing to_remove with its successor 
-    BTnode* successor = BTNsearch(to_remove, to_remove->right->BTNmin()); // TODO: replace with `to_remove->successor()`
+    BTnode* successor = search(to_remove, to_remove->right->min()); // TODO: replace with `to_remove->successor()`
     // this works only if there are no repeated values, TODO: fix with a remove(BTnode*) method
     int min = successor->value;
-    BTNremove(min);
+    remove(min);
     to_remove->value = min;
     return;
 }
 
-void BTnode::BTNnodeShift(BTnode* node, BTnode* target, int v){
+void BTnode::nodeShift(BTnode* node, BTnode* target, int v){
     if (target->father == nullptr) node->value = v;
     if (target == target->father->left) target->father->left->value = v;
     if (target == target->father->right) target->father->right->value = v;
     return;
 }
 
-bool BTnode::BTNhave_childern() const{
+bool BTnode::have_childern() const{
     return (left != nullptr || right != nullptr);
 }
 
-bool BTnode::BTNhave_parent() const{
+bool BTnode::have_parent() const{
     return (father != nullptr);
 }
 
-bool BTnode::BTNcontains(int v) const {
+bool BTnode::contains(int v) const {
     if (value == v) return true;
-    return left->BTNcontains(v) || right->BTNcontains(v);
+    return left->contains(v) || right->contains(v);
 }
 
-bool BTnode::BTNisLeaf() const{
+bool BTnode::isLeaf() const{
 	return left == nullptr && right == nullptr;
 }
 
-int BTnode::BTNmin() const{
+int BTnode::min() const{
     if (left == nullptr) return value;
-    return left->BTNmin();
+    return left->min();
 }
 
-int BTnode::BTNmax() const{
+int BTnode::max() const{
     if (right == nullptr) return value;
-    return right->BTNmax();
+    return right->max();
 }
 
 //legacy
-void BTnode::BTNinsertChance(int v){
+void BTnode::insertChance(int v){
     std::random_device rd;  // Obtain a random seed from the hardware
     std::mt19937 gen(rd()); // Use Mersenne Twister engine with the seed
     std::uniform_real_distribution<> dis(0.0, 1.0); // Define the distribution range
@@ -197,17 +197,17 @@ void BTnode::BTNinsertChance(int v){
     if (random_number<0.5){
         if (right==nullptr){
             right = new BTnode(v,this,this->level+1);
-            BTNshowinfo(right);
+            showinfo(right);
             return;
         }
-        right->BTNinsertChance(v);
+        right->insertChance(v);
         return;
     }
     if (left == nullptr){
         left = new BTnode(v,this,this->level+1);
-        BTNshowinfo(left);
+        showinfo(left);
         return;
     }
-    left->BTNinsertChance(v);
+    left->insertChance(v);
 }
 

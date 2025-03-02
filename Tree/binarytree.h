@@ -74,11 +74,11 @@ bool binarytree::isEmpty() const {
 }
 
 bool binarytree::have_childern() const{
-    return (root->BTNhave_childern());
+    return (root->have_childern());
 }
 
 bool binarytree::have_parent() const{
-    return root->BTNhave_parent();
+    return root->have_parent();
 }
 
 void binarytree::insert(int v){
@@ -88,20 +88,20 @@ void binarytree::insert(int v){
         deep = 1;
         return;
     }
-    root->BTNinsert(v);
+    root->insert(v);
     size++;
-    if (deep < root->BTNsearch(root,v)->level) deep = root->BTNsearch(root,v)->level;
+    if (deep < root->search(root,v)->level) deep = root->search(root,v)->level;
     return;
 }
 
 bool binarytree::contains(int v) const {
     if (isEmpty()) return false;
-    return root->BTNcontains(v);
+    return root->contains(v);
 }
 
 void binarytree::clear(){
     if (isEmpty()) return;
-    root->BTNclear();
+    root->clear();
     delete root;
     size = 0; 
     deep = 0; 
@@ -119,15 +119,15 @@ void binarytree::remove(int v){
         return;
     }
     
-    root->BTNremove(v);
+    root->remove(v);
     size--;
 
     //validate depth
     //PROBABLY WRONG
     /*
     //get lowest levels from children
-    unsigned int lowest_min_level = root->BTNsearch(root,root->BTNmin())->level;
-    unsigned int lowest_max_level = root->BTNsearch(root,root->BTNmax())->level;
+    unsigned int lowest_min_level = root->search(root,root->min())->level;
+    unsigned int lowest_max_level = root->search(root,root->max())->level;
     unsigned int lowest_level = 0;
     if (lowest_max_level > lowest_min_level)lowest_level = lowest_max_level;
     else lowest_level = lowest_min_level;
@@ -147,14 +147,14 @@ unsigned int binarytree::depth(){
 void binarytree::showinfo(int v) const{
     BTnode* toshow = root;
     if (toshow != nullptr){
-        BTnode::BTNshowinfo(toshow->BTNsearch(toshow,v));
+        BTnode::showinfo(toshow->search(toshow,v));
     }
 }
 
 int binarytree:: max() const{
-    return root->BTNmax();
+    return root->max();
 }
 
 int binarytree:: min() const{
-    return root->BTNmin();
+    return root->min();
 }
