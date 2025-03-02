@@ -168,7 +168,7 @@ void binarytree::OrderShowInfo(int v) const{
             root->postOrder();
             break;
         default:
-            root->inOrder();
+            printf("for OrderShowInfo choose 1, 2 or 3\n");
     }
 }
 

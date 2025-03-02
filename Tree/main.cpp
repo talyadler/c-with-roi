@@ -44,7 +44,7 @@ int main(){
     //     BT.showinfo(tv[i]);
     // }
     // printf("-----------------------------------------------------\n");
-    BT.OrderShowInfo(3);
+    BT.OrderShowInfo(5);
     
     // END
     return 0;
