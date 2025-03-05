@@ -1,0 +1,50 @@
+diff --git a/Tree/BTnode.h b/Tree/BTnode.h
+index 0eaa11b..64eb3f7 100644
+--- a/Tree/BTnode.h
++++ b/Tree/BTnode.h
+@@ -68,8 +68,8 @@ BTnode* BTnode::search(BTnode* root, int v){
+     // printf("start search %d\n",v);
+     
+     if (root->value == v) return root;
+-    if (root->value <= v && root->right) return search(root->right, v);
+-    if (root->value > v && root->left) return search(root->left, v);
++    if (v <= root->value && root->left) return search(root->left, v);
++    if (root->value < v && root->right) return search(root->right, v);
+     // showinfo(this);
+     return nullptr;
+ }
+@@ -164,7 +164,7 @@ void BTnode::remove (BTnode* to_remove){
+     }
+ 
+     // case 3 - two childs
+-    BTnode* successor = to_remove->successor();
++    BTnode* successor = to_remove->right->successor();
+     to_remove->value = successor->value;
+     remove(successor);
+ }
+@@ -199,8 +199,7 @@ int BTnode::min() const{
+ }
+ 
+ int BTnode::max() const{
+-    if (right == nullptr) return value;
+-    return right->max();
++    return right == nullptr ? value : right->max();
+ }
+ 
+ BTnode* BTnode::successor() const{
+diff --git a/Tree/binarytree.h b/Tree/binarytree.h
+index 0df3197..9ee2173 100644
+--- a/Tree/binarytree.h
++++ b/Tree/binarytree.h
+@@ -123,7 +123,7 @@ void binarytree::remove(int v){
+     std::cout << "min:" << min << "; max:" << max << "\n";
+     BTnode* temp_min = root->search(root,min);
+     BTnode* temp_max = root->search(root,max);
+-    std::cout << "temp_min->level:" << temp_min  << "; temp_max->level:" << temp_max << "\n";
++    std::cout << "temp_min->level:" << temp_min->level  << "; temp_max->level:" << temp_max->level << "\n";
+     // unsigned int lowest_min_level = temp_min->level;
+     // unsigned int lowest_max_level = temp_max->level;
+ 
+diff --git a/Tree/tree b/Tree/tree
+index c829574..c01ca6d 100755
+Binary files a/Tree/tree and b/Tree/tree differ
