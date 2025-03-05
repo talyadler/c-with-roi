@@ -91,7 +91,7 @@ void binarytree::insert(int v){
     }
     root->insert(v);
     size++;
-    if (deep < root->search(root,v)->level) deep = root->search(root,v)->level;
+    if (deep < root->search(v)->level) deep = root->search(v)->level;
     return;
 }
 
@@ -121,9 +121,9 @@ void binarytree::remove(int v){
     int max = root->max();
     int min = root->min();
     std::cout << "min:" << min << "; max:" << max << "\n";
-    BTnode* temp_min = root->search(root,min);
-    BTnode* temp_max = root->search(root,max);
-    std::cout << "temp_min->level:" << temp_min  << "; temp_max->level:" << temp_max << "\n";
+    BTnode* temp_min = root->search(min);
+    BTnode* temp_max = root->search(max);
+    std::cout << "temp_min->level:" << temp_min->level  << "; temp_max->level:" << temp_max->level << "\n";
     // unsigned int lowest_min_level = temp_min->level;
     // unsigned int lowest_max_level = temp_max->level;
 
@@ -145,8 +145,8 @@ unsigned int binarytree::depth(){
 }
 
 void binarytree::showinfo(int v) const{
-    if (root->search(root,v) != nullptr){
-        BTnode::showinfo(root->search(root,v));
+    if (root->search(v) != nullptr){
+        root->search(v)->showinfo();
     }
 }
 

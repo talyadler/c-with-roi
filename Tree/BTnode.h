@@ -24,11 +24,9 @@ public:
     unsigned int level;
     
     //methods
-    static void showinfo(BTnode*);
-    BTnode* search(BTnode* root, int v); // returns nullptr if not found
+    void showinfo();
+    BTnode* search(int v) const; // returns nullptr if not found
     void insert(int v);
-    void insertRight(int v);
-    void insertLeft(int v);
     void clear();
     void remove(int v);
     void remove (BTnode* to_remove);
@@ -51,54 +49,35 @@ public:
 
 // defenistions
 
-void BTnode::showinfo(BTnode* btn){
-    std::cout << "SHOWINFO\tme\t\t" <<btn<<"\n";
-    std::cout << "SHOWINFO\tvalue\t\t" <<btn->value<<"\n";
-    std::cout << "SHOWINFO\tfather\t\t" <<btn->father<<"\n";
-    std::cout << "SHOWINFO\tlevel\t\t" <<btn->level<<"\n";
-    std::cout << "SHOWINFO\tleft\t\t" <<btn->left<<"\n";
-    std::cout << "SHOWINFO\tright\t\t" <<btn->right<<"\n";
-    std::cout << "SHOWINFO\thave parent\t" <<btn->have_parent()<<"\n";
-    std::cout << "SHOWINFO\thave child\t" <<btn->have_childern()<<"\n";
-    std::cout << "SHOWINFO\tis leaf\t\t" <<btn->isLeaf()<<"\n";
+void BTnode::showinfo(){
+    std::cout << "SHOWINFO\tme\t\t" << this << "\n";
+    std::cout << "SHOWINFO\tvalue\t\t" << value << "\n";
+    std::cout << "SHOWINFO\tfather\t\t" << father << "\n";
+    std::cout << "SHOWINFO\tlevel\t\t" << level << "\n";
+    std::cout << "SHOWINFO\tleft\t\t" << left << "\n";
+    std::cout << "SHOWINFO\tright\t\t" << right <<"\n";
+    std::cout << "SHOWINFO\thave parent\t" << have_parent() << "\n";
+    std::cout << "SHOWINFO\thave child\t" << have_childern() << "\n";
+    std::cout << "SHOWINFO\tis leaf\t\t" << isLeaf() << "\n";
     std::cout << "\n";
 }
 
-BTnode* BTnode::search(BTnode* root, int v){
-    // printf("start search %d\n",v);
-    
-    if (root->value == v) return root;
-    if (root->value <= v && root->right) return search(root->right, v);
-    if (root->value > v && root->left) return search(root->left, v);
-    // showinfo(this);
+BTnode* BTnode::search(int v) const{
+    if (value == v) return const_cast<BTnode*>(this);
+    if (v <= value && left) return left->search(v);
+    if (value < v && right) return right->search(v);
     return nullptr;
 }
 
 void BTnode::insert(int v){
     if (v <= value){
-        insertLeft(v);
-        return;
+        if (left == nullptr) left = new BTnode(v,this,this->level+1);
+        else left->insert(v);
     }
     if (v > value) {
-        insertRight(v);
-        return;
+        if (right == nullptr)right = new BTnode(v,this,this->level+1);
+        else right->insert(v);
     }
-}
-
-void BTnode::insertRight(int v){
-    if (right == nullptr){
-        right = new BTnode(v,this,this->level+1);
-        return;
-    }
-    right->insert(v);
-}
-
-void BTnode::insertLeft(int v){
-    if (left == nullptr){
-        left = new BTnode(v,this,this->level+1);
-        return;
-    }
-    left->insert(v);
 }
 
 void BTnode::clear(){
@@ -199,18 +178,25 @@ int BTnode::min() const{
 }
 
 int BTnode::max() const{
-    if (right == nullptr) return value;
-    return right->max();
+    return right == nullptr ? value : right->max();
 }
 
-BTnode* BTnode::successor() const{
-    if (left == nullptr) return const_cast<BTnode*>(this);
-    return left->successor();
+BTnode* BTnode::successor() const {
+    if (!right) return nullptr;
+    BTnode* successor = right;
+    while (successor->left) {
+        successor = successor->left;
+    }
+    return successor;
 }
 
 BTnode* BTnode::predecessor() const{
-    if (right == nullptr) return const_cast<BTnode*>(this);
-    return right->predecessor();
+    if (!left) return nullptr;
+    BTnode* predecessor = left;
+    while (predecessor->right) {
+        predecessor = predecessor->right;
+    }
+    return predecessor;
 }
 
 void BTnode::inOrder(){
@@ -242,7 +228,7 @@ void BTnode::insertChance(int v){
     if (random_number<0.5){
         if (right==nullptr){
             right = new BTnode(v,this,this->level+1);
-            showinfo(right);
+            right->showinfo();
             return;
         }
         right->insertChance(v);
@@ -250,7 +236,7 @@ void BTnode::insertChance(int v){
     }
     if (left == nullptr){
         left = new BTnode(v,this,this->level+1);
-        showinfo(left);
+        left->showinfo();
         return;
     }
     left->insertChance(v);
