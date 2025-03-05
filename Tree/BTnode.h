@@ -25,7 +25,8 @@ public:
     
     //methods
     void showinfo();
-    BTnode* search(int v) const; // returns nullptr if not found
+    BTnode* search(int v) const;
+    BTnode* search(BTnode* to_find) const;
     void insert(int v);
     void clear();
     void remove(int v);
@@ -63,9 +64,33 @@ void BTnode::showinfo(){
 }
 
 BTnode* BTnode::search(int v) const{
-    if (value == v) return const_cast<BTnode*>(this);
-    if (v <= value && left) return left->search(v);
-    if (value < v && right) return right->search(v);
+    if (v == value){
+        //found maching value
+        if (!left) return const_cast<BTnode*>(this);
+        // no more left nodes ie no more of this value
+        // lets try to find if there are more nodes with this value
+        BTnode* temp = left;
+        bool more = true;
+        int counter = 0;
+        // printf("test\n");
+        while (more){
+            if (temp->value == v && temp->left)
+            counter++;
+            temp = temp->value == v && temp->left ? temp->left : nullptr;
+            if (!temp) more = false;
+        }
+        if (counter > 0) printf("there are %d matches for this value\n",counter);
+        return const_cast<BTnode*>(this);
+    }
+    if (v < value && left) return left->search(v);
+    if (v > value && right) return right->search(v);
+    return nullptr;
+}
+
+BTnode* BTnode::search(BTnode* to_find) const{
+    if (this == to_find) return const_cast<BTnode*>(this);
+    if (right) return right->search(to_find);
+    if (left) return left->search(to_find);
     return nullptr;
 }
 
@@ -184,6 +209,7 @@ int BTnode::max() const{
 BTnode* BTnode::successor() const {
     if (!right) return nullptr;
     BTnode* successor = right;
+    if (successor->left)
     while (successor->left) {
         successor = successor->left;
     }

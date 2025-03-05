@@ -57,11 +57,12 @@ public:
     void clear();
     void remove(int v);
     unsigned int length() const;
-    unsigned int depth();
+    unsigned int depth() const;
     void showinfo(int v) const;
     void OrderShowInfo(int v) const;
     int max() const;
     int min() const;
+    void search(int v) const;
 };
 
 binarytree::~binarytree(){
@@ -91,7 +92,8 @@ void binarytree::insert(int v){
     }
     root->insert(v);
     size++;
-    if (deep < root->search(v)->level) deep = root->search(v)->level;
+    // unsigned int insert_level = root->search(v)->level;
+    // deep = deep < insert_level ? insert_level : deep;
     return;
 }
 
@@ -111,36 +113,26 @@ void binarytree::clear(){
 
 void binarytree::remove(int v){
     if (isEmpty()) return;
+    if (!root->search(v))return;
     root->remove(v);
     size--;
     
     //validate depth
-    //PROBABLY WRONG
     //get lowest levels from children
+    unsigned int lowest_min_level = root->search(root->min())->level;
+    unsigned int lowest_max_level = root->search(root->max())->level;
+    unsigned int lowest_level = 0;
+    lowest_level = lowest_max_level > lowest_min_level ? lowest_max_level : lowest_min_level;
     
-    int max = root->max();
-    int min = root->min();
-    std::cout << "min:" << min << "; max:" << max << "\n";
-    BTnode* temp_min = root->search(min);
-    BTnode* temp_max = root->search(max);
-    std::cout << "temp_min->level:" << temp_min->level  << "; temp_max->level:" << temp_max->level << "\n";
-    // unsigned int lowest_min_level = temp_min->level;
-    // unsigned int lowest_max_level = temp_max->level;
-
-    // unsigned int lowest_level = 0;
-    
-    // std::cout << lowest_min_level << ";" << lowest_max_level << "\n";
-    // if (lowest_max_level > lowest_min_level)lowest_level = lowest_max_level;
-    // else lowest_level = lowest_min_level;
     //update deepth
-    // if (deep < lowest_level)deep = lowest_level;
+    if (deep < lowest_level) deep = lowest_level;
 }
 
 unsigned int binarytree::length() const{
     return size;
 }
 
-unsigned int binarytree::depth(){
+unsigned int binarytree::depth() const{
     return deep;
 }
 
@@ -166,10 +158,16 @@ void binarytree::OrderShowInfo(int v) const{
     }
 }
 
-int binarytree:: max() const{
+int binarytree::max() const{
     return root->max();
 }
 
-int binarytree:: min() const{
+int binarytree::min() const{
     return root->min();
+}
+
+void binarytree::search(int v) const{
+    BTnode* to_find = root->search(v);
+    if (to_find) to_find->showinfo();
+    else printf("bye");
 }

@@ -6,9 +6,8 @@ int main(){
     // int tv[] = {10,5,11,90,3,8,7,2,6,-8,33,44};
     // int length = 12;
 
-    int tv[] = {1,-10,2,-20,-5,3,-17};
-
-    int length = 7;
+    // int tv[] = {1,-10,2,-20,-5,3,-17};
+    // int length = 7;
     
     // int tv[] = {2,1,3};
     // int length = 3;
@@ -18,9 +17,12 @@ int main(){
 
     // int tv[] = {10, 9, 11, 8, 12};
     // int length = 5;
+
+    int tv[] = {1, 1, 2, 2, 2};
+    int length = 5;
     
     // index in array for later use in other functions
-    int c = 0;
+    int c = 2;
     
     // insert
     for (int i = 0; i < length; i++){
@@ -38,7 +40,9 @@ int main(){
     // printf("-----------------------------------------------------\n");
     
     // // remove function
-    BT.remove(tv[c]);
+    // BT.remove(tv[c]);
+    // printf("hi\n");
+    BT.search(tv[c]);
     // std::cout << BT.depth() << "\n";
     // //
 
@@ -48,7 +52,7 @@ int main(){
     // }
     // printf("-----------------------------------------------------\n");
     // BT.OrderShowInfo(5);
-    std::cout << "MAIN: min:" << BT.min() << "; max:" << BT.max() << "\n";
+    // std::cout << "MAIN: min:" << BT.min() << "; max:" << BT.max() << "\n";
     // END
     return 0;
 }
