@@ -10,8 +10,10 @@ private:
 public:
     //construtors
     BTnode() = default;
-    BTnode(int v, unsigned int level) : value(v), level(level){}
-    BTnode(int v, BTnode* father, unsigned int level) : value(v), father(father), level(level){}
+    BTnode(int v) : value(v){}
+    BTnode(int v, BTnode* father) : value(v), father(father){}
+    // BTnode(int v, unsigned int height) : value(v), height(height){}
+    // BTnode(int v, BTnode* father, unsigned int height) : value(v), father(father), height(height){}
     
     //destructors
     ~BTnode() = default;
@@ -21,17 +23,18 @@ public:
     BTnode* left = nullptr;
     BTnode* right = nullptr;
     int value;
-    unsigned int level;
+    unsigned int height = 0;
     
     //methods
     void showinfo();
-    BTnode* search(int v, int place = 1) const; // if not given 2 parameter place gets `1` as its value
-    BTnode* search(BTnode* to_find) const;
+    BTnode* search(int v, unsigned int place = 1) const; // if not given 2 parameter place gets `1` as its value
+    unsigned int duplicates() const;
     void insert(int v);
     void clear();
-    void remove(int v);
-    void remove (BTnode* to_remove);
-    void nodeShift(BTnode* node, BTnode* target, int v);
+    void remove(int v, unsigned int place = 1);
+    void remove (BTnode* to_remove, unsigned int place = 1);
+    void AVLbalance();
+    void nodeShift(BTnode* node, BTnode* target);
     bool have_childern() const;
     bool have_parent() const;
     bool contains(int v) const;
@@ -43,6 +46,7 @@ public:
     void inOrder();
     void preOrder();
     void postOrder();
+    int hight(BTnode* node);
 
     //legacy
     void insertChance(int v);
@@ -51,10 +55,11 @@ public:
 // defenistions
 
 void BTnode::showinfo(){
-    std::cout << "SHOWINFO\tme\t\t" << this << "\n";
+    if (this == nullptr) return;
+    std::cout << "SHOWINFO\tnode\t\t" << this << "\n";
     std::cout << "SHOWINFO\tvalue\t\t" << value << "\n";
     std::cout << "SHOWINFO\tfather\t\t" << father << "\n";
-    std::cout << "SHOWINFO\tlevel\t\t" << level << "\n";
+    std::cout << "SHOWINFO\theight\t\t" << height << "\n";
     std::cout << "SHOWINFO\tleft\t\t" << left << "\n";
     std::cout << "SHOWINFO\tright\t\t" << right <<"\n";
     std::cout << "SHOWINFO\thave parent\t" << have_parent() << "\n";
@@ -63,14 +68,14 @@ void BTnode::showinfo(){
     std::cout << "\n";
 }
 
-BTnode* BTnode::search(int v, int place) const{
+BTnode* BTnode::search(int v, unsigned int place) const{
     if (v == value){
         BTnode* toReturn = nullptr;
         //found maching value
         if (!left) return const_cast<BTnode*>(this);
         // no more left nodes ie no more of this value
         // lets try to find if there are more nodes with this value
-        int counter = 0;
+        unsigned int counter = 0;
         // printf("test\n");
         for (BTnode* temp = const_cast<BTnode*>(this) ; temp != nullptr && temp->value == v; temp = temp->left) {
             counter++;
@@ -78,22 +83,41 @@ BTnode* BTnode::search(int v, int place) const{
                 toReturn = temp;
             }
         }
-        if (counter > 1) printf("there are %d matches for this value\n",counter);
+        if (counter > 1) printf("there are %d matches for this value. \t showing accurence %d\n",counter, place);
         return toReturn;
     }
-    if (v < value && left) return left->search(v);
-    if (v > value && right) return right->search(v);
+    if (v < value && left) return left->search(v,place);
+    if (v > value && right) return right->search(v,place);
     return nullptr;
 }
 
+unsigned int BTnode::duplicates() const{
+    unsigned int counter = 0;
+    for (BTnode* temp = const_cast<BTnode*>(this) ; temp != nullptr && temp->value == value; temp = temp->left) {
+        counter++;
+    }
+    return counter;
+}
+
 void BTnode::insert(int v){
+    // add new node
     if (v <= value){
-        if (left == nullptr) left = new BTnode(v,this,this->level+1);
+        if (left == nullptr) left = new BTnode(v,this);
         else left->insert(v);
     }
     if (v > value) {
-        if (right == nullptr)right = new BTnode(v,this,this->level+1);
+        if (right == nullptr)right = new BTnode(v,this);
         else right->insert(v);
+    }
+
+    // validate creating node height
+    int h_left = hight(left);
+    int h_right = hight(right);
+    this->height = 1 + std::max(h_left,h_right);
+
+    // blalance tree
+    if (std::abs(h_left - h_right) > 1){
+        AVLbalance();
     }
 }
 
@@ -111,16 +135,16 @@ void BTnode::clear(){
 	}
 }
 
-void BTnode::remove(int v){
+void BTnode::remove(int v, unsigned int place){
     if (value == v){
-        remove(this);
+        remove(this,place);
         return;
     }
-    if (left) left->remove(v);
-    if (right) right->remove(v);
+    if (left) left->remove(v,place);
+    if (right) right->remove(v,place);
 }
 
-void BTnode::remove (BTnode* to_remove){
+void BTnode::remove (BTnode* to_remove, unsigned int place){
     if (to_remove == nullptr) return;
     // case 1 - is a leaf
     if (to_remove->isLeaf()){
@@ -165,11 +189,39 @@ void BTnode::remove (BTnode* to_remove){
     remove(successor);
 }
 
-void BTnode::nodeShift(BTnode* node, BTnode* target, int v){
-    if (target->father == nullptr) node->value = v;
-    if (target == target->father->left) target->father->left->value = v;
-    if (target == target->father->right) target->father->right->value = v;
-    return;
+void BTnode::AVLbalance(){
+    if (this == nullptr) return;
+    /*
+    if (LL){
+        nodeShift();
+        return;
+    }
+    else if (LR){
+        nodeShift();
+        return
+    }
+    else if(RR){
+        nodeShift();
+        return;
+    }
+    else if(RL){
+        nodeShift();
+        return;
+    }
+    */
+}
+
+void BTnode::nodeShift(BTnode* node, BTnode* target){
+    // change pointers
+    BTnode* temp = target;
+    target->father = node->father;
+    target->left = node->left;
+    target->right = node->right;
+    target->height = target->height +1;
+    node->father = temp->father;
+    node->right = temp->right;
+    node->left = temp->left;
+    node->height = node->height -1;
 }
 
 bool BTnode::have_childern() const{
@@ -207,10 +259,8 @@ BTnode* BTnode::successor() const {
 
 BTnode* BTnode::predecessor() const{
     if (!left) return nullptr;
-    BTnode* predecessor = left;
-    while (predecessor->right) {
-        predecessor = predecessor->right;
-    }
+    BTnode* predecessor;
+    for (predecessor = left; predecessor->right != nullptr; predecessor = predecessor->right) continue;
     return predecessor;
 }
 
@@ -232,6 +282,9 @@ void BTnode::postOrder(){
     printf("%d, ",value);
 }
 
+int BTnode::hight(BTnode* node){
+    return node == nullptr ? -1 : node->height;
+}
 
 //legacy
 void BTnode::insertChance(int v){
@@ -242,7 +295,7 @@ void BTnode::insertChance(int v){
     // double random_number = 0.1;
     if (random_number<0.5){
         if (right==nullptr){
-            right = new BTnode(v,this,this->level+1);
+            right = new BTnode(v,this);
             right->showinfo();
             return;
         }
@@ -250,10 +303,13 @@ void BTnode::insertChance(int v){
         return;
     }
     if (left == nullptr){
-        left = new BTnode(v,this,this->level+1);
+        left = new BTnode(v,this);
         left->showinfo();
         return;
     }
     left->insertChance(v);
+
+    // validate creating node height
+    this->height = 1 + std::max(hight(left),hight(right));
 }
 

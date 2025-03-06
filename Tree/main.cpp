@@ -3,8 +3,8 @@
 int main(){
     binarytree BT;
 
-    // int tv[] = {10,5,11,90,3,8,7,2,6,-8,33,44};
-    // int length = 12;
+    int tv[] = {10,5,11,90,3,8,7,2,6,-8,33,44};
+    int length = 12;
 
     // int tv[] = {1,-10,2,-20,-5,3,-17};
     // int length = 7;
@@ -18,11 +18,15 @@ int main(){
     // int tv[] = {10, 9, 11, 8, 12};
     // int length = 5;
 
-    int tv[] = {1, 1, 2, 2, 2};
-    int length = 5;
+    // int tv[] = {1, 1, 2, 2, 2, 2, 2, 2};
+    // int length = 8;
+
+    // int tv[] = {1, 2, 3, 4, 5, 6, 7, 8};
+    // int length = 4;
     
     // index in array for later use in other functions
     int c = 2;
+    int a = 1;
     
     // insert
     for (int i = 0; i < length; i++){
@@ -42,7 +46,8 @@ int main(){
     // // remove function
     // BT.remove(tv[c]);
     // printf("hi\n");
-    BT.search(tv[c]);
+    // BT.search(tv[c],a);
+    // BT.search(1000,2);
     // std::cout << BT.depth() << "\n";
     // //
 
@@ -51,7 +56,7 @@ int main(){
     //     BT.showinfo(tv[i]);
     // }
     // printf("-----------------------------------------------------\n");
-    // BT.OrderShowInfo(5);
+    BT.OrderShowInfo(1);
     // std::cout << "MAIN: min:" << BT.min() << "; max:" << BT.max() << "\n";
     // END
     return 0;

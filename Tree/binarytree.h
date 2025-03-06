@@ -55,14 +55,14 @@ public:
     void insert(int v);
     bool contains(int v) const;
     void clear();
-    void remove(int v);
+    void remove(int v, unsigned int place = 1);
     unsigned int length() const;
     unsigned int depth() const;
-    void showinfo(int v) const;
+    void showinfo(int v, unsigned int place = 1) const;
     void OrderShowInfo(int v) const;
     int max() const;
     int min() const;
-    void search(int v) const;
+    void search(int v, unsigned int place = 1) const;
 };
 
 binarytree::~binarytree(){
@@ -85,15 +85,13 @@ bool binarytree::have_parent() const{
 
 void binarytree::insert(int v){
     if (root == nullptr){
-        root = new BTnode(v, 1);
+        root = new BTnode(v);
         size++;
         deep = 1;
         return;
     }
     root->insert(v);
     size++;
-    // unsigned int insert_level = root->search(v)->level;
-    // deep = deep < insert_level ? insert_level : deep;
     return;
 }
 
@@ -111,21 +109,21 @@ void binarytree::clear(){
     root = nullptr;
 }
 
-void binarytree::remove(int v){
+void binarytree::remove(int v, unsigned int place){
     if (isEmpty()) return;
-    if (!root->search(v))return;
+    if (!root->search(v,place))return;
     root->remove(v);
     size--;
     
     //validate depth
-    //get lowest levels from children
-    unsigned int lowest_min_level = root->search(root->min())->level;
-    unsigned int lowest_max_level = root->search(root->max())->level;
-    unsigned int lowest_level = 0;
-    lowest_level = lowest_max_level > lowest_min_level ? lowest_max_level : lowest_min_level;
+    //get lowest hights from children
+    unsigned int lowest_min_hight = root->search(root->min(),place)->height;
+    unsigned int lowest_max_hight = root->search(root->max(),place)->height;
+    unsigned int lowest_hight = 0;
+    lowest_hight = lowest_max_hight > lowest_min_hight ? lowest_max_hight : lowest_min_hight;
     
     //update deepth
-    if (deep < lowest_level) deep = lowest_level;
+    if (deep < lowest_hight) deep = lowest_hight;
 }
 
 unsigned int binarytree::length() const{
@@ -136,9 +134,9 @@ unsigned int binarytree::depth() const{
     return deep;
 }
 
-void binarytree::showinfo(int v) const{
-    if (root->search(v) != nullptr){
-        root->search(v)->showinfo();
+void binarytree::showinfo(int v, unsigned int place) const{
+    if (root->search(v,place) != nullptr){
+        root->search(v,place)->showinfo();
     }
 }
 
@@ -146,12 +144,15 @@ void binarytree::OrderShowInfo(int v) const{
     switch (v){
         case 1:
             root->inOrder();
+            printf("\n");
             break;
         case 2:
             root->preOrder();
+            printf("\n");
             break;
         case 3:
             root->postOrder();
+            printf("\n");
             break;
         default:
             printf("for OrderShowInfo choose 1, 2 or 3\n");
@@ -166,8 +167,8 @@ int binarytree::min() const{
     return root->min();
 }
 
-void binarytree::search(int v) const{
-    BTnode* to_find = root->search(v);
+void binarytree::search(int v, unsigned int place) const{
+    BTnode* to_find = root->search(v,place);
     if (to_find) to_find->showinfo();
-    else printf("bye");
+    else printf("search found no match for this duplicate: %d\n", place);
 }
