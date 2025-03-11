@@ -33,8 +33,10 @@ public:
     void clear();
     void remove(int v, unsigned int place = 1);
     void remove (BTnode* to_remove, unsigned int place = 1);
-    void AVLbalance();
-    void nodeShift(BTnode* node, BTnode* target);
+    int AVLbalance();
+    void nodeShift();
+    void shiftRight();
+    void shiftLeft();
     bool have_childern() const;
     bool have_parent() const;
     bool contains(int v) const;
@@ -46,7 +48,7 @@ public:
     void inOrder();
     void preOrder();
     void postOrder();
-    int hight(BTnode* node);
+    int getHeight(BTnode* node);
 
     //legacy
     void insertChance(int v);
@@ -111,13 +113,13 @@ void BTnode::insert(int v){
     }
 
     // validate creating node height
-    int h_left = hight(left);
-    int h_right = hight(right);
+    int h_left = getHeight(left);
+    int h_right = getHeight(right);
     this->height = 1 + std::max(h_left,h_right);
 
-    // blalance tree
+    // balance tree
     if (std::abs(h_left - h_right) > 1){
-        AVLbalance();
+        nodeShift();
     }
 }
 
@@ -189,39 +191,71 @@ void BTnode::remove (BTnode* to_remove, unsigned int place){
     remove(successor);
 }
 
-void BTnode::AVLbalance(){
-    if (this == nullptr) return;
-    /*
-    if (LL){
-        nodeShift();
-        return;
-    }
-    else if (LR){
-        nodeShift();
-        return
-    }
-    else if(RR){
-        nodeShift();
-        return;
-    }
-    else if(RL){
-        nodeShift();
-        return;
-    }
-    */
+int BTnode::AVLbalance(){
+    if (this == nullptr) return 0;
+    return getHeight(left) - getHeight(right);
 }
 
-void BTnode::nodeShift(BTnode* node, BTnode* target){
-    // change pointers
-    BTnode* temp = target;
-    target->father = node->father;
-    target->left = node->left;
-    target->right = node->right;
-    target->height = target->height +1;
-    node->father = temp->father;
-    node->right = temp->right;
-    node->left = temp->left;
-    node->height = node->height -1;
+void BTnode::nodeShift(){
+    printf("nodeshift\n");
+    printf("AVLbalance %d\n", AVLbalance());
+    // LL
+    if (AVLbalance() > 1 && left->AVLbalance() >= 0){
+        printf("nodeshift LL\n");
+        return shiftRight();
+    }
+    
+    // LR
+    if (AVLbalance() > 1 && left->AVLbalance() < 0){
+        printf("nodeshift LR\n");
+        left->left->shiftLeft();
+        return left->shiftRight();
+    }
+    
+    // RR
+    if (AVLbalance() < -1 && right->AVLbalance() <= 0){
+        printf("nodeshift RR\n");
+        return shiftLeft();
+    }
+
+    // RL
+    if (AVLbalance() < -1 && right->AVLbalance() < 0){
+        printf("nodeshift RL\n");
+        right->right->shiftRight();
+        return shiftLeft();
+    }
+}
+
+void BTnode::shiftRight(){
+    BTnode* y = this;
+    if (y == nullptr) return;
+    // y is the node to be shifted
+    // x will be the left node of this shifting node
+    BTnode* x = y->left;
+    //keep y->left->right in temp for later use
+    BTnode* temp = x->right;
+    // y->left->right point to y
+    x->right = y;
+    // y->left will point to y->right;
+    y->left = temp;
+    // set new hights
+    y->height = 1 + std::max(getHeight(y->left), getHeight(y->right));
+    x->height = 1 + std::max(getHeight(x->left), getHeight(x->right));
+    printf("shiftRight Done\n");
+    // return x;
+}
+
+void BTnode::shiftLeft(){
+    BTnode* x = this;
+    if (x == nullptr) return;
+    BTnode* y = x->right;
+    BTnode* temp = y->left;
+    y->left = x;
+    x->right = temp;
+    x->height = 1 + std::max(getHeight(x->left), getHeight(x->right));
+    y->height = 1 + std::max(getHeight(y->left), getHeight(y->right));
+    printf("shiftLeft Done\n");
+    // return y;
 }
 
 bool BTnode::have_childern() const{
@@ -282,7 +316,7 @@ void BTnode::postOrder(){
     printf("%d, ",value);
 }
 
-int BTnode::hight(BTnode* node){
+int BTnode::getHeight(BTnode* node){
     return node == nullptr ? -1 : node->height;
 }
 
@@ -310,6 +344,6 @@ void BTnode::insertChance(int v){
     left->insertChance(v);
 
     // validate creating node height
-    this->height = 1 + std::max(hight(left),hight(right));
+    this->height = 1 + std::max(getHeight(left),getHeight(right));
 }
 
