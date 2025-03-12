@@ -5,8 +5,8 @@ T max(T x, T y) {
     return x < y ? y : x;
 }
 
-Array<
-template<typename T, int N>
+
+template<typename T>
 class Array {
   public:
     int length;
@@ -20,13 +20,12 @@ class Array {
     }
 
     T get(int index) {
-        // TODO: input verification
-        return this->start[index];
+        return (index < 0 || index >= length) ? throw std::out_of_range("Index out of range") : /*this->*/start[index];
     }
 
     void set(T val, int index) {
-        // TODO: input verification
-        start[index] = val;
+        (index < 0 || index >= length) ? printf("cant set. index %d is out of bounds; array set to %d\n", index,length) : start[index] = val;
+        return;
     }
 
     Array<T>& operator=(/*Array<T>* this*/const Array<T>& o) {
@@ -47,7 +46,7 @@ class Array {
 };
 
 int main() {
-    //std::cout << max("3123213", "5") << std::endl;
+    //std::cout << max("3123213", "5") << std::endl; // "<>" is a char* type. ie, returnes the address and then dereference the value in the address
     //std::cout << max('3', '5') << std::endl;
     //std::cout << max(1, 5) << std::endl;
     //std::cout << max(1.2, 6.2) << std::endl;
@@ -58,7 +57,16 @@ int main() {
     intArr.set(9,1);
     intArr.set(6,2);
     intArr.set(3,0);
-    std::cout << "intArr[2] = " << intArr.get(2) << std::endl;
+    intArr.set(100,100);
+    
+    try {
+        std::cout << "intArr[100] = " << intArr.get(100) << std::endl;
+    }
+    catch(std::out_of_range& e){
+        printf("%s\n",e.what());
+    }
+    
+    std::cout << "intArr[10] = " << intArr.get(1) << std::endl;
     std::cout << intArr<< std::endl;
     
     Array<char> charArr(5);
