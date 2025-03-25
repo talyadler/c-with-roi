@@ -5,7 +5,7 @@ int main(){
 
     std::cout << ll << "\n";
 
-    int c = 3;
+    int c = 100;
     for (int i = 0; i < c; i++){
         ll.addLast(i);
     }
