@@ -31,6 +31,7 @@ public:
     void isOutOfRange() const{
         if (isEmpty()) throw std::out_of_range("empty list");
     }
+    
     void isOutOfRange(unsigned int index) const{
         if (isEmpty()) throw std::out_of_range("empty list");
         if (index >= length()) throw std::out_of_range("index out of bounds");
