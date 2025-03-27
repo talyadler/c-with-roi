@@ -6,7 +6,7 @@ int main(){
     std::cout << ll << "\n";
 
     int c = 5;
-    int p = c-2;
+    int p = c-c;
     for (int i = 0; i < c; i++){
         ll.addLast(i);
         printf("%d ", i);
@@ -14,12 +14,14 @@ int main(){
 
     std::cout << "\n" << ll << "\nlength: " << ll.length() << "\n";
 
-    // std::cout << ((ll.getByValue(1)) ? "true": "false") << "\n";
+    std::cout << "is there 1 value in linkedlist? " << ((ll.getByValue(1)) ? "true": "false") << "\n";
 
     try {
-        std::cout << "value at index " << p << ": " << ll.valueAt(p) <<"\n";
-    } catch(...){
-        printf("failed\n");
+        ll[p]=100;
+        std::cout << "value at index " << p << ": " << ll[p] <<"\n";
+        
+    } catch(std::out_of_range e){
+        std::cout << e.what() << "\n";
     }
 
     try {
@@ -63,6 +65,9 @@ int main(){
     } catch(...){
         printf("failed\n");
     }
+
+    std::cout << "is there 2 value in linkedlist? " << ((ll.getByValue(2)) ? "true": "false") << "\n";
+    std::cout << ll << "\nlength: " << ll.length() << "\n";
 
     return 0;
 }

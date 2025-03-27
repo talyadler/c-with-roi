@@ -28,7 +28,16 @@ public:
     int length() const{
         return size;
     }
-
+    bool isOutOfRange() const{
+        if (isEmpty()) throw std::out_of_range("empty list");
+        return isEmpty();
+    }
+    bool isOutOfRange(unsigned int index) const{
+        if (isEmpty()) throw std::out_of_range("empty list");
+        if (index >= length()) throw std::out_of_range("index out of bounds");
+        return (index >= length()) || isEmpty();
+    }
+    
     //add
     void addLast(T value);
     void addFirst(T value);
@@ -76,6 +85,23 @@ public:
     }
 
     //operator [] overload
+    T& operator[](unsigned int index) {
+        isOutOfRange(index);
+        Link<T>* temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp->next;
+        }
+        return temp->value;
+    }
+    
+    const T& operator[](unsigned int index) const{
+        isOutOfRange(index);
+        Link<T>* temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp->next;
+        }
+        return temp->value;   
+    }
 
 private: 
     Link<T>* head = nullptr;
@@ -130,8 +156,7 @@ void LinkedList<T>::addAt(T value, unsigned int index){
 
 //remove
 template <typename T> void LinkedList<T>::removeLast() {
-    if (isEmpty())
-        throw "empty list";
+    isOutOfRange();
     if (length() == 1) {
         delete tail;
         tail = head = nullptr;
@@ -144,8 +169,7 @@ template <typename T> void LinkedList<T>::removeLast() {
 }
 
 template <typename T> void LinkedList<T>::removeFirst() {
-    if (isEmpty())
-        throw "empty list";
+    isOutOfRange();
     if (length() == 1) {
         delete head;
         head = tail = nullptr;
@@ -159,8 +183,7 @@ template <typename T> void LinkedList<T>::removeFirst() {
 }
 
 template <typename T> void LinkedList<T>::removeAt(unsigned int index) {
-    if (isEmpty()) throw std::out_of_range("empty list");
-    if (index >= length()) throw std::out_of_range("index out of bounds");
+    isOutOfRange(index);
     if (index == 0) {
         removeFirst();
         return;
@@ -181,27 +204,26 @@ template <typename T> void LinkedList<T>::removeAt(unsigned int index) {
 
 //get
 template <typename T> Link<T>* LinkedList<T>::getFirst() const{
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     return head;
 }
 
 template <typename T> Link<T>* LinkedList<T>::getLast() const{
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     return tail;
 }
 
 template <typename T> Link<T>* LinkedList<T>::getAt(unsigned int index) const{
-    if (isEmpty()) throw std::out_of_range("empty list");
-    if (index >= length()) throw std::out_of_range("index out of bounds");
+    isOutOfRange(index);
     Link<T>* temp = head;
-    for (unsigned int i = 0; i < index; i++) {
+    for (int i = 0; i < index; i++) {
         temp = temp->next;
     }
     return temp;
 }
 
 template <typename T> Link<T>* LinkedList<T>::getByValue(T value) const{
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     Link<T>* temp = head;
     do {
         if (temp->value == value || temp->next == nullptr) break;
@@ -213,18 +235,17 @@ template <typename T> Link<T>* LinkedList<T>::getByValue(T value) const{
 
 // value
 template <typename T> T LinkedList<T>::valueFirst() const{
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     return head->value;
 }
 
 template <typename T> T LinkedList<T>::valueLast() const{
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     return tail->value;
 }
 
 template <typename T> T LinkedList<T>::valueAt(unsigned int index) const{
-    if (isEmpty()) throw std::out_of_range("empty list");
-    if (index >= length()) throw std::out_of_range("index out of bounds");
+    isOutOfRange(index);
     Link<T>* temp = head;
     for (int i = 0; i < index; i++){
         temp = temp->next;
@@ -234,30 +255,30 @@ template <typename T> T LinkedList<T>::valueAt(unsigned int index) const{
 
 //replace
 template <typename T> void LinkedList<T>::replaceFirst(T newValue){
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     head->value = newValue;
 }
 
 template <typename T> void LinkedList<T>::replaceLast(T newValue){
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     tail->value = newValue;
 }
 
 template <typename T> void LinkedList<T>::replaceAt(T newValue, unsigned int index){
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     Link<T>* temp = getAt(index);
     temp->value = newValue;
 }
 
 template <typename T> void LinkedList<T>::replaceByValue(T newValue, T byValue){
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     Link<T>* temp = getByValue(byValue);
     temp->value = newValue;
 }
 
 //overall
 template <typename T> T LinkedList<T>::max(){
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     T max = head->value;
     for (Link<T>* temp = head->next; temp != nullptr; temp = temp->next){
         // std::cout << max << "\\" << temp->value << "\n";
@@ -267,7 +288,7 @@ template <typename T> T LinkedList<T>::max(){
 }
 
 template <typename T> T LinkedList<T>::min(){
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     T min = head->value;
     for (Link<T>* temp = head->next; temp != nullptr; temp = temp->next){
         min = (min < temp->value) ? min : temp->value;
@@ -276,7 +297,7 @@ template <typename T> T LinkedList<T>::min(){
 }
 
 template <typename T> T LinkedList<T>::sum(){
-    if (isEmpty()) throw std::out_of_range("empty list");
+    isOutOfRange();
     T sum = head->value;
     for (Link<T>* temp = head->next; temp != nullptr; temp = temp->next){
         sum = sum+temp->value;
