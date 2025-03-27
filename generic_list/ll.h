@@ -28,14 +28,12 @@ public:
     int length() const{
         return size;
     }
-    bool isOutOfRange() const{
+    void isOutOfRange() const{
         if (isEmpty()) throw std::out_of_range("empty list");
-        return isEmpty();
     }
-    bool isOutOfRange(unsigned int index) const{
+    void isOutOfRange(unsigned int index) const{
         if (isEmpty()) throw std::out_of_range("empty list");
         if (index >= length()) throw std::out_of_range("index out of bounds");
-        return (index >= length()) || isEmpty();
     }
     
     //add
