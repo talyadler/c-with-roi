@@ -5,15 +5,23 @@
 template <typename T>
 class LinkedList {
 public:
-    //fields
+    /*
+    fields
+    */
 
-    //construtors
+    /*
+    CONSTRUCTORS
+    */
     LinkedList() {}
     ~LinkedList() {
         while (!isEmpty()) removeLast();
     }
 
-    //methods
+    /*
+    METHODS
+    */
+
+    //helpers
     bool isEmpty() const{
         return size == 0;
     }
@@ -31,10 +39,36 @@ public:
     void removeFirst();
     void removeAt(unsigned int index);
 
-    //operator overload
+    //get Link
+    Link<T>* getFirst() const;
+    Link<T>* getLast() const;
+    Link<T>* getAt(unsigned int index) const;
+    Link<T>* getByValue(T value) const;
+
+    //value
+    T valueFirst() const;
+    T valueLast() const;
+    T valueAt(unsigned int index) const;
+
+    //replace
+    void replaceFirst(T newValue);
+    void replaceLast(T newValue);
+    void replaceAt(T newValue, unsigned int index);
+    void replaceByValue(T newValue, T byValue);
+
+    //overall
+    T max();
+    T min();
+    T sum();
+
+    /*
+    OVERLOADS
+    */
+
+    //operator << overload
     friend std::ostream& operator<<(std::ostream& out, const LinkedList<T>& ll) {
         if (ll.isEmpty()) return out << "empty list please add";
-        out << "NULL <- ";
+        out << "NULL <-";
         for (Link<T>* temp = ll.head; temp != nullptr; temp = temp->next){
             out << "-> " << temp->value << " <-";
         }
@@ -47,6 +81,11 @@ private:
     unsigned int size = 0;
 };
 
+/*
+METHODS
+*/
+
+//add
 template <typename T> 
 void LinkedList<T>::addLast(T value) {
     if (isEmpty()) {
@@ -87,6 +126,7 @@ void LinkedList<T>::addAt(T value, unsigned int index){
     size ++;
 }
 
+//remove
 template <typename T> void LinkedList<T>::removeLast() {
     if (isEmpty())
         throw "empty list";
@@ -137,11 +177,107 @@ template <typename T> void LinkedList<T>::removeAt(unsigned int index) {
     size --;
 }
 
+//get
+template <typename T> Link<T>* LinkedList<T>::getFirst() const{
+    if (isEmpty()) throw "empty list";
+    return head;
+}
 
+template <typename T> Link<T>* LinkedList<T>::getLast() const{
+    if (isEmpty()) throw "empty list";
+    return tail;
+}
 
-//LinkedList<int> ll;
-//ll.addLast(0);
-//ll.addLast(1);
-//ll.addLast(2);
-//
-//std::cout << ll << std::endl; // NULL <- 0 <-> 1  <-> 2 -> NULL
+template <typename T> Link<T>* LinkedList<T>::getAt(unsigned int index) const{
+    if (isEmpty()) throw "empty list";
+    if (index >= length()) throw "index out of bounds";
+    Link<T> temp = head;
+    for (int i = 0; i < index; i++){
+        temp = temp->next;
+    }
+    return temp;
+}
+
+template <typename T> Link<T>* LinkedList<T>::getByValue(T value) const{
+    if (isEmpty()) throw "empty list";
+    Link<T>* temp = head;
+    do {
+        if (temp->value == value || temp->next == nullptr) break;
+        temp = temp->next;
+    }
+    while (temp->value != value);
+    return (temp->value == value) ? temp : nullptr;
+}
+
+// value
+template <typename T> T LinkedList<T>::valueFirst() const{
+    if (isEmpty()) throw "empty list";
+    return head->value;
+}
+
+template <typename T> T LinkedList<T>::valueLast() const{
+    if (isEmpty()) throw "empty list";
+    return tail->value;
+}
+
+template <typename T> T LinkedList<T>::valueAt(unsigned int index) const{
+    if (isEmpty()) throw "empty list";
+    if (index >= length()) throw "index out of bounds";
+    Link<T>* temp = head;
+    for (int i = 0; i < index; i++){
+        temp = temp->next;
+    }
+    return temp->value;
+}
+
+//replace
+template <typename T> void LinkedList<T>::replaceFirst(T newValue){
+    if (isEmpty()) throw "empty list";
+    head->value = newValue;
+}
+
+template <typename T> void LinkedList<T>::replaceLast(T newValue){
+    if (isEmpty()) throw "empty list";
+    tail->value = newValue;
+}
+
+template <typename T> void LinkedList<T>::replaceAt(T newValue, unsigned int index){
+    if (isEmpty()) throw "empty list";
+    Link<T>* temp = getAt(index);
+    temp->value = newValue;
+}
+
+template <typename T> void LinkedList<T>::replaceByValue(T newValue, T byValue){
+    if (isEmpty()) throw "empty list";
+    Link<T>* temp = getByValue(byValue);
+    temp->value = newValue;
+}
+
+//overall
+template <typename T> T LinkedList<T>::max(){
+    if (isEmpty()) throw "empty list";
+    T max = head->value;
+    for (Link<T>* temp = head->next; temp != nullptr; temp = temp->next){
+        // std::cout << max << "\\" << temp->value << "\n";
+        max = (max > temp->value) ? max : temp->value;
+    }
+    return max;
+}
+
+template <typename T> T LinkedList<T>::min(){
+    if (isEmpty()) throw "empty list";
+    T min = head->value;
+    for (Link<T>* temp = head->next; temp != nullptr; temp = temp->next){
+        min = (min < temp->value) ? min : temp->value;
+    }
+    return min;
+}
+
+template <typename T> T LinkedList<T>::sum(){
+    if (isEmpty()) throw "empty list";
+    T sum = head->value;
+    for (Link<T>* temp = head->next; temp != nullptr; temp = temp->next){
+        sum = sum+temp->value;
+    }
+    return sum;
+}
