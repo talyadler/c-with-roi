@@ -62,11 +62,6 @@ public:
     void removeLast();
     void removeAt(unsigned int index);
 
-    //get
-    T getFirst();
-    T getLast();
-    T getAt(unsigned int index);
-
     /*
     OVERLOADS
     */
@@ -116,7 +111,31 @@ template<typename T> void AL<T>::addLast(T value){
 
 //add
 template<typename T> void AL<T>::addAt(T value, unsigned int index){
+    isOutOfRange(index);
+    addLast(data[size-1]);
+    for (int i = length(); i >= index; i--){
+		data[i] = data[i-1]; 
+	}
+	data[index] = value;
+}
 
+//remove
+template<typename T> void AL<T>::removeFirst(){
+    isOutOfRange();
+    removeAt(0);
+}
+
+template<typename T> void AL<T>::removeLast(){
+    isOutOfRange();
+    size--;
+}
+
+template<typename T> void AL<T>::removeAt(unsigned int index){
+    isOutOfRange(index);
+    for (int i = index; i < length() - 1; ++i) {
+        data[i] = data[i + 1];
+    }
+    size--;
 }
 
 //helper
