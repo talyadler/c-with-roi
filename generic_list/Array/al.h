@@ -12,8 +12,8 @@ public:
     CONSTRUCTORS
     */
     AL() {
-        data = new T[16];
-        capacity = 16;
+        data = new T[3];
+        capacity = 3;
         size = 0;
     }
     ~AL() {
@@ -98,13 +98,13 @@ private:
 
 //add
 template<typename T> void AL<T>::addFirst(T value){
-    if (maxCapacity()) increaseCapacity(16);
+    if (maxCapacity()) increaseCapacity(1);
     addAt(value,0);
 }
 
 //add
 template<typename T> void AL<T>::addLast(T value){
-    if (maxCapacity()) increaseCapacity(16);
+    if (maxCapacity()) increaseCapacity(1);
     data[length()] = value;
     size ++;
 }
@@ -140,7 +140,7 @@ template<typename T> void AL<T>::removeAt(unsigned int index){
 
 //helper
 template<typename T> void AL<T>::increaseCapacity(unsigned int addedCap){
-    int* newData = new T[capacity+addedCap];
+    T* newData = new T[capacity+addedCap];
     for (int i = 0; i < capacity; i++){
         newData[i] = data[i];
     }

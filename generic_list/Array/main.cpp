@@ -1,14 +1,14 @@
 #include "al.h"
 
 int main() {
-    AL<int> al;
+    AL<char> al;
     
     int c = 5;
     int p = c-c;
 
     printf("adding %d items to array\n", c);
 
-    for (int i = 0; i < c; i++){
+    for (int i = 30; i < 100; i++){
         al.addLast(i);
     }
 
