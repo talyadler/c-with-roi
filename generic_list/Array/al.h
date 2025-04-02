@@ -79,13 +79,11 @@ public:
     //operator [] overload
     T& operator[](unsigned int index) {
         isOutOfRange(index);
-        T* temp = data;
         return data[index];
     }
 
     const T& operator[](unsigned int index) const {
         isOutOfRange(index);
-        T* temp = data;
         return data[index];
     }
     
@@ -100,6 +98,7 @@ private:
 template<typename T> void AL<T>::addFirst(T value){
     if (maxCapacity()) increaseCapacity(1);
     addAt(value,0);
+    size++;
 }
 
 //add
@@ -117,7 +116,14 @@ template<typename T> void AL<T>::addAt(T value, unsigned int index){
 		data[i] = data[i-1]; 
 	}
 	data[index] = value;
+    size++;
 }
+
+// TODO: implement start, end index pointer
+// [3,9,5,6,7,8]
+//    ^     ^
+//    |     |
+//    s     e
 
 //remove
 template<typename T> void AL<T>::removeFirst(){
@@ -144,7 +150,7 @@ template<typename T> void AL<T>::increaseCapacity(unsigned int addedCap){
     for (int i = 0; i < capacity; i++){
         newData[i] = data[i];
     }
-    delete data;
+    delete[] data;
     data = newData;
     capacity += addedCap;
 }

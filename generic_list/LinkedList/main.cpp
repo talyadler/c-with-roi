@@ -1,8 +1,22 @@
 #include "ll.h"
 
-int main(){
-    LinkedList<int> ll;
 
+void ll_addAt_test1(){
+    std::cout << "ll_addAt_test1 start" << std::endl;
+    LinkedList<int> ll;
+    ll.addLast(5);
+    ll.addLast(6);
+    std::cout << ll << std::endl;
+    ll.addAt(9,1);
+    std::cout << ll << std::endl;
+    std::cout << "ll_addAt_test1 end" << std::endl;
+}
+
+
+int main(){
+    ll_addAt_test1();
+}
+    /*
     std::cout << ll << "\n";
 
     int c = 5;
@@ -71,3 +85,4 @@ int main(){
 
     return 0;
 }
+*/

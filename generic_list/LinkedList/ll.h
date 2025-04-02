@@ -6,10 +6,6 @@ template <typename T>
 class LinkedList {
 public:
     /*
-    fields
-    */
-
-    /*
     CONSTRUCTORS
     */
     LinkedList() {}
@@ -21,20 +17,12 @@ public:
     METHODS
     */
 
-    //helpers
+    // helpers
     bool isEmpty() const{
         return size == 0;
     }
     int length() const{
         return size;
-    }
-    void isOutOfRange() const{
-        if (isEmpty()) throw std::out_of_range("empty list");
-    }
-    
-    void isOutOfRange(unsigned int index) const{
-        if (isEmpty()) throw std::out_of_range("empty list");
-        if (index >= length()) throw std::out_of_range("index out of bounds");
     }
     
     //add
@@ -101,11 +89,34 @@ public:
         }
         return temp->value;   
     }
+/*
+    //operator=
+    LinkedList<T>& operator=(const LinkedList<T>& o); 
+
+    //operator==
+    bool operator==(const LinkedList<T>& o) const; // if (ll1 == ll2)
+
+    //operator+
+    LinkedList<T> operator+(const LinkedList<T>& o) const; // ll3 = ll1 + ll2
+    LinkedList<T> operator+(const T& e) const; // ll3 = ll1 + 5;
+*/
 
 private: 
+    /*
+    fields
+    */
     Link<T>* head = nullptr;
     Link<T>* tail = nullptr;
     unsigned int size = 0;
+
+    // helpers
+    void isOutOfRange() const{
+        if (isEmpty()) throw std::out_of_range("empty list");
+    }
+    void isOutOfRange(unsigned int index) const{
+        if (isEmpty()) throw std::out_of_range("empty list");
+        if (index >= length()) throw std::out_of_range("index out of bounds");
+    }
 };
 
 /*
@@ -136,7 +147,7 @@ void LinkedList<T>::addFirst(T value){
 
 template <typename T>
 void LinkedList<T>::addAt(T value, unsigned int index){
-    if (index > length()) throw "index out of bounds";
+    if (index > length()) throw std::out_of_range("index out of bounds");
     if (index == 0) {
        addFirst(value);
        return;
@@ -149,6 +160,7 @@ void LinkedList<T>::addAt(T value, unsigned int index){
     for (int i = 0; i < index; i++) {
         temp = temp->next;
     }
+    std::cout << "temp->value = " << temp->value << std::endl;
     temp->next = temp->next->prev = new Link<T>(temp, value, temp->next);
     size ++;
 }
@@ -230,6 +242,11 @@ template <typename T> Link<T>* LinkedList<T>::getByValue(T value) const{
     }
     while (temp->value != value);
     return (temp->value == value) ? temp : nullptr;
+
+
+    for (Link<T>* temp = head; temp != nullptr; temp = temp->next)
+        if (temp->value == value) return temp;
+    return nullptr;
 }
 
 // value
