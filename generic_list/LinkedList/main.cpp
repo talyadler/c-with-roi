@@ -1,60 +1,73 @@
 #include "ll.h"
 
-
-void ll_addAt_test1(){
-    std::cout << "ll_addAt_test1 start" << std::endl;
-    LinkedList<int> ll;
-    ll.addLast(5);
-    ll.addLast(6);
-    std::cout << ll << std::endl;
-    ll.addAt(9,1);
-    std::cout << ll << std::endl;
-    std::cout << "ll_addAt_test1 end" << std::endl;
-}
-
-
-int main(){
-    ll_addAt_test1();
-}
-    /*
-    std::cout << ll << "\n";
-
-    int c = 5;
-    int p = c-c;
+template <typename T> void fillList(LinkedList<T>& ll, unsigned int c){
     for (int i = 0; i < c; i++){
         ll.addLast(i);
-        printf("%d ", i);
     }
+    std::cout << "length: " << ll.length() << "\n";
+}
 
-    std::cout << "\n" << ll << "\nlength: " << ll.length() << "\n";
+void ll_addAt_test(unsigned int c){
+    std::cout << "ll_addAt_test start" << std::endl;
+    LinkedList<int> ll;
+    printf("fill ll with %d items\n",c);
+    fillList(ll, c);
+    std::cout << ll << std::endl;
+    ll.addAt(9999,c-1);
+    std::cout << ll << std::endl;
+    std::cout << "ll_addAt_test end" << std::endl;
+    std::cout << "--------------------------------------" << std::endl;
+}
 
-    std::cout << "is there 1 value in linkedlist? " << ((ll.getByValue(1)) ? "true": "false") << "\n";
+void ll_operator_eq_test(unsigned int c){
+    std::cout << "ll_operator_eq_test start" << std::endl;
+    printf("print ll1\n");
+    LinkedList<int> ll1;
+    std::cout << ll1 << std::endl;
+    printf("print ll2\n");
+    LinkedList<int> ll2;
+    std::cout << ll2 << std::endl;
+    printf("\nfill ll1 with %d items\n",c);
+    fillList(ll1,5);
+    printf("print ll1\n");
+    std::cout << ll1 << std::endl;
+    printf("print ll2\n");
+    std::cout << ll2 << std::endl;
+    printf("\nusing =\n",c);
+    printf("print ll1\n");
+    std::cout << ll1 << std::endl;
+    printf("print ll2\n");
+    std::cout << ll2 << std::endl;
+    ll2 = ll1;
+    std::cout << "ll_operator_eq_test end" << std::endl;
+    std::cout << "--------------------------------------" << std::endl;
+}
 
+void ll_operator_bracers_test(unsigned int c){
+    LinkedList<int> ll;
+    fillList(ll,c);
+    int p = c-1;
+    ll[p]=999;
+    std::cout << "value at index " << p << ": " << ll[p] <<"\n";
+}
+
+int main(){
+    for (int i = 0; i < 5; i++){
+        try {
+            ll_addAt_test(i);
+        }catch(std::out_of_range e){
+            std::cout << e.what() << "\n";
+        }
+    }
+    
     try {
-        ll[p]=100;
-        std::cout << "value at index " << p << ": " << ll[p] <<"\n";
-        
-    } catch(std::out_of_range e){
+        ll_operator_bracers_test(5);
+    }catch(std::out_of_range e){
         std::cout << e.what() << "\n";
     }
 
-    try {
-        std::cout << "max value :" << ll.max() <<"\n";
-    } catch(...){
-        printf("failed\n");
-    }
-
-    try {
-        std::cout << "min value :" << ll.min() <<"\n";
-    } catch(...){
-        printf("failed\n");
-    }
-
-    try {
-        std::cout << "sum value :" << ll.sum() <<"\n";
-    } catch(...){
-        printf("failed\n");
-    }
+/*
+    // ll_operator_eq_test(5);
 
     try {
         std::cout << "replace first value: " << ll.valueFirst() << " with 100" << "\n";
@@ -71,18 +84,8 @@ int main(){
     } catch(...){
         printf("failed\n");
     }
-
-    try {
-        std::cout << "replace value at index 2: " << ll.valueAt(2) << " with 300" << "\n";
-        ll.replaceAt(300, 2);
-        std::cout << "value at index 2: " << ll.valueAt(2) << "\n";
-    } catch(...){
-        printf("failed\n");
-    }
-
-    std::cout << "is there 2 value in linkedlist? " << ((ll.getByValue(2)) ? "true": "false") << "\n";
-    std::cout << ll << "\nlength: " << ll.length() << "\n";
-
-    return 0;
-}
 */
+    return 0;
+
+}
+
