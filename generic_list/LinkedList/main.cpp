@@ -20,25 +20,64 @@ void ll_addAt_test(unsigned int c){
 }
 
 void ll_operator_eq_test(unsigned int c){
-    std::cout << "ll_operator_eq_test start" << std::endl;
-    printf("print ll1\n");
     LinkedList<int> ll1;
-    std::cout << ll1 << std::endl;
-    printf("print ll2\n");
     LinkedList<int> ll2;
-    std::cout << ll2 << std::endl;
-    printf("\nfill ll1 with %d items\n",c);
-    fillList(ll1,5);
-    printf("print ll1\n");
-    std::cout << ll1 << std::endl;
-    printf("print ll2\n");
-    std::cout << ll2 << std::endl;
+    std::cout << "ll_operator_eq_test start" << std::endl;
+    try {
+        printf("print ll1\n");
+        std::cout << ll1 << std::endl;
+    }catch(std::out_of_range e){
+        std::cout << e.what() << "\n";
+    }
+
+    try {
+        printf("print ll2\n");
+        std::cout << ll2 << std::endl;
+    }catch(std::out_of_range e){
+        std::cout << e.what() << "\n";
+    }
+    
+    try {
+        printf("\nfill ll1 with %d items\n",c);
+        fillList(ll1,5);
+    }catch(std::out_of_range e){
+        std::cout << e.what() << "\n";
+    }
+
+    try {
+        printf("print ll1\n");
+        std::cout << ll1 << std::endl;
+    }catch(std::out_of_range e){
+        std::cout << e.what() << "\n";
+    }
+
+    try {
+        printf("print ll2\n");
+        std::cout << ll2 << std::endl;
+    }catch(std::out_of_range e){
+        std::cout << e.what() << "\n";
+    }
+
     printf("\nusing =\n",c);
-    printf("print ll1\n");
-    std::cout << ll1 << std::endl;
-    printf("print ll2\n");
-    std::cout << ll2 << std::endl;
-    ll2 = ll1;
+    try {
+        ll2 = ll1;
+    }catch(std::out_of_range e){
+        std::cout << e.what() << "\n";
+    }
+
+    try {
+        printf("print ll1\n");
+        std::cout << ll1 << std::endl;
+    }catch(std::out_of_range e){
+        std::cout << e.what() << "\n";
+    }
+
+    try {
+        printf("print ll2\n");
+        std::cout << ll2 << std::endl;
+    }catch(std::out_of_range e){
+        std::cout << e.what() << "\n";
+    }
     std::cout << "ll_operator_eq_test end" << std::endl;
     std::cout << "--------------------------------------" << std::endl;
 }
@@ -52,16 +91,16 @@ void ll_operator_bracers_test(unsigned int c){
 }
 
 int main(){
-    for (int i = 0; i < 5; i++){
-        try {
-            ll_addAt_test(i);
-        }catch(std::out_of_range e){
-            std::cout << e.what() << "\n";
-        }
-    }
+    // for (int i = 0; i < 5; i++){
+    //     try {
+    //         ll_addAt_test(i);
+    //     }catch(std::out_of_range e){
+    //         std::cout << e.what() << "\n";
+    //     }
+    // }
     
     try {
-        ll_operator_bracers_test(5);
+        ll_operator_eq_test(5);
     }catch(std::out_of_range e){
         std::cout << e.what() << "\n";
     }

@@ -10,7 +10,14 @@ public:
     */
     LinkedList() {}
     ~LinkedList() {
-        while (!isEmpty()) removeLast();
+        clear();
+    }
+
+    //copy constructor
+    LinkedList(const LinkedList<T>& other) : head(nullptr), tail(nullptr) {
+        for (Link<T>* current = other.head; current != nullptr; current = current->next) {
+            addLast(current->value);
+        }
     }
 
     /*
@@ -34,6 +41,7 @@ public:
     void removeLast();
     void removeFirst();
     void removeAt(unsigned int index);
+    void clear();
 
     //value
     T valueFirst() const;
@@ -80,15 +88,15 @@ public:
         return temp->value;   
     }
 
-    //operator=
-/*
-    LinkedList<T>& operator=(const LinkedList<T>& o){ // ll2 = ll1
-        validateInput();
-        for (Link<T>* tempL = head; tempL != nullptr; tempL = tempL->next){
-            .addLast(tempL->value);
+    LinkedList<T>& operator=(const LinkedList<T>& o) {
+        if (this == &o) return *this;    
+        this->clear();
+        for (Link<T>* temp = o.head; temp != nullptr; temp = temp->next) {
+            this->addLast(temp->value);
         }
-        return ;
+        return *this;
     }
+    
 /*
     //operator==
     bool operator==(const LinkedList<T>& o) const; // if (ll1 == ll2)
@@ -213,6 +221,10 @@ template <typename T> void LinkedList<T>::removeAt(unsigned int index) {
     temp->prev->next = temp->next;
     delete temp;
     size --;
+}
+
+template <typename T> void LinkedList<T>::clear(){
+    while (!isEmpty()) removeLast();
 }
 
 // value
