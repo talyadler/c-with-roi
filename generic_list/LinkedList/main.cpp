@@ -56,7 +56,7 @@ void ll_operator_eq_test(unsigned int c) {
     std::cout << e.what() << "\n";
   }
 
-  printf("\nusing ll2=ll1\n", c);
+  printf("\nusing ll2=ll1\n");
   try {
     ll2 = ll1;
   } catch (std::out_of_range e) {
@@ -96,7 +96,7 @@ void ll_operator_eq_eq_test(unsigned int c) {
   LinkedList<int> ll1;
   LinkedList<int> ll2;
 
-  printf("\nll1 5 items\tll2 6 items\n", c);
+  printf("\nll1 5 items\tll2 6 items\n");
   fillList(ll1, 5);
   fillList(ll2, 6);
 
@@ -106,7 +106,7 @@ void ll_operator_eq_eq_test(unsigned int c) {
     printf("false\n");
   }
 
-  printf("\nremove ll2 last\n", c);
+  printf("\nremove ll2 last\n");
   ll2.removeLast();
 
   if (ll2 == ll1) {
@@ -115,7 +115,7 @@ void ll_operator_eq_eq_test(unsigned int c) {
     printf("false\n");
   }
 
-  printf("\nchange value in ll1\n", c);
+  printf("\nchange value in ll1\n");
   ll1[2] = 999;
 
   if (ll2 == ll1) {
