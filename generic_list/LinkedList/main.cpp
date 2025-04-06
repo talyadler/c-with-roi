@@ -37,12 +37,8 @@ void ll_operator_eq_test(unsigned int c){
         std::cout << e.what() << "\n";
     }
     
-    try {
-        printf("\nfill ll1 with %d items\n",c);
-        fillList(ll1,5);
-    }catch(std::out_of_range e){
-        std::cout << e.what() << "\n";
-    }
+    printf("\nfill ll1 with %d items\n",c);
+    fillList(ll1,5);
 
     try {
         printf("print ll1\n");
@@ -90,6 +86,40 @@ void ll_operator_bracers_test(unsigned int c){
     std::cout << "value at index " << p << ": " << ll[p] <<"\n";
 }
 
+void ll_operator_eq_eq_test(unsigned int c){
+    printf("\ntesting operator ==\n",c);
+    LinkedList<int> ll1;
+    LinkedList<int> ll2;
+
+    printf("\nll1 5 items\tll2 6 items\n",c);
+    fillList(ll1,5);
+    fillList(ll2,6);
+
+    if (ll2 == ll1) {
+        printf("true\n");
+    }else{
+        printf("false\n");
+    }
+
+    printf("\nremove ll2 last\n",c);
+    ll2.removeLast();
+
+    if (ll2 == ll1) {
+        printf("true\n");
+    }else{
+        printf("false\n");
+    }
+
+    printf("\nchange value in ll1\n",c);
+    ll1[2] = 999;
+
+    if (ll2 == ll1) {
+        printf("true\n");
+    }else{
+        printf("false\n");
+    }
+}
+
 int main(){
     // for (int i = 0; i < 5; i++){
     //     try {
@@ -100,7 +130,7 @@ int main(){
     // }
     
     try {
-        ll_operator_eq_test(5);
+        ll_operator_eq_eq_test(5);
     }catch(std::out_of_range e){
         std::cout << e.what() << "\n";
     }

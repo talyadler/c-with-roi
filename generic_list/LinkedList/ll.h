@@ -97,12 +97,26 @@ public:
         return *this;
     }
     
-/*
     //operator==
-    bool operator==(const LinkedList<T>& o) const; // if (ll1 == ll2)
-
+    bool operator==(const LinkedList<T>& o) const{ // if (ll1 == ll2)
+        if (length() != o.length()) return false;
+        for (unsigned int i = 0; i < length(); i++){
+            if ((*this)[i] != o[i]) return false;
+        }
+        return true;
+        // Link<T>* eval = head;
+        // for (Link<T>* temp = o.head; temp != nullptr; temp = temp->next) {
+        //     if (temp->value != eval->value) {
+        //         return false;
+        //     }
+        //     eval = eval->next;
+        // }
+        // return true;
+    }
+/*
     //operator+
     LinkedList<T> operator+(const LinkedList<T>& o) const; // ll3 = ll1 + ll2
+/*
     LinkedList<T> operator+(const T& e) const; // ll3 = ll1 + 5;
 */
 
