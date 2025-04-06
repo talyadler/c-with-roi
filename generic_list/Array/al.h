@@ -12,9 +12,11 @@ public:
     CONSTRUCTORS
     */
     AL() {
-        data = new T[3];
-        capacity = 3;
+        data = new T[16];
+        capacity = 16;
         size = 0;
+        start = 0;
+        end = -1;
     }
     ~AL() {
         delete[] data;
@@ -30,14 +32,14 @@ public:
     }
 
     bool isEmpty() const {
-        return size == 0;
+        return length() == 0;
     }
 
     unsigned int getCapacity(){
         return capacity;
     }
 
-    bool maxCapacity(){
+    bool atMaxCapacity(){
         return size == capacity;
     }
 
@@ -47,7 +49,7 @@ public:
 
     void isOutOfRange(unsigned int index) const{
         if (isEmpty()) throw std::out_of_range("empty list");
-        if (index >= length()) throw std::out_of_range("index out of bounds");
+        if ((index < start) && (index > end)) throw std::out_of_range("index out of bounds");
     }
 
     void increaseCapacity(unsigned int addedCap);
@@ -69,8 +71,9 @@ public:
     //operator << overload
     friend std::ostream& operator<<(std::ostream& out, const AL<T>& al) {
         al.isOutOfRange();
+        al.show_start_end();
         out << "[";
-        for (int i = 0; i < al.length(); i++){
+        for (int i = al.start; i <= al.end; i++){
             out << " " << al[i] << ", ";
         }
         return out << "]";
@@ -92,32 +95,20 @@ private:
     T* data;
     unsigned int capacity;
     unsigned int size;
+    unsigned int start = 0;
+    unsigned int end = 0;
+
+    //debug
+    void show_start()const{
+        printf("%d\n",start);
+    }
+    void show_end()const{
+        printf("%d\n",end);
+    }
+    void show_start_end()const{
+        printf("start: %d\t end:%d\t size:%d\n",start,end,size);
+    }
 };
-
-//add
-template<typename T> void AL<T>::addFirst(T value){
-    if (maxCapacity()) increaseCapacity(1);
-    addAt(value,0);
-    size++;
-}
-
-//add
-template<typename T> void AL<T>::addLast(T value){
-    if (maxCapacity()) increaseCapacity(1);
-    data[length()] = value;
-    size ++;
-}
-
-//add
-template<typename T> void AL<T>::addAt(T value, unsigned int index){
-    isOutOfRange(index);
-    addLast(data[size-1]);
-    for (int i = length(); i >= index; i--){
-		data[i] = data[i-1]; 
-	}
-	data[index] = value;
-    size++;
-}
 
 // TODO: implement start, end index pointer
 // [3,9,5,6,7,8]
@@ -125,23 +116,53 @@ template<typename T> void AL<T>::addAt(T value, unsigned int index){
 //    |     |
 //    s     e
 
+//add
+template<typename T> void AL<T>::addFirst(T value){
+    if (atMaxCapacity()) increaseCapacity(16);
+    addAt(value,0);
+}
+
+//add
+template<typename T> void AL<T>::addLast(T value){
+    if (atMaxCapacity()) increaseCapacity(16);
+    data[length()] = value;
+    end ++;
+    size = (end==1) ? 1: end-start;
+}
+
+//add
+template<typename T> void AL<T>::addAt(T value, unsigned int index){
+    isOutOfRange(index);
+    addLast(data[size-1]);
+    for (int i = end; i >= index+start; i--){
+        data[i] = data[i-1];
+	}
+	data[index+start] = value;
+    end ++;
+    size = end-start;
+}
+
 //remove
 template<typename T> void AL<T>::removeFirst(){
     isOutOfRange();
-    removeAt(0);
+    start++;
+    size = end-start;
 }
 
 template<typename T> void AL<T>::removeLast(){
     isOutOfRange();
-    size--;
+    end--;
+    size = end-start;
 }
 
 template<typename T> void AL<T>::removeAt(unsigned int index){
     isOutOfRange(index);
-    for (int i = index; i < length() - 1; ++i) {
+    for (int i = index+start; i <= end; ++i) {
+        std::cout << "data[" << i << "]" << data[i] << "\t" <<data[i+1] << "\n";
         data[i] = data[i + 1];
     }
-    size--;
+    end--;
+    size = end-start;
 }
 
 //helper
