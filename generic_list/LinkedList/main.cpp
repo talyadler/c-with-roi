@@ -13,16 +13,18 @@ void ll_addAt_test(unsigned int c){
     printf("fill ll with %d items\n",c);
     fillList(ll, c);
     std::cout << ll << std::endl;
-    ll.addAt(9999,c-1);
-    std::cout << ll << std::endl;
+    for (int i = c; i >= 0; i--){
+        ll.addAt(i+1000,i);
+        std::cout << ll << std::endl;
+    }
     std::cout << "ll_addAt_test end" << std::endl;
-    std::cout << "--------------------------------------" << std::endl;
+    std::cout << "--------------------------------------\n" << std::endl;
 }
 
 void ll_operator_eq_test(unsigned int c){
+    std::cout << "ll_operator_eq_test start" << std::endl;
     LinkedList<int> ll1;
     LinkedList<int> ll2;
-    std::cout << "ll_operator_eq_test start" << std::endl;
     try {
         printf("print ll1\n");
         std::cout << ll1 << std::endl;
@@ -54,7 +56,7 @@ void ll_operator_eq_test(unsigned int c){
         std::cout << e.what() << "\n";
     }
 
-    printf("\nusing =\n",c);
+    printf("\nusing ll2=ll1\n",c);
     try {
         ll2 = ll1;
     }catch(std::out_of_range e){
@@ -75,19 +77,22 @@ void ll_operator_eq_test(unsigned int c){
         std::cout << e.what() << "\n";
     }
     std::cout << "ll_operator_eq_test end" << std::endl;
-    std::cout << "--------------------------------------" << std::endl;
+    std::cout << "--------------------------------------\n" << std::endl;
 }
 
 void ll_operator_bracers_test(unsigned int c){
+    std::cout << "ll_operator_bracers_test start" << std::endl;
     LinkedList<int> ll;
     fillList(ll,c);
     int p = c-1;
     ll[p]=999;
     std::cout << "value at index " << p << ": " << ll[p] <<"\n";
+    std::cout << "ll_operator_bracers_test end" << std::endl;
+    std::cout << "--------------------------------------\n" << std::endl;
 }
 
 void ll_operator_eq_eq_test(unsigned int c){
-    printf("\ntesting operator ==\n",c);
+    printf("ll_operator_eq_eq_test start\n");
     LinkedList<int> ll1;
     LinkedList<int> ll2;
 
@@ -118,43 +123,52 @@ void ll_operator_eq_eq_test(unsigned int c){
     }else{
         printf("false\n");
     }
+    printf("ll_operator_eq_eq_test end\n");
+    std::cout << "--------------------------------------\n" << std::endl;
 }
 
-int main(){
-    // for (int i = 0; i < 5; i++){
-    //     try {
-    //         ll_addAt_test(i);
-    //     }catch(std::out_of_range e){
-    //         std::cout << e.what() << "\n";
-    //     }
-    // }
-    
+void ll_operator_plus_test(unsigned int c){
+    printf("ll_operator_plus_test start\n");
+    LinkedList<int> ll1;
+    LinkedList<int> ll2;
+    LinkedList<int> ll3;
+    fillList(ll1,c);
+    fillList(ll2,c);
+    ll3 = ll1 + ll2;
     try {
-        ll_operator_eq_eq_test(5);
+        printf("print ll3\n");
+        std::cout << ll3 << std::endl;
     }catch(std::out_of_range e){
         std::cout << e.what() << "\n";
     }
+    printf("ll_operator_plus_test end\n");
+    std::cout << "--------------------------------------\n" << std::endl;
+}
 
-/*
-    // ll_operator_eq_test(5);
-
+void ll_operator_plus_link_test(unsigned int c){
+    printf("ll_operator_plus_link_test start\n");
+    LinkedList<int> ll1;
+    LinkedList<int> ll2;
+    fillList(ll1,c);
+    ll2 = ll1 + 999;
     try {
-        std::cout << "replace first value: " << ll.valueFirst() << " with 100" << "\n";
-        ll.replaceFirst(100);
-        std::cout << "first value: " << ll.valueFirst() << "\n";
-    } catch(...){
-        printf("failed\n");
+        printf("print ll2\n");
+        std::cout << ll2 << std::endl;
+    }catch(std::out_of_range e){
+        std::cout << e.what() << "\n";
     }
+    printf("ll_operator_plus_link_test end\n");
+    std::cout << "--------------------------------------\n" << std::endl;
+}
 
-    try {
-        std::cout << "replace last value: " << ll.valueLast() << " with 200" << "\n";
-        ll.replaceLast(200);
-        std::cout << "last value: " << ll.valueLast() << "\n";
-    } catch(...){
-        printf("failed\n");
-    }
-*/
+int main(){
+    ll_addAt_test(5);
+    ll_operator_eq_test(5);
+    ll_operator_bracers_test(5);
+    ll_operator_eq_eq_test(5);
+    ll_operator_plus_test(5);
+    ll_operator_plus_link_test(5);
+
     return 0;
-
 }
 
