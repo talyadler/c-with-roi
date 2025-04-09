@@ -171,7 +171,7 @@ template <typename T> T LinkedList<T>::sum() {
 }
 
 // get
-template <typename T> Link<T> *LinkedList<T>::getByValue(T value) const {
+template <typename T> Link<T>* LinkedList<T>::getByValue(T value) const {
   validateInput();
   for (Link<T> *temp = head; temp != nullptr; temp = temp->next)
     if (temp->value == value)
@@ -179,9 +179,101 @@ template <typename T> Link<T> *LinkedList<T>::getByValue(T value) const {
   return nullptr;
 }
 
+// validation
+template <typename T> void LinkedList<T>::validateInput() const {
+  if (isEmpty())
+    throw std::out_of_range("empty list");
+}
+
+// validation
+template <typename T> void LinkedList<T>::validateInput(unsigned int index) const {
+  validateInput();
+  if (index >= length())
+    throw std::out_of_range("index out of bounds");
+}
+
 /*
 OVERLOADS
 */
 
-// template <typename T> std::ostream& operator<<(std::ostream& out, const
-// LinkedList<T>& ll);
+// operator << overload
+template <typename T> std::ostream& LinkedList<T>::operator<<(std::ostream& out, const LinkedList<T>& ll) {
+  ll.validateInput();
+  out << "NULL <-";
+  for (Link<T> *temp = ll.head; temp != nullptr; temp = temp->next) {
+    out << "-> " << temp->value << " <-";
+  }
+  return out << "-> NULL";
+}
+
+// operator [] overload
+template <typename T> T& LinkedList<T>::operator[](unsigned int index) {
+  validateInput(index);
+  Link<T> *temp = head;
+  for (int i = 0; i < index; i++) {
+    temp = temp->next;
+  }
+  return temp->value;
+}
+
+// operator[] overload const
+template <typename T> const T& LinkedList<T>::operator[](unsigned int index) const {
+  validateInput(index);
+  Link<T> *temp = head;
+  for (int i = 0; i < index; i++) {
+    temp = temp->next;
+  }
+  return temp->value;
+}
+
+// operator= overload
+template <typename T> LinkedList<T> &LinkedList<T>::operator=(const LinkedList<T> &o) {
+  if (this == &o)
+    return *this;
+  this->clear();
+  for (Link<T> *temp = o.head; temp != nullptr; temp = temp->next) {
+    this->addLast(temp->value);
+  }
+  return *this;
+}
+
+// operator== overload
+template <typename T> bool LinkedList<T>::operator==(const LinkedList<T> &o) const { // if (ll1 == ll2)
+  if (length() != o.length())
+    return false;
+  for (unsigned int i = 0; i < length(); i++) {
+    if ((*this)[i] != o[i])
+      return false;
+  }
+  return true;
+  // Link<T>* eval = head;
+  // for (Link<T>* temp = o.head; temp != nullptr; temp = temp->next) {
+  //     if (temp->value != eval->value) {
+  //         return false;
+  //     }
+  //     eval = eval->next;
+  // }
+  // return true;
+}
+
+// operator+ overload combine 2 lists
+template <typename T> LinkedList<T> LinkedList<T>::operator+(const LinkedList<T> &o) const { // ll3 = ll1 + ll2
+  LinkedList<T> added;
+  for (Link<T> *temp = this->head; temp != nullptr; temp = temp->next) {
+    added.addLast(temp->value);
+  }
+  for (Link<T> *temp = o.head; temp != nullptr; temp = temp->next) {
+    added.addLast(temp->value);
+  }
+  return added;
+}
+
+// operator+ overload add link
+template <typename T> LinkedList<T> LinkedList<T>::operator+(const T &e) const { // ll3 = ll1 + 5;
+  LinkedList<T> added;
+  for (Link<T> *temp = this->head; temp != nullptr; temp = temp->next) {
+    added.addLast(temp->value);
+  }
+  added.addLast(e);
+  return added;
+}
