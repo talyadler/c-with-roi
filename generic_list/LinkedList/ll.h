@@ -1,18 +1,19 @@
 #pragma once
+#include "../list.h"
 #include "link.h"
 #include <iostream>
 
-template <typename T> class LinkedList {
+template <typename T> class LinkedList : public list {
 public:
   /*
   CONSTRUCTORS
   */
   // defualt
   LinkedList() {}
-  ~LinkedList() { clear(); }
+  virutal ~LinkedList() { clear(); }
 
   // copy constructor
-  LinkedList(const LinkedList<T> &other) : head(nullptr), tail(nullptr) {
+  virtual LinkedList(const LinkedList<T> &other) : head(nullptr), tail(nullptr) {
     for (Link<T> *current = other.head; current != nullptr;
          current = current->next) {
       addLast(current->value);
@@ -24,31 +25,31 @@ public:
   */
 
   // helpers
-  bool isEmpty() const { return size == 0; }
-  int length() const { return size; }
+  virtual bool isEmpty() const { return size == 0; }
+  virtual int length() const { return size; }
 
   // add
-  void addLast(T value);
-  void addFirst(T value);
-  void addAt(T value, unsigned int index);
+  virtual void addLast(T value);
+  virtual void addFirst(T value);
+  virtual void addAt(T value, unsigned int index);
 
   // remove
-  void removeLast();
-  void removeFirst();
-  void removeAt(unsigned int index);
-  void clear();
+  virtual void removeLast();
+  virtual void removeFirst();
+  virtual void removeAt(unsigned int index);
+  virtual void clear();
 
   // value
-  T valueFirst() const;
-  T valueLast() const;
+  virtual T valueFirst() const;
+  virtual T valueLast() const;
 
   // replace
-  void replaceByValue(T newValue, T byValue);
+  virtual void replaceByValue(T newValue, T byValue);
 
   // overall
-  T max();
-  T min();
-  T sum();
+  virtual T max();
+  virtual T min();
+  virtual T sum();
 
   /*
   OVERLOADS
@@ -158,7 +159,7 @@ private:
   }
 
   // get Link
-  Link<T> *getByValue(T value) const;
+  Link<T>* getByValue(T value) const;
 };
 
 /*

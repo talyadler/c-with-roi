@@ -1,8 +1,9 @@
 #pragma once
+#include "../list.h"
 #include <iostream>
 
 template<typename T>
-class AL {
+class AL : public list {
 public:
     /*
     FIELDS
