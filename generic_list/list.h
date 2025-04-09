@@ -10,7 +10,6 @@ public:
   // helpers
   virtual bool isEmpty() const = 0; 
   virtual int length() const  = 0;
-  virtual void isOutOfRange() const = 0;
 
   // add
   virtual void addLast(T value) = 0; 
@@ -28,5 +27,9 @@ public:
   virtual T valueLast() const = 0; 
 
   // replace
-  virtual void replaceByValue(T newValue, T byValue) = 0; 
+  virtual void replaceByValue(T newValue, T byValue) = 0;
+
+  // validation
+  virtual void validateInput() const = 0;
+  virtual void validateInput(unsigned int index) const = 0;
 };

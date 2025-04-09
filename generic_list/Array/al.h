@@ -3,7 +3,7 @@
 #include <iostream>
 
 template<typename T>
-class AL : public list {
+class AL : public list<T> {
 public:
     /*
     FIELDS
