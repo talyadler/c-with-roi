@@ -31,4 +31,10 @@ METHODS
   // validation
   virtual void validateInput() const = 0;
   virtual void validateInput(unsigned int index) const = 0;
+
+  // operations
+  // template<typename V> virtual list<V>* map(std::function<V(T)> f) =0;
+  // template<typename V> virtual list<V>* reduce(std::function<v(V,T)> f) =0;
+  // typename std::function<bool(T)> predicate;
+  // virtual list<T>* filter(precidate p) =0;
 };
