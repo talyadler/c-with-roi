@@ -15,7 +15,7 @@ public:
   */
 
   // helper
-  virtual unsigned int length() const;
+  virtual int length() const;
   virtual bool isEmpty() const;
   virtual void validateInput() const;
   virtual void validateInput(unsigned int index) const;
@@ -33,6 +33,14 @@ public:
   virtual void removeFirst();
   virtual void removeLast();
   virtual void removeAt(unsigned int index);
+  virtual void clear();
+
+  // value
+  virtual T valueFirst() const;
+  virtual T valueLast() const;
+
+  // replace
+  virtual void replaceByValue(T newValue, T byValue);
 
   /*
   OVERLOADS
@@ -58,7 +66,7 @@ private:
   unsigned int capacity;
   unsigned int size;
   unsigned int start = 0;
-  unsigned int end = 0;
+  int end = 0;
 
   // debug
   void show_start() const;
@@ -83,7 +91,7 @@ METHODS
 */
 
 // helper
-template <typename T> unsigned int AL<T>::length() const { return size; }
+template <typename T> int AL<T>::length() const { return size; }
 
 template <typename T> bool AL<T>::isEmpty() const { return length() == 0; }
 
@@ -186,3 +194,18 @@ template <typename T> void AL<T>::increaseCapacity(unsigned int addedCap) {
   data = newData;
   capacity += addedCap;
 }
+
+// value
+template<typename T> T AL<T>::valueFirst() const{
+  validateInput();
+  return data[0];
+}
+template<typename T> T AL<T>::valueLast() const{
+  validateInput();
+  return data[length()-1];
+}
+
+// replace
+template<typename T> void AL<T>::replaceByValue(T newValue, T byValue){}
+
+template<typename T> void AL<T>::clear(){}

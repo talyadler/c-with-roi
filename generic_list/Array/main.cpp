@@ -78,7 +78,7 @@ void complex_test(int c) {
 }
 
 int main() {
-  int c = 1;
+  int c = 5;
   remove_test(c);
   // complex_test(c);
   return 0;
