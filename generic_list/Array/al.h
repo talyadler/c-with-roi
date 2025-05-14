@@ -66,8 +66,6 @@ private:
   void show_start_end() const;
 };
 
-#include "al.h"
-
 /*
 CONSTRUCTORS
 */
@@ -188,4 +186,3 @@ template <typename T> void AL<T>::increaseCapacity(unsigned int addedCap) {
   data = newData;
   capacity += addedCap;
 }
-
