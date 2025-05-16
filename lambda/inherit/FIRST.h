@@ -1,6 +1,7 @@
 #pragma once
 #include "BASE.h"
 #include <vector>
+#include <iostream>
 
 template<typename T>
 class FIRST : public BASE<T> {
@@ -8,7 +9,20 @@ private:
     std::vector<T> data;
 
 public:
+    FIRST(){}
     FIRST(const std::vector<T>& d) : data(d) {}
+    ~FIRST(){data.clear();}
+
+    void add(T value){
+        data.push_back(value);
+    }
+
+    void show(){
+        for (T show : data){
+            std::cout << show << ", ";
+        }
+        std::cout<< "\n";
+    }
 
     BASE<T>* map(std::function<T(T)> f) override {
         std::vector<T> result;
